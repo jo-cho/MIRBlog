@@ -1,2 +1,2 @@
 # MIRBlog
-blog template
+blog template of https://jo-cho.github.io/MIRBlog/
