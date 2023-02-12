@@ -4,16 +4,11 @@ image: profile.jpg
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/jo-cho
 ---
 
 About this blog
+
+음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 개인 블로그입니다.
