@@ -1,5 +1,5 @@
 ---
-title: "음악정보검색 블로그 (testing)"
+title: "조조의 음악정보검색 블로그"
 listing:
   contents: posts
   sort: "date desc"

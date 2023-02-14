@@ -8,7 +8,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/jo-cho
+        href: https://github.com/jo-cho/mir_kr
 format:
   html:
     theme: flatly
