@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-02-15">
+
+<title>MIRBlog - 3.1. 수학리뷰 - 복소수와 지수함수</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MIRBlog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jo-cho/mir_kr"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">3.1. 수학리뷰 - 복소수와 지수함수</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">푸리에변환</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cheonghyo Cho </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 15, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>푸리에 변환(Fourier transform)을 보기 전에 이와 관련한 몇가지 수학적 개념(복소수, 지수함수)을 리뷰해보록 한다.</p>
+<blockquote class="blockquote">
+<p>이 글은 <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html">FMP(Fundamentals of Music Processing) Notebooks</a>을 참고로 합니다.</p>
+</blockquote>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> gcd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="복소수-complex-numbers" class="level1">
+<h1>복소수 (Complex Numbers)</h1>
+<section id="기본-개념" class="level2">
+<h2 class="anchored" data-anchor-id="기본-개념">기본 개념</h2>
+<ul>
+<li>실수 부분 <span class="math inline">\(\mathrm{Re}(c) = a\)</span>, 허수 부분 <span class="math inline">\(\mathrm{Im}(c) = b\)</span> 및 허수 단위 <span class="math inline">\(i = \sqrt{-1}\)</span>로 복소수 <span class="math inline">\(c = a + ib\)</span>를 쓸 수 있다. 파이썬에서 기호 <code>j</code>는 허수의 단위를 나타내기 위해 사용된다. 또한 <code>j</code> 앞의 계수가 필요하다. 복소수를 지정하기 위해 <code>complex</code>라는 생성자를 사용할 수도 있다.</li>
+</ul>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b<span class="op">*</span><span class="ot">1j</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> <span class="bu">complex</span>(a,b)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1.5+0.8j)
+(1.5+0.8j)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.real(c))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.imag(c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.5
+0.8</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">2</span>), xlim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>], ylim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generate figure for plotting complex numbers</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (2, 2))</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">        xlim: Limits of x-axis (Default value = [0, 1])</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">        ylim: Limits of y-axis (Default value = [0, 1])</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>figsize)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.grid()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.xlim(xlim)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.ylim(ylim)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="vs">r'$\mathrm</span><span class="sc">{Re}</span><span class="vs">$'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="vs">r'$\mathrm</span><span class="sc">{Im}</span><span class="vs">$'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_vector(c, color<span class="op">=</span><span class="st">'k'</span>, start<span class="op">=</span><span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">'-'</span>):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot arrow corresponding to difference of two complex numbers</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">        c: Complex number</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">        color: Color of arrow (Default value = 'k')</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">        start: Complex number encoding the start position (Default value = 0)</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">        linestyle: Linestyle of arrow (Default value = '-')</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">        arrow (matplotlib.patches.FancyArrow): Arrow</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plt.arrow(np.real(start), np.imag(start), np.real(c), np.imag(c),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                     linestyle<span class="op">=</span>linestyle, head_width<span class="op">=</span><span class="fl">0.05</span>, fc<span class="op">=</span>color, ec<span class="op">=</span>color, overhang<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>                     length_includes_head<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.5</span> <span class="op">+</span> <span class="ot">0.8j</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>generate_figure(xlim<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">2.5</span>], ylim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> plot_vector(c, color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.5</span>, <span class="fl">0.8</span>, <span class="st">'$c$'</span>, size<span class="op">=</span><span class="st">'16'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.8</span>, <span class="fl">0.55</span>, <span class="st">'$|c|$'</span>, size<span class="op">=</span><span class="st">'16'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.25</span>, <span class="fl">0.05</span>, <span class="st">'$\gamma$'</span>, size<span class="op">=</span><span class="st">'16'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="극좌표-표현-polar-representation" class="level2">
+<h2 class="anchored" data-anchor-id="극좌표-표현-polar-representation">극좌표 표현 (Polar Representation)</h2>
+<ul>
+<li>복소수 <span class="math inline">\(a+ib\)</span> 의 <strong>절대값</strong> (absolute value or modulus)은 다음과 같이 정의된다.
+<ul>
+<li><span class="math inline">\(|c| := \sqrt{a^2 + b^2}.\)</span></li>
+</ul></li>
+<li>(radian으로 주어진) <strong>각도</strong>(angle)는 다음과 같다.
+<ul>
+<li><span class="math inline">\(\gamma := \mathrm{atan2}(b, a).\)</span></li>
+</ul></li>
+<li>이는 <span class="math inline">\((-\pi,\pi]\)</span> 간격의 숫자를 생성하며, 이 값은 음의 값에 <span class="math inline">\(2\pi\)</span>를 추가하여 <span class="math inline">\([0,2\pi)\)</span>에 매핑될 수 있다. <strong>각도</strong>(degree 단위)는 다음과 같이 구한다.
+<ul>
+<li><span class="math inline">\(360 \cdot \frac{\gamma}{2\pi}\)</span></li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Absolute value:'</span>, np.<span class="bu">abs</span>(c))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Angle (in radians):'</span>, np.angle(c))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Angle (in degree):'</span>, np.rad2deg(np.angle(c)))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Angle (in degree):'</span>, <span class="dv">360</span> <span class="op">*</span> np.angle(c)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Absolute value: 1.7
+Angle (in radians): 0.48995732625372834
+Angle (in degree): 28.07248693585296
+Angle (in degree): 28.07248693585296</code></pre>
+</div>
+</div>
+<ul>
+<li>복소수 <span class="math inline">\(c=a+ib\)</span>는 <span class="math inline">\((|c|, \gamma)\)</span> 쌍에 의해 고유하게 정의되며, 이는 <span class="math inline">\(c\)</span>의 <strong>극좌표 표현</strong>(polar representation)이라고도 한다. 다음과 같이 극좌표 표현 <span class="math inline">\((|c|,\gamma)\)</span>에서 데카르트 표현(Cartesian representation) <span class="math inline">\((a,b)\)</span>를 얻는다.</li>
+</ul>
+<p><span class="math display">\[\begin{eqnarray}
+a &amp;=&amp; |c| \cdot \cos(\gamma) \\
+b &amp;=&amp; |c| \cdot \sin(\gamma)
+\end{eqnarray}\]</span></p>
+</section>
+<section id="연산" class="level2">
+<h2 class="anchored" data-anchor-id="연산">연산</h2>
+<ul>
+<li>두 복소수 <span class="math inline">\(c_1=a_1+ib_1\)</span>와 <span class="math inline">\(c_2=a_2+ib_2\)</span>의 경우, 합은 다음과 같다.</li>
+</ul>
+<p><span class="math display">\[
+c_1 + c_2 = (a_1 + ib_1) + (a_2 + ib_2) := (a_1 + a_2) + i(b_1 + b_2)
+\]</span></p>
+<ul>
+<li>실수 부분과 허수 부분을 개별적으로 합산하여 정의한다. 덧셈의 기하학적 직관은 평행사변형으로 시각화할 수 있다.</li>
+</ul>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> <span class="fl">1.3</span> <span class="op">-</span> <span class="ot">0.3j</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="ot">0.5j</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c1 <span class="op">+</span> c2</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>generate_figure(xlim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">2.2</span>], ylim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.6</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> plot_vector(c1, color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> plot_vector(c2, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plot_vector(c1, start<span class="op">=</span>c2, linestyle<span class="op">=</span><span class="st">':'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plot_vector(c2, start<span class="op">=</span>c1, linestyle<span class="op">=</span><span class="st">':'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>v3 <span class="op">=</span> plot_vector(c, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.legend([v1, v2, v3], [<span class="st">'$c_1$'</span>, <span class="st">'$c_2$'</span>, <span class="st">'$c_1+c_2$'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>두 숫자 <span class="math inline">\(c_1=a_1+ib_1\)</span>와 <span class="math inline">\(c_2=a_2+ib_2\)</span>의 복소수 곱셈은 다음과 같이 정의된다.</li>
+</ul>
+<p><span class="math display">\[c = c_1 \cdot c_2 = (a_1 + ib_1) \cdot (a_2 + ib_2) := (a_1a_2 - b_1b_2) + i(a_1b_2 + b_1a_2).\]</span></p>
+<ul>
+<li>기하학적으로, 이 곱은 각도를 더하고 절대값을 곱함으로써 얻어진다. 다시 말해, <span class="math inline">\((|c_1|, \gamma_1)\)</span>와 <span class="math inline">\((|c_2|, \gamma_2)\)</span>가 각각 <span class="math inline">\(c_1\)</span>와 <span class="math inline">\(c_1\)</span>의 극좌표 표현이라면, <span class="math inline">\(c\)</span>의 극좌표 표현 <span class="math inline">\((|c|, \gamma)\)</span>는 다음과 같이 주어진다.</li>
+</ul>
+<p><span class="math display">\[\begin{eqnarray}
+\gamma &amp;=&amp; \gamma_1 + \gamma_2 \\
+|c| &amp;=&amp; |c_1| \cdot |c_2|
+\end{eqnarray}\]</span></p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> <span class="fl">1.0</span> <span class="op">-</span> <span class="ot">0.5j</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> <span class="fl">2.3</span> <span class="op">+</span> <span class="ot">0.7j</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c1 <span class="op">*</span> c2</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>generate_figure(xlim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">4.0</span>], ylim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.75</span>, <span class="fl">0.75</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> plot_vector(c1, color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> plot_vector(c2, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>v3 <span class="op">=</span> plot_vector(c, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.legend([v1, v2, v3], [<span class="st">'$c_1$'</span>, <span class="st">'$c_2$'</span>, <span class="st">'$c_1 \cdot c_2$'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="극좌표계-polar-coordinate-plot" class="level2">
+<h2 class="anchored" data-anchor-id="극좌표계-polar-coordinate-plot">극좌표계 (Polar Coordinate Plot)</h2>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_polar_vector(c, label<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="va">None</span>, start<span class="op">=</span><span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">'-'</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot line in polar plane</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> plt.polar([np.angle(start), np.angle(c)], [np.<span class="bu">abs</span>(start), np.<span class="bu">abs</span>(c)], label<span class="op">=</span>label, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                     color<span class="op">=</span>color, linestyle<span class="op">=</span>linestyle)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot arrow in same color</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    this_color <span class="op">=</span> line[<span class="dv">0</span>].get_color() <span class="cf">if</span> color <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> color</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="st">''</span>, xytext<span class="op">=</span>(np.angle(start), np.<span class="bu">abs</span>(start)), xy<span class="op">=</span>(np.angle(c), np.<span class="bu">abs</span>(c)),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                 arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span>this_color, edgecolor<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                 headlength<span class="op">=</span><span class="dv">12</span>, headwidth<span class="op">=</span><span class="dv">10</span>, shrink<span class="op">=</span><span class="dv">1</span>, width<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head_width=0.05, fc=color, ec=color, overhang=0.3, length_includes_head=True    </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>c_abs <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>c_angle <span class="op">=</span> <span class="dv">45</span>  <span class="co"># in degree</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>c_angle_rad <span class="op">=</span> np.deg2rad(c_angle) </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> c_abs <span class="op">*</span> np.cos(c_angle_rad)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> c_abs <span class="op">*</span> np.sin(c_angle_rad)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> a <span class="op">+</span> b<span class="op">*</span><span class="ot">1j</span>    </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">+</span> <span class="fl">0.75</span><span class="op">*</span><span class="ot">1j</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plot_polar_vector(c1, label<span class="op">=</span><span class="st">'$c_1$'</span>, color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plot_polar_vector(np.conj(c1), label<span class="op">=</span><span class="st">'$\overline</span><span class="sc">{c}</span><span class="st">_1$'</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plot_polar_vector(c2, label<span class="op">=</span><span class="st">'$c_2$'</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plot_polar_vector(c1<span class="op">*</span>c2, label<span class="op">=</span><span class="st">'$c_1\cdot c_2$'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plot_polar_vector(c1<span class="op">/</span>c2, label<span class="op">=</span><span class="st">'$c_1/c_2$'</span>, color<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">0</span>, <span class="fl">1.8</span>])<span class="op">;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plt.legend(framealpha<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="지수-함수-exponential-function" class="level1">
+<h1>지수 함수 (Exponential Function)</h1>
+<section id="power-series-멱급수" class="level2">
+<h2 class="anchored" data-anchor-id="power-series-멱급수">Power Series (멱급수)</h2>
+<ul>
+<li><p><strong>실 지수 함수</strong>(real exponential function) <span class="math inline">\(\exp:\mathbb{R}\to \mathbb{R}\)</span>는 많은 수학 응용에서 볼 수 있다. 그리고 이 함수는 많은 다른 방식으로 특성화될 수 있다.</p></li>
+<li><p>역사적으로 지수 함수는 <strong>금리</strong>를 고려할 때 <span class="math inline">\(17^\mathrm{th}\)</span> 세기에 <strong>Johann Bernoulli</strong>에 의해 연구된 바 있다.</p>
+<ul>
+<li><span class="math inline">\(1\)</span>의 이자를 매월 복합된 연간 금리로 이자 <span class="math inline">\(a\)</span>를 얻는다고 가정하자. 그런 다음 매달 얻은 이자는 현재 값의 <span class="math inline">\(\frac{a}{12}\)</span>배이므로, 매달 총 값에 <span class="math inline">\(\left(1+\frac{a}{12}\right)\)</span>를 곱하고 연말의 값은 <span class="math inline">\(\left(1+\frac{a}{12}\right)^{12}\)</span>이다. 매일 이자가 복합되는 경우 <span class="math inline">\(\left(1+\frac{a}{365}\right)^{365}\)</span>가 된다.</li>
+</ul></li>
+<li><p>시간 간격을 더 짧게 함으로써 매년 증가하도록 하는 것은 지수 함수의 limit 정의로 이어진다.</p>
+<ul>
+<li><span class="math inline">\(\exp(a) = \mathrm{lim}_{n\to\infty} \left(1+\frac{a}{n}\right)^{n},\)</span></li>
+</ul></li>
+<li><p>상수 <span class="math inline">\(e:=\exp(1)\approx 2.71828 \ldots\)</span>는 <strong>Euler의 숫자</strong>로도 알려져 있다. 위의 정의에서 <span class="math inline">\(n\)</span>-fold 곱을 확장하면 지수 함수가 다음과 같은 멱급수로 표현될 수 있음을 보여줄 수 있다. <span class="math display">\[\exp(a) := \sum_{n=0}^{\infty} \frac{a^n}{n!} = 1 + a + \frac{a^2}{1 \cdot 2} + \frac{a^3}{1 \cdot 2 \cdot 3} + \cdot\]</span></p></li>
+<li><p>멱급수에서 실수값 변수 <span class="math inline">\(a\in\mathbb{R}\)</span>를 복소수 값 변수 <span class="math inline">\(c\in\mathbb{C}\)</span>로 바꾸면, 여전히 다음과 같이 주어진 <strong>복소수 지수 함수</strong> <span class="math inline">\(\exp:\mathbb{C}\to \mathbb{C}\)</span>를 얻는다.</p></li>
+</ul>
+<p><span class="math display">\[\exp(c) := \sum_{n=0}^{\infty} \frac{c^n}{n!} = 1 + c + \frac{c^2}{1 \cdot 2} + \frac{c^3}{1 \cdot 2 \cdot 3} + \cdot\]</span></p>
+<ul>
+<li><p>복소수 지수 함수의 정의를 기반으로 삼각 함수(예: <span class="math inline">\(\sin\)</span> 및 <span class="math inline">\(\cos\)</span>)의 정의를 복소 인수로 확장할 수도 있다.</p></li>
+<li><p>다음 구현은 매개 변수 <span class="math inline">\(N\in\mathbb{N}\)</span>에 의해 지정된 첫 번째 <span class="math inline">\(N\)</span> 항만 고려하여 멱급수의 근사치를 산출한다. <span class="math inline">\(c=1\)</span>의 경우, 숫자 <span class="math inline">\(e\)</span>에 대한 근사치를 산출한다.</p></li>
+</ul>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exp_power_series(c, N):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute power series for exponential function</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">        c: Complex number</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">        N: Number of summands used for approximation</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">        exp_c: Approximation of exp(c)</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span>    </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    exp_c <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    c_power <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    nfac <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N):</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        nfac <span class="op">*=</span> n</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        c_power <span class="op">*=</span> c </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        exp_c <span class="op">+=</span> c_power <span class="op">/</span> nfac</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> exp_c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Approximation (N =  1):'</span>, exp_power_series(c, <span class="dv">1</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Approximation (N =  2):'</span>, exp_power_series(c, <span class="dv">2</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Approximation (N =  4):'</span>, exp_power_series(c, <span class="dv">4</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Approximation (N =  8):'</span>, exp_power_series(c, <span class="dv">8</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Approximation (N = 12):'</span>, exp_power_series(c, <span class="dv">12</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Numpy:                 '</span>, np.exp(c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Approximation (N =  1): 1
+Approximation (N =  2): 2.0
+Approximation (N =  4): 2.6666666666666665
+Approximation (N =  8): 2.7182539682539684
+Approximation (N = 12): 2.718281826198493
+Numpy:                  2.718281828459045</code></pre>
+</div>
+</div>
+</section>
+<section id="지수-항등식과-오일러-공식-exponentiation-identity-and-eulers-formula" class="level2">
+<h2 class="anchored" data-anchor-id="지수-항등식과-오일러-공식-exponentiation-identity-and-eulers-formula">지수 항등식과 오일러 공식 (Exponentiation Identity and Euler’s Formula )</h2>
+<ul>
+<li><p>멱급수 정의에 기초하여, 많은 속성을 설명하는 지수 함수의 두 가지 유명한 공식을 증명할 수 있다.</p></li>
+<li><p>첫 번째 공식은 <strong>지수 항등식 exponentation identity</strong>로 알려져 있으며 다음과 같다.</p></li>
+</ul>
+<p><span class="math display">\[
+  \exp(c_1 + c_2) = \exp(c_1)\cdot \exp(c_2)
+\]</span></p>
+<p>for any complex numbers <span class="math inline">\(c_1, c_2\in\mathbb{C}\)</span>.</p>
+<ul>
+<li>특히, 이 속성은 실수 인수의 기하급수적인 증가를 설명한다. 예를들면,</li>
+</ul>
+<p><span class="math display">\[
+  \exp(n) = \exp(1+1+\ldots +1) = \exp(1)^n = e^n
+\]</span></p>
+<p>for <span class="math inline">\(n\in\mathbb{N}\)</span>.</p>
+<ul>
+<li><strong>오일러 공식 Euler’s formula</strong>로 알려진 두 번째 공식은 순 허수(pure imaginary)의 인수에서 지수 함수의 값을 삼각 함수와 연관시킨다. 이는 일부 실수 값 <span class="math inline">\(\beta\in\mathbb{R}\)</span>와 함께 복소수 <span class="math inline">\(c = i\gamma\)</span>에 대해, 다음의 항등식을 가진다.</li>
+</ul>
+<p><span class="math display">\[\mathrm{exp}(i\gamma) = \cos(\gamma) + i\sin(\gamma)\]</span></p>
+<ul>
+<li><p>실제로 실수 사인 및 코사인 함수를 시작으로 오일러 공식을 사용하여 <span class="math inline">\(\mathrm{exp}(i\gamma)\)</span>를 정의하는 경우가 많다.</p></li>
+<li><p>다음 그림에 나온 것처럼 허수(수직) 축을 따라 <span class="math inline">\(\exp\)</span>의 실수 및 허수 부분의 주기적인 행동을 설명한다.</p></li>
+</ul>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>A, B <span class="op">=</span> np.meshgrid(np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="fl">0.1</span>), np.arange(<span class="op">-</span><span class="dv">12</span>, <span class="dv">12</span>, <span class="fl">0.1</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> A <span class="op">+</span> B<span class="op">*</span><span class="ot">1j</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_exp <span class="op">=</span> np.exp(C)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">12</span>, <span class="dv">12</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.real(f_exp),  aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span><span class="st">'seismic'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>extent)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Real part Re(exp(c))'</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'a = Re(c)'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'b = Im(c)'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.imag(f_exp),  aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span><span class="st">'seismic'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>extent)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Imaginary part Im(exp(c))'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'a = Re(c)'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'b = Im(c)'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.<span class="bu">abs</span>(f_exp),  aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>extent)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Absolute value |exp(c)|'</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'a = Re(c)'</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'b = Im(c)'</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="기본-속성" class="level2">
+<h2 class="anchored" data-anchor-id="기본-속성">기본 속성</h2>
+<ul>
+<li><p>지수 함수에는 여러 가지 흥미로운 속성이 있다:</p>
+<ul>
+<li><span class="math inline">\(\exp(i\gamma) = \exp(i(\gamma+2\pi))\)</span></li>
+<li><span class="math inline">\(|\exp(i\gamma)| = 1\)</span></li>
+<li><span class="math inline">\(\overline{\exp(i\gamma)} = \exp(-i\gamma)\)</span></li>
+<li><span class="math inline">\(\exp(i(\gamma_1+\gamma_2)) = \exp(i\gamma_1) \exp(i\gamma_2)\)</span></li>
+<li><span class="math inline">\(\frac{d\exp(i\gamma)}{d\gamma} = i\exp(i\gamma)\)</span></li>
+</ul></li>
+<li><p>특히, 복소수 값 <span class="math inline">\(\mathrm{exp}(i\gamma)\)</span>은 모든 <span class="math inline">\(\gamma\in\mathbb{R}\)</span>에 대해 복소수 평면의 단위 원(unit circle)에 있다. 또한 주기성(periodicity)으로 인해 <span class="math inline">\(\gamma\in[0,2\pi)\)</span>을 고려하기에 충분하다.</p></li>
+<li><p>실제로 <span class="math inline">\(\gamma\)</span>는 복소수 <span class="math inline">\(c = \mathrm{exp}(i\gamma)\)</span>의 각도(라디안 단위)를 인코딩한다.(<span class="math inline">\(|c|=1\)</span>)</p></li>
+<li><p>다음 그림은 각도 <span class="math inline">\(\gamma\)</span>를 <span class="math inline">\(0\)</span>에서 <span class="math inline">\(2\pi\)</span>로 증가시킬 때 값 <span class="math inline">\(\mathrm{exp}(i\gamma)\)</span>이 어떻게 변하는지 보여준다.</p></li>
+</ul>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> ticker </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.cm.get_cmap(<span class="st">'hsv'</span>) <span class="co"># hsv is nice because it is a circular color map</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">3</span>, <span class="dv">5</span>))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, projection<span class="op">=</span><span class="st">'polar'</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> i <span class="op">/</span> N</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> gamma)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> cmap(i <span class="op">/</span> N)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    ax1.plot([<span class="dv">0</span>, np.angle(c)], [<span class="dv">0</span>, np.<span class="bu">abs</span>(c)], color<span class="op">=</span>color)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    ax1.plot(np.angle(c), np.<span class="bu">abs</span>(c), <span class="st">'o'</span>, color<span class="op">=</span>color)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    ax2.plot(gamma, np.real(c), <span class="st">'o'</span>, color<span class="op">=</span>color)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    ax3.plot(gamma, np.imag(c), <span class="st">'o'</span>, color<span class="op">=</span>color)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>ax2.grid()</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'$\gamma$ [radians]'</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'$\mathrm</span><span class="sc">{Re}</span><span class="st">(\exp(i \gamma))$'</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_formatter(ticker.FormatStrFormatter(<span class="st">'$</span><span class="sc">%s</span><span class="st">$'</span>)) </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>ax3.grid()</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">'$\gamma$ [radians]'</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>ax3.set_ylabel(<span class="st">'$\mathrm</span><span class="sc">{Im}</span><span class="st">(\exp(i \gamma))$'</span>)</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>ax3.xaxis.set_major_formatter(ticker.FormatStrFormatter(<span class="st">'$</span><span class="sc">%s</span><span class="st">$'</span>)) </span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="의-거듭제곱근-roots-of-unity" class="level2">
+<h2 class="anchored" data-anchor-id="의-거듭제곱근-roots-of-unity">1의 거듭제곱근 (Roots of Unity)</h2>
+<ul>
+<li><p><span class="math inline">\(N \in \mathbb{N}_{&gt;0}\)</span>를 양의 정수라고 하자. 복소수 <span class="math inline">\(\rho \in \mathbb{C}\)</span>는 <span class="math inline">\(\rho^N = 1\)</span>인 경우 <span class="math inline">\(N^\mathrm{th}\)</span> <strong>1의 거듭제곱근</strong>(<strong>root of unity</strong>)라고 한다. 다시말해 1의 거듭제곱근은 거듭제곱하여 1이 되는 복소수이다. 정확히 <span class="math inline">\(N\)</span>개의 뚜렷한 <span class="math inline">\(N^\mathrm{th}\)</span> root of unity가 있다는 것을 보이는 것은 어렵지 않다.</p></li>
+<li><p>또한, 모든 <span class="math inline">\(n\in [1:N-1]\)</span>에 대해 <span class="math inline">\(\rho^n \neq 1\)</span>인 경우, <strong>단위 n승근</strong>(<strong>primitive</strong> <span class="math inline">\(N^\mathrm{th}\)</span> root of unity)라고 한다.</p></li>
+<li><p>위에서 언급한 속성을 통해 <span class="math inline">\(\rho_N:=\exp(2 \pi i / N)\)</span> 이 단위 n승근임을 쉽게 알 수 있다.</p></li>
+<li><p>모든 <span class="math inline">\(N^\mathrm{th}\)</span> root of unity는 <span class="math inline">\(\rho_N\)</span>의 power을 고려하여 생성될 수 있다.:</p></li>
+</ul>
+<p><span class="math display">\[1=\rho_N^0, \quad \rho_N^1, \quad \rho_N^2, \quad ...,\quad \rho_N^{N-1}\]</span></p>
+<ul>
+<li>다음 그림은 서로 다른 정수 <span class="math inline">\(N \in \mathbb{N}_{&gt;0}\)</span>에 대한 모든 root of unity를 보여준다. primitive root는 빨간색으로 표시되어 있다.</li>
+</ul>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_root_unity(N, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>)): </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    root_unity <span class="op">=</span> np.exp(<span class="ot">2j</span> <span class="op">*</span> np.pi <span class="op">/</span> N)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    root_unity_power <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>figsize)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    plt.grid()  </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    plt.xlim([<span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.4</span>])</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    plt.ylim([<span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.4</span>])</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'$\mathrm</span><span class="sc">{Re}</span><span class="st">$'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'$\mathrm</span><span class="sc">{Im}</span><span class="st">$'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Roots of unity for $N=</span><span class="sc">%d</span><span class="st">$'</span><span class="op">%</span>N)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, N):</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        colorPlot <span class="op">=</span> <span class="st">'r'</span> <span class="cf">if</span> gcd(n, N) <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'k'</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        plot_vector(root_unity_power, color<span class="op">=</span>colorPlot)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        plt.text(np.real(<span class="fl">1.2</span><span class="op">*</span>root_unity_power), np.imag(<span class="fl">1.2</span><span class="op">*</span>root_unity_power), </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                 <span class="vs">r'$\rho_{</span><span class="sc">%s</span><span class="vs">}^{</span><span class="sc">%s</span><span class="vs">}$'</span> <span class="op">%</span> (N, n), size<span class="op">=</span><span class="st">'18'</span>, </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span>colorPlot, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        root_unity_power <span class="op">*=</span> root_unity</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    circle_unit <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, fill<span class="op">=</span><span class="dv">0</span>)   </span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    ax.add_artist(circle_unit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot_root_unity(N<span class="op">=</span><span class="dv">8</span>)    </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plot_root_unity(N<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plot_root_unity(N<span class="op">=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="3.1.Math_Review_files/figure-html/cell-17-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<hr>
+<p>출처:</p>
+<ul>
+<li>https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2.html</li>
+</ul>
+<hr>
+<p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/3.%20Fourier%20Analysis%20of%20Signals/3.1.Math_Review.ipynb">구글 Colab 링크</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

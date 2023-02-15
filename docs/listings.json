@@ -2,6 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/3. Fourier Anaylsis of Signals/3.1.Math_Review.html",
+      "/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html",
+      "/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html",
+      "/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html",
+      "/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html",
       "/posts/2. Music Representation/2.3.Audio_Representation.html",
       "/posts/2. Music Representation/2.1.Sheet_Music.html",
       "/posts/2. Music Representation/2.2.Symbolic_Representation.html"
