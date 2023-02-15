@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog\n음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 개인 블로그입니다."
+    "text": "음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 블로그입니다. 음악정보검색을 독학하며 배운 내용을 기록하는 초보자의 입문기라고 생각해주세요."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "조조의 음악정보검색 입문",
+    "title": "Music Information Retrieval",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n  \n\n\n\n\n3.1. 수학리뷰 - 복소수와 지수함수\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n3.2. 이산 푸리에 변환 (Discrete Fourier Transform, DFT) & 고속 푸리에 변환 (Fast Fourier Transform, FFT)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n3.3. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (1)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n3.4. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (2)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n3.5. 디지털 신호 (Digital Signals)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n2.3. 오디오 표현 (Audio Representation)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 14, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n2.1. 악보 (Sheet Music)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\n  \n\n\n\n\n2.2. 기호 표현 (Symbolic Representation)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2023\n\n\nCheonghyo Cho\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n2.1. 악보 (Sheet Music)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2023\n\n\n\n\n\n\n  \n\n\n\n\n2.2. 기호 표현 (Symbolic Representation)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2023\n\n\n\n\n\n\n  \n\n\n\n\n2.3. 오디오 표현 (Audio Representation)\n\n\n\n\n\n\n\n음악표현\n\n\n\n\n\n\n\n\n\n\n\nFeb 14, 2023\n\n\n\n\n\n\n  \n\n\n\n\n3.1. 수학리뷰 - 복소수와 지수함수\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\n\n\n\n\n  \n\n\n\n\n3.2. 이산 푸리에 변환 (Discrete Fourier Transform, DFT) & 고속 푸리에 변환 (Fast Fourier Transform, FFT)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\n\n\n\n\n  \n\n\n\n\n3.3. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (1)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\n\n\n\n\n  \n\n\n\n\n3.4. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (2)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\n\n\n\n\n  \n\n\n\n\n3.5. 디지털 신호 (Digital Signals)\n\n\n\n\n\n\n\n푸리에변환\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2. Music Representation/2.1.Sheet_Music.html",

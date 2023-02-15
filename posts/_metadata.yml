@@ -6,3 +6,8 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# blog-comments
+comments: 
+  utterances: 
+    repo:  jo-cho/MIRBlog-comments

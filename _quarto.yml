@@ -3,12 +3,12 @@ project:
   output-dir: docs
   
 website:
-  title: "MIRBlog"
+  title: "조조의 음악정보검색 입문"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/jo-cho/mir_kr
+        href: https://github.com/jo-cho/
 format:
   html:
     theme: flatly

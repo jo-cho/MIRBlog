@@ -1,13 +1,14 @@
 ---
-title: "조조의 음악정보검색 입문"
-subtitle: "블로그"
+title: "Music Information Retrieval"
+subtitle: ""
 listing:
   contents: posts
-  sort: "date desc"
+  sort: "title"
   type: default
   categories: true
   sort-ui: true
-  filter-ui: false
+  filter-ui: true
+  fields: [date, title, description, image, categories]
 page-layout: full
-title-block-banner: true
+title-block-banner: false
 ---
