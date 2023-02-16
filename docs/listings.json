@@ -9,7 +9,11 @@
       "/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html",
       "/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html",
       "/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html",
-      "/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html"
+      "/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html",
+      "/posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html",
+      "/posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html",
+      "/posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html",
+      "/posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html"
     ]
   }
 ]

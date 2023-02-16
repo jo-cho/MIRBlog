@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-image','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="음악표현">음악표현 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="푸리에변환">푸리에변환 <span class="quarto-category-count">(5)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="음악구조분석">음악구조분석 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="음악동기화">음악동기화 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="음악표현">음악표현 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="푸리에변환">푸리에변환 <span class="quarto-category-count">(5)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -173,6 +173,9 @@ ul.task-list li input[type="checkbox"] {
          <option value="listing-date-sort" data-direction="desc">
           Date - Newest
         </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
      </select>
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
@@ -181,17 +184,17 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="음악표현" data-listing-date-sort="1676214000000" data-listing-file-modified-sort="1676345162261" data-listing-reading-time-sort="3.75">
+<div class="quarto-post image-right" data-index="0" data-categories="음악표현" data-listing-date-sort="1676214000000" data-listing-file-modified-sort="1676523632719" data-listing-reading-time-sort="3.75">
 <div class="thumbnail">
 <p><a href="./posts/2. Music Representation/2.1.Sheet_Music.html"> <img src="./posts/2. Music Representation/2.1.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2. Music Representation/2.1.Sheet_Music.html">
 <h3 class="no-anchor listing-title">
-2.1. 악보 (Sheet Music)
+2.1. 악보 표현
 </h3>
 <div class="listing-subtitle">
-
+Sheet Music
 </div>
 </a>
 <div class="listing-categories">
@@ -210,20 +213,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="listing-date">
 Feb 13, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="음악표현" data-listing-date-sort="1676214000000" data-listing-file-modified-sort="1676345121723" data-listing-reading-time-sort="1.195">
+<div class="quarto-post image-right" data-index="1" data-categories="음악표현" data-listing-date-sort="1676214000000" data-listing-file-modified-sort="1676523644335" data-listing-reading-time-sort="1.195">
 <div class="thumbnail">
 <p><a href="./posts/2. Music Representation/2.2.Symbolic_Representation.html"> <img src="./posts/2. Music Representation/2.2.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2. Music Representation/2.2.Symbolic_Representation.html">
 <h3 class="no-anchor listing-title">
-2.2. 기호 표현 (Symbolic Representation)
+2.2. 기호 표현
 </h3>
 <div class="listing-subtitle">
-
+Symbolic Representation
 </div>
 </a>
 <div class="listing-categories">
@@ -242,20 +248,23 @@ Feb 13, 2023
 <div class="listing-date">
 Feb 13, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="음악표현" data-listing-date-sort="1676300400000" data-listing-file-modified-sort="1676345102131" data-listing-reading-time-sort="11.085">
+<div class="quarto-post image-right" data-index="2" data-categories="음악표현" data-listing-date-sort="1676300400000" data-listing-file-modified-sort="1676523657978" data-listing-reading-time-sort="11.085">
 <div class="thumbnail">
 <p><a href="./posts/2. Music Representation/2.3.Audio_Representation.html"> <img src="./posts/2. Music Representation/2.3.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2. Music Representation/2.3.Audio_Representation.html">
 <h3 class="no-anchor listing-title">
-2.3. 오디오 표현 (Audio Representation)
+2.3. 오디오 표현
 </h3>
 <div class="listing-subtitle">
-
+Audio Representation
 </div>
 </a>
 <div class="listing-categories">
@@ -273,6 +282,9 @@ Feb 13, 2023
 <a href="./posts/2. Music Representation/2.3.Audio_Representation.html">
 <div class="listing-date">
 Feb 14, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
 </div>
 </a>
 </div>
@@ -306,20 +318,23 @@ Feb 14, 2023
 <div class="listing-date">
 Feb 15, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676468368648" data-listing-reading-time-sort="5">
+<div class="quarto-post image-right" data-index="4" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676536419120" data-listing-reading-time-sort="5">
 <div class="thumbnail">
 <p><a href="./posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html"> <img src="./posts/3. Fourier Anaylsis of Signals/3.2.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html">
 <h3 class="no-anchor listing-title">
-3.2. 이산 푸리에 변환 (Discrete Fourier Transform, DFT) &amp; 고속 푸리에 변환 (Fast Fourier Transform, FFT)
+3.2. 이산 푸리에 변환 &amp; 고속 푸리에 변환 (DFT &amp; FFT)
 </h3>
 <div class="listing-subtitle">
-
+Discrete Fourier Transform &amp; Fast Fourier Transform
 </div>
 </a>
 <div class="listing-categories">
@@ -338,20 +353,23 @@ Feb 15, 2023
 <div class="listing-date">
 Feb 15, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676438900511" data-listing-reading-time-sort="5.815">
+<div class="quarto-post image-right" data-index="5" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676523589238" data-listing-reading-time-sort="5.815">
 <div class="thumbnail">
 <p><a href="./posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html"> <img src="./posts/3. Fourier Anaylsis of Signals/3.3.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html">
 <h3 class="no-anchor listing-title">
-3.3. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (1)
+3.3. 단기 푸리에 변환 (STFT) (1)
 </h3>
 <div class="listing-subtitle">
-
+Short-Term Fourier Transform (1)
 </div>
 </a>
 <div class="listing-categories">
@@ -370,20 +388,23 @@ Feb 15, 2023
 <div class="listing-date">
 Feb 15, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676438939762" data-listing-reading-time-sort="10.21">
+<div class="quarto-post image-right" data-index="6" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676523607157" data-listing-reading-time-sort="10.21">
 <div class="thumbnail">
 <p><a href="./posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html"> <img src="./posts/3. Fourier Anaylsis of Signals/3.4.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html">
 <h3 class="no-anchor listing-title">
-3.4. 단기 푸리에 변환 (Short-Term Fourier Transform, STFT) (2)
+3.4. 단기 푸리에 변환 (STFT) (2)
 </h3>
 <div class="listing-subtitle">
-
+Short-Term Fourier Transform (2)
 </div>
 </a>
 <div class="listing-categories">
@@ -402,20 +423,23 @@ Feb 15, 2023
 <div class="listing-date">
 Feb 15, 2023
 </div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676440228487" data-listing-reading-time-sort="7.495">
+<div class="quarto-post image-right" data-index="7" data-categories="푸리에변환" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1676523498436" data-listing-reading-time-sort="7.495">
 <div class="thumbnail">
 <p><a href="./posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html"> <img src="./posts/3. Fourier Anaylsis of Signals/3.5.thumbnail.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html">
 <h3 class="no-anchor listing-title">
-3.5. 디지털 신호 (Digital Signals)
+3.5. 디지털 신호
 </h3>
 <div class="listing-subtitle">
-
+Digital Signals
 </div>
 </a>
 <div class="listing-categories">
@@ -433,6 +457,149 @@ Feb 15, 2023
 <a href="./posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html">
 <div class="listing-date">
 Feb 15, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="음악동기화" data-listing-date-sort="1676473200000" data-listing-file-modified-sort="1676523900375" data-listing-reading-time-sort="16.13">
+<div class="thumbnail">
+<p><a href="./posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html"> <img src="./posts/4. Music Synchronization/4.1.thumbnail.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html">
+<h3 class="no-anchor listing-title">
+4.1. 오디오 동기화 피쳐
+</h3>
+<div class="listing-subtitle">
+Audio Synchronization Features
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('음악동기화'); return false;">
+음악동기화
+</div>
+</div>
+<a href="./posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html">
+<div class="listing-description">
+음악 작품의 음악적 정보를 시간순으로 정렬하여 동기화(synchronize)하는데 필요한 오디오 피쳐(audio feature)를 소개한다. 특히 크로마(chroma) 기반 음악 피쳐의 개념을 알아본다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html">
+<div class="listing-date">
+Feb 16, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="음악동기화" data-listing-date-sort="1676473200000" data-listing-file-modified-sort="1676535661494" data-listing-reading-time-sort="7.945">
+<div class="thumbnail">
+<p><a href="./posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html"> <img src="./posts/4. Music Synchronization/4.2.thumbnail.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html">
+<h3 class="no-anchor listing-title">
+4.2. 동적 시간 워핑 (DTW)
+</h3>
+<div class="listing-subtitle">
+Dynamic Time Warping
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('음악동기화'); return false;">
+음악동기화
+</div>
+</div>
+<a href="./posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html">
+<div class="listing-description">
+두 음악/오디오 시퀀스를 최적의 방법으로 시간에 따라 정렬할 수 있는 동적 시간 워핑 (dynamic time warping, DTW)에 대해 설명한다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html">
+<div class="listing-date">
+Feb 16, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="음악구조분석" data-listing-date-sort="1676473200000" data-listing-file-modified-sort="1676535469315" data-listing-reading-time-sort="5.89">
+<div class="thumbnail">
+<p><a href="./posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html"> <img src="./posts/5. Music Structure Analysis/5.1.thumbnail.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html">
+<h3 class="no-anchor listing-title">
+5.1. 음악 구조와 분할
+</h3>
+<div class="listing-subtitle">
+Music Structure and Segmentation
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('음악구조분석'); return false;">
+음악구조분석
+</div>
+</div>
+<a href="./posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html">
+<div class="listing-description">
+주어진 음악 녹음에 대한 구조적(structural) 분석과 시간적 분할(segmentation)를 소개하고, 반복성(repitition), 동질성(homogeneity) 및 새로움(novelty)을 기반으로 하는 기본 분할 원칙에 대해 논의한다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html">
+<div class="listing-date">
+Feb 16, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="음악구조분석" data-listing-date-sort="1676473200000" data-listing-file-modified-sort="1676536428375" data-listing-reading-time-sort="16.185">
+<div class="thumbnail">
+<p><a href="./posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html"> <img src="./posts/5. Music Structure Analysis/5.2.thumbnail.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html">
+<h3 class="no-anchor listing-title">
+5.2. 자기 유사성 행렬 (SSM)
+</h3>
+<div class="listing-subtitle">
+Self Similarity Matrix
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('음악구조분석'); return false;">
+음악구조분석
+</div>
+</div>
+<a href="./posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html">
+<div class="listing-description">
+음악 구조를 분석하기 위한 기술적 도구인 자기 유사성 행렬(self similarity matrix)의 개념에 대해 상세히 다루고, 그 구조적 속성에 대해 논의한다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html">
+<div class="listing-date">
+Feb 16, 2023
+</div>
+<div class="listing-author">
+Cheonghyo Cho
 </div>
 </a>
 </div>

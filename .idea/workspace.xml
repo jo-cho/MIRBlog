@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f3c79439-962c-4afa-bbc9-0117301ccfd8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/listings.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/listings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.1.Sheet_Music.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.1.Sheet_Music.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.2.Symbolic_Representation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.2.Symbolic_Representation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.3.Audio_Representation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/2. Music Representation/2.3.Audio_Representation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.qmd" beforeDir="false" afterPath="$PROJECT_DIR$/index.qmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.1.Sheet_Music-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.1.Sheet_Music-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.2.Symbolic_Representation-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.2.Symbolic_Representation-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.3.Audio_Representation-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/.ipynb_checkpoints/2.3.Audio_Representation-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/2.1.Sheet_Music.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/2.1.Sheet_Music.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/2.2.Symbolic_Representation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/2.2.Symbolic_Representation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2. Music Representation/2.3.Audio_Representation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2. Music Representation/2.3.Audio_Representation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.2.Discrete_Fourier_Transform-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.2.Discrete_Fourier_Transform-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.3.Short-term_Fourier_Transform_1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.3.Short-term_Fourier_Transform_1-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.4.Short-term_Fourier_Transfrom_2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.4.Short-term_Fourier_Transfrom_2-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.5.Digital_Signals-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/.ipynb_checkpoints/3.5.Digital_Signals-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2LoVPjydHlLQmwddt0waChDE6HZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mir_kr" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f3c79439-962c-4afa-bbc9-0117301ccfd8" name="Default Changelist" comment="" />
+      <created>1676537399823</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676537399823</updated>
+    </task>
+    <servers />
+  </component>
+</project>
