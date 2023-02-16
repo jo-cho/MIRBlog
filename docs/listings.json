@@ -13,7 +13,10 @@
       "/posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html",
       "/posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html",
       "/posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html",
-      "/posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html"
+      "/posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html",
+      "/posts/5. Music Structure Analysis/5.3.Audio_Thumbnail.html",
+      "/posts/5. Music Structure Analysis/5.4.Novelty-Based_Segmentation.html",
+      "/posts/5. Music Structure Analysis/5.5.Evaluation.html"
     ]
   }
 ]

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-02-16">
+
+<title>조조의 음악정보검색 입문 - 5.5. 음악 처리의 평가 방법</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">조조의 음악정보검색 입문</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jo-cho/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">5.5. 음악 처리의 평가 방법</h1>
+            <p class="subtitle lead">Evaluation of Music Processing</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">음악구조분석</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cheonghyo Cho </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 16, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>음악 구조에 대한 처리(예: 분할)가 얼마나 잘 되었는지를 평가하는 방법에 대해 알아본다.</p>
+<blockquote class="blockquote">
+<p>이 글은 <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html">FMP(Fundamentals of Music Processing) Notebooks</a>을 참고로 합니다.</p>
+</blockquote>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:43.535768Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:43.518809Z&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> ListedColormap</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> ipd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.plot_tools <span class="im">import</span> plot_segments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>주어진 음악 녹음에서 구조적인 정보를 추출하는 다양한 절차를 설명한 바 있다. 그러나 주어진 절차가 당면한 작업을 <strong>얼마나 잘</strong> 수행하는지 측정하는 문제에 대해서는 아직 논의한 바가 없다.</p></li>
+<li><p>음악 처리 알고리즘을 (자동으로)평가하는 문제는 구조 분석을 넘어서 그 자체로도 중요한 작업이다. 일반적인 평가 방식은 자동화된 절차로 얻은 <strong>추정 결과(estimated result)</strong> 를 일부 <strong>참조 결과(reference result)</strong> 와 비교하는 것이다. 이러한 일반적인 접근 방식을 구현하려면 다음 질문에 대한 답을 찾아야 한다.</p>
+<ul>
+<li>주어진 분석 결과는 실제로 어떻게 모델링되는가?</li>
+<li>추정 결과를 참조 결과와 어떻게 비교해야 하는가?</li>
+<li>참조 결과는 어떻게 구했으며 신뢰할 수 있는가?</li>
+</ul></li>
+<li><p>특히 마지막 질문은 음악적 서술의 본질과 의미에 대한 철학적 고찰로 쉽게 이어진다. 예를 들어, 음악 구조 분석은 실제 음악 녹음에서 발생하는 음악적 및 음향적 변화 뿐만 아니라 다양한 요인에 의존하는 어려운 문제이다.</p></li>
+<li><p>분석 결과는 음악적 맥락과 고려되는 시간적 수준에 크게 좌우되기 때문에 두 명의 전문가가 있다고 하더라도 주어진 음악에 대한 분석에 서로 동의하지 않을 수 있다. 브람스 예의 경우, 한 전문가는 음악적 구조 <span class="math inline">\(A_1A_2B_1B_2CA_3B_3B_4D\)</span>가 되는 더 큰 규모의 구조에 주석을 달고, 다른 전문가는 부분이 더 세분화된 더 작은 규모를 고려할 수 있다.</p></li>
+<li><p>다음 코드 셀에서는 세 가지 다른 축척에 대한 주석(annotation)의 예를 제공한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:44.590317Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:44.205972Z&quot;}" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ann_Brahms <span class="op">=</span> {}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ann_Brahms[<span class="dv">0</span>] <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">16</span>, <span class="st">'G major'</span>], [<span class="dv">16</span>, <span class="dv">28</span>, <span class="st">'G minor'</span>], [<span class="dv">28</span>, <span class="dv">40</span>, <span class="st">'G major'</span>]]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ann_Brahms[<span class="dv">1</span>] <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">4</span>, <span class="st">'A'</span>], [<span class="dv">4</span>, <span class="dv">8</span>, <span class="st">'A'</span>],  [<span class="dv">8</span>, <span class="dv">12</span>, <span class="st">'B'</span>], [<span class="dv">12</span>, <span class="dv">16</span>, <span class="st">'B'</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">16</span>, <span class="dv">27</span>, <span class="st">'C'</span>], [<span class="dv">27</span>, <span class="dv">32</span>, <span class="st">'A'</span>], [<span class="dv">32</span>, <span class="dv">36</span>, <span class="st">'B'</span>], [<span class="dv">36</span>, <span class="dv">39</span>, <span class="st">'B'</span>], [<span class="dv">39</span>, <span class="dv">40</span>, <span class="st">''</span>]]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ann_Brahms[<span class="dv">2</span>] <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">2</span>, <span class="st">'a'</span>], [<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">'a'</span>], [<span class="dv">4</span>, <span class="dv">6</span>, <span class="st">'a'</span>], [<span class="dv">6</span>, <span class="dv">8</span>, <span class="st">'a'</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">8</span>, <span class="dv">10</span>, <span class="st">'b'</span>], [<span class="dv">10</span>, <span class="dv">12</span>, <span class="st">'c'</span>], [<span class="dv">12</span>, <span class="dv">13</span>, <span class="st">'b'</span>], [<span class="dv">13</span>, <span class="dv">15</span>, <span class="st">'c'</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">15</span>, <span class="dv">18</span>, <span class="st">'d'</span>], [<span class="dv">18</span>, <span class="dv">20</span>, <span class="st">'d'</span>], </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">20</span>, <span class="dv">22</span>, <span class="st">'e'</span>], [<span class="dv">22</span>, <span class="dv">24</span>, <span class="st">'e'</span>], [<span class="dv">24</span>, <span class="dv">26</span>, <span class="st">'e'</span>], [<span class="dv">26</span>, <span class="dv">28</span>, <span class="st">'e'</span>],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">28</span>, <span class="dv">30</span>, <span class="st">'a'</span>], [<span class="dv">30</span>, <span class="dv">32</span>, <span class="st">'a'</span>], </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">32</span>,<span class="dv">34</span>, <span class="st">'b'</span>], [<span class="dv">34</span>, <span class="dv">36</span>, <span class="st">'c'</span>], [<span class="dv">36</span>, <span class="dv">37</span>, <span class="st">'b'</span>], [<span class="dv">37</span>, <span class="dv">39</span>, <span class="st">'c'</span>], [<span class="dv">39</span>, <span class="dv">40</span>, <span class="st">''</span>]]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>color_ann_Brahms <span class="op">=</span> {<span class="st">'G major'</span>: [<span class="dv">1</span>, <span class="fl">0.8</span>, <span class="dv">0</span>, <span class="fl">0.3</span>], <span class="st">'G minor'</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>],</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>], <span class="st">'B'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.3</span>], <span class="st">'C'</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>], <span class="st">''</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.3</span>],</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'a'</span>: [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>], <span class="st">'b'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.2</span>], <span class="st">'c'</span>: [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.6</span>], </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'d'</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>], <span class="st">'e'</span>: [<span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>],  <span class="st">''</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]}                    </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>figsize <span class="op">=</span> (<span class="dv">6</span>,<span class="dv">1</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann_Brahms[k], figsize <span class="op">=</span> figsize, colors<span class="op">=</span>color_ann_Brahms)<span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-3-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>실제로 단순하고 때로는 문제가 있는 가정이지만, 일반적으로 전문가에 의해 유효한 참조 주석(annotation) 하나가 주어졌다고 가정한다. 이러한 주석은 종종 “<strong>ground truth</strong>”라고 한다. 자동화 절차의 목적은 가능한 이러한 참조에 가까운 주석을 추정하는 것이다.</li>
+</ul>
+<section id="precision-recall-f-measure" class="level1">
+<h1>Precision, Recall, F-Measure</h1>
+<ul>
+<li><p>많은 평가 지표들이 precision(정밀도), recall(재현율), 그리고 F-measure에 기반한다.</p></li>
+<li><p>우선 <span class="math inline">\(\mathcal{I}\)</span>를 아이템(items)이라고 하는 유한 집합이라고 하자.</p>
+<ul>
+<li>각 아이템 <span class="math inline">\(i\in \mathcal{I}\)</span>은 라벨 ‘<span class="math inline">\(+\)</span>’ (<strong>positive</strong> or <strong>relevant</strong>) 혹은 라벨 ‘<span class="math inline">\(-\)</span>’ (<strong>negative</strong> or <strong>not relevant</strong>)로 지정된다.</li>
+</ul></li>
+<li><p><span class="math inline">\(\mathcal{I}^\mathrm{Ref}_+\)</span>를 양의 아이템, <span class="math inline">\(\mathcal{I}^\mathrm{Ref}_-\)</span>를 음의 아이템의 집합이라고 하자.</p></li>
+<li><p><span class="math inline">\(\mathcal{I}^\mathrm{Est}_+\)</span>를 양으로 추정된 아이템, <span class="math inline">\(\mathcal{I}^\mathrm{Est}_-\)</span>를 음으로 추정된 아이템의 집합이라고 하자.</p></li>
+<li><p><span class="math inline">\(i\in\mathcal{I}^\mathrm{Est}_+\cap\mathcal{I}^\mathrm{Ref}_+\)</span> 이면 <strong>true positive</strong> (TP)</p></li>
+<li><p><span class="math inline">\(i\in\mathcal{I}^\mathrm{Est}_+\cap\mathcal{I}^\mathrm{Ref}_-\)</span> 이면 <strong>false positive</strong> (FP)</p></li>
+<li><p><span class="math inline">\(i\in\mathcal{I}^\mathrm{Est}_-\cap\mathcal{I}^\mathrm{Ref}_+\)</span> 이면 <strong>false negative</strong> (FN)</p></li>
+<li><p><span class="math inline">\(i\in\mathcal{I}^\mathrm{Est}_-\cap\mathcal{I}^\mathrm{Ref}_-\)</span> 이면 <strong>true negative</strong> (TN)</p></li>
+<li><p><strong>precision</strong> <span class="math inline">\(\mathrm{P}\)</span>은 true positives의 수를 positive로 추정한 모든 아이템으로 나눈 것이다:</p></li>
+</ul>
+<p><span class="math display">\[\mathrm{P} = \frac{|\mathcal{I}^\mathrm{Est}_+\cap\mathcal{I}^\mathrm{Ref}_+|}{|\mathcal{I}^\mathrm{Est}_+|} = \frac{\#\mathrm{TP}}{\#\mathrm{TP}+\#\mathrm{FP}}\]</span></p>
+<ul>
+<li><p><strong>recall</strong> <span class="math inline">\(\mathrm{R}\)</span>은 true positives의 수를 전체 positive 아이템으로 나눈 것이다: <span class="math display">\[\mathrm{R} = \frac{|\mathcal{I}^\mathrm{Est}_+\cap\mathcal{I}^\mathrm{Ref}_+|}{|\mathcal{I}^\mathrm{Ref}_+|} = \frac{\#\mathrm{TP}}{\#\mathrm{TP}+\#\mathrm{FN}}\]</span></p></li>
+<li><p>precision과 recall 모두 <span class="math inline">\([0,1]\)</span>에 있다.</p></li>
+<li><p><span class="math inline">\(\mathrm{P}=1\)</span>는 양으로 추정한 모든 아이템이 실제로 양인 경우이며, 이 경우 false positive가 없으나 false negative는 있을 수 있다.</p></li>
+<li><p><span class="math inline">\(\mathrm{R}=1\)</span>는 모든 양의 아이템이 양으로 추정되었음을 의미하며, 이 경우 false negative가 없으나 false positive는 있을 수 있다.</p></li>
+<li><p><span class="math inline">\(\mathrm{P}=1\)</span>이면서 <span class="math inline">\(\mathrm{R}=1\)</span>일 때만 추정 주석과 참조 주석이 일치하는 경우이다.</p></li>
+<li><p>Precision과 recall은 종종 <strong>F-measure</strong>라고 하는 단일 측정값을 형성하기 위해 <strong>조화 평균</strong>을 사용하여 결합된다.</p></li>
+</ul>
+<p><span class="math display">\[\mathrm{F} = \frac{2\cdot \mathrm{P}\cdot \mathrm{R}}{\mathrm{P} + \mathrm{R}}\]</span></p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:46.931915Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:46.917953Z&quot;}" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_F29.png"</span>,width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<p><img src="5.5.Evaluation_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:47.247529Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:47.228602Z&quot;}" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> measure_prf(num_TP, num_FN, num_FP):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute P, R, and F from size of TP, FN, and FP [FMP, Section 4.5.1]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">        num_TP (int): True positives</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FN (int): False negative</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FP (int): False positives</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">        P (float): Precision</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">        R (float): Recall</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">        F (float): F-measure</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> num_TP <span class="op">/</span> (num_TP <span class="op">+</span> num_FP)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> num_TP <span class="op">/</span> (num_TP <span class="op">+</span> num_FN)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (P <span class="op">+</span> R) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> P <span class="op">*</span> R <span class="op">/</span> (P <span class="op">+</span> R)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        F <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P, R, F</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> measure_prf_sets(I, I_ref_pos, I_est_pos, details<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute P, R, and F from sets I, I_ref_pos, I_est_pos [FMP, Section 4.5.1]</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">        I: Set of items</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">        I_ref_pos: Reference set of positive items</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">        I_est_pos: Set of items being estimated as positive</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">        details: Print details (Default value = False)</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">        P (float): Precision</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">        R (float): Recall</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">        F (float): F-measure</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    I_ref_neg <span class="op">=</span> I.difference(I_ref_pos)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    I_est_neg <span class="op">=</span> I.difference(I_est_pos)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    TP <span class="op">=</span> I_est_pos.intersection(I_ref_pos)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    FN <span class="op">=</span> I_est_neg.intersection(I_ref_pos)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    FP <span class="op">=</span> I_est_pos.intersection(I_ref_neg)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    P, R, F <span class="op">=</span> measure_prf(<span class="bu">len</span>(TP), <span class="bu">len</span>(FN), <span class="bu">len</span>(FP))</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> details:</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'TP = '</span>, TP, <span class="st">';  FN = '</span>, FN, <span class="st">';  FP = '</span>, FP)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'P = </span><span class="sc">%0.3f</span><span class="st">;  R = </span><span class="sc">%0.3f</span><span class="st">;  F = </span><span class="sc">%0.3f</span><span class="st">'</span> <span class="op">%</span> (P, R, F))</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P, R, F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="라벨링-평가-labeling-evaluation" class="level1">
+<h1>라벨링 평가 (Labeling Evaluation)</h1>
+<ul>
+<li><p>프레임 수준의 음악 분석 작업을 고려해보자.</p></li>
+<li><p><span class="math inline">\(\varphi:[1:N]\)</span>를 프레임으로 주어진 시간 축으로 하고 <span class="math inline">\(\Lambda\)</span>를 가능한 레이블 집합이라고 하자.</p></li>
+<li><p><strong>레이블 함수(label function)</strong> 는 각 프레임 인덱스 <span class="math inline">\(n\in[1:N]\)</span>에 레이블 <span class="math inline">\(\varphi(n)\in\Lambda\)</span>를 할당하는 함수 <span class="math inline">\(\varphi:[1:N] \to \Lambda\)</span>로 정의한다.</p></li>
+<li><p>이제 <strong>pair-wise precision</strong>, <strong>pair-wise recall</strong> 및 <strong>pair-wise F-measure</strong>라고 하는 몇 가지 프레임 기반 평가 측정값을 소개한다.</p></li>
+<li><p><span class="math inline">\(\varphi^\mathrm{Ref}\)</span> 및 <span class="math inline">\(\varphi^\mathrm{Est}\)</span>를 각각 참조 및 추정 구조 주석에 대한 레이블 함수로 둔다.</p></li>
+<li><p>실제 레이블 네이밍에서 독립적이기 위해서는, 레이블을 직접 보지 않고 레이블 동시 발생을 찾는 것이 주요 아이디어다.</p></li>
+<li><p>이를 위해 동일한 레이블에 할당된 프레임 쌍(pair)을 고려한다.</p></li>
+</ul>
+<p><span class="math display">\[\mathcal{I}=\{(n,m)\in[1:N]\times[1:N]\mid m&lt;n\},\]</span></p>
+<ul>
+<li><p>참조 및 추정 주석에 대해 양의 아이템을 다음과 같이 정의한다. <span class="math display">\[\mathcal{I}^\mathrm{Ref}_+=\{(n,m)\in\mathcal{I}\mid \varphi^\mathrm{Ref}(n)=\varphi^\mathrm{Ref}(m)\},\\
+\mathcal{I}^\mathrm{Est}_+=\{(n,m)\in\mathcal{I}\mid \varphi^\mathrm{Est}(n)=\varphi^\mathrm{Est}(m)\},\]</span> whereas <span class="math inline">\(\mathcal{I}^\mathrm{Ref}_-=\mathcal{I}\setminus\mathcal{I}^\mathrm{Ref}_+\)</span> and <span class="math inline">\(\mathcal{I}^\mathrm{Est}_-=\mathcal{I}\setminus\mathcal{I}^\mathrm{Est}_+\)</span></p></li>
+<li><p>즉, <span class="math inline">\((n,m)\)</span> 항목은 프레임 <span class="math inline">\(n\)</span>과 <span class="math inline">\(m\)</span>이 동일한 레이블을 갖는 경우 주석에 대해 <strong>양(positive)</strong> 으로 간주된다.</p></li>
+<li><p>이제 <strong>pairwise precision</strong>는 이 이진 분류 체계의 precision으로 정의된다. 유사하게 <strong>pairwise recall</strong>와 <strong>pairwise F-measure</strong>은 위의 체계의 recall 및 F-measure이다.</p></li>
+<li><p>다음 두 예에서 샘플링된 시간 간격은 <span class="math inline">\(N=10\)</span> 샘플로 구성된다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:48.095764Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:48.085791Z&quot;}" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_ann_to_seq_label(ann):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert structure annotation with integer time positions (given in indices)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    into label sequence</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">        ann (list): Annotation (list ``[[s, t, 'label'], ...]``, with ``s``, ``t`` being integers)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">        X (list): Sequencs of labels</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> []</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> seg <span class="kw">in</span> ann:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> seg[<span class="dv">1</span>] <span class="op">-</span> seg[<span class="dv">0</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(K):</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            X.append(seg[<span class="dv">2</span>])</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_seq_label(ax, X, Fs<span class="op">=</span><span class="dv">1</span>, color_label<span class="op">=</span>[], direction<span class="op">=</span><span class="st">'horizontal'</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                   fontsize<span class="op">=</span><span class="dv">10</span>, time_axis<span class="op">=</span><span class="va">False</span>, print_labels<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot label sequence in the style of annotations</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Axis used for plotting</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">        X: Label sequence</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Sampling rate (Default value = 1)</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">        color_label: List of colors for labels (Default value = [])</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">        direction: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = 'horizontal')</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">        fontsize: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = 10)</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">        time_axis: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = False)</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">        print_labels: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = True)</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">         ann_X: Structure annotation for label sequence</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    ann_X <span class="op">=</span> []</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> m, cur_x <span class="kw">in</span> <span class="bu">enumerate</span>(X):</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        ann_X.append([(m<span class="op">-</span><span class="fl">0.5</span>)<span class="op">/</span>Fs, (m<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span>Fs, cur_x])</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann_X, ax<span class="op">=</span>ax, time_axis<span class="op">=</span>time_axis, fontsize<span class="op">=</span>fontsize,</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>                           direction<span class="op">=</span>direction, colors<span class="op">=</span>color_label, print_labels<span class="op">=</span>print_labels)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ann_X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:48.833170Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:48.493871Z&quot;}" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>color_label <span class="op">=</span> {<span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>], <span class="st">'B'</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>], <span class="st">'C'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.2</span>],</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">'X'</span>: [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>], <span class="st">'Y'</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>], <span class="st">'Z'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.2</span>]}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ann_ref <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">4</span>, <span class="st">'A'</span>], [<span class="dv">4</span>, <span class="dv">7</span>, <span class="st">'B'</span>], [<span class="dv">7</span>, <span class="dv">10</span>, <span class="st">'A'</span>]]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ann_est <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">1</span>, <span class="st">'X'</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">'Y'</span>], [<span class="dv">3</span>, <span class="dv">7</span>, <span class="st">'Z'</span>], [<span class="dv">7</span>, <span class="dv">9</span>, <span class="st">'Y'</span>], [<span class="dv">9</span>, <span class="dv">10</span>, <span class="st">'X'</span>]]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>X_ref <span class="op">=</span> convert_ann_to_seq_label(ann_ref)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>X_est <span class="op">=</span> convert_ann_to_seq_label(ann_est)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Segment-based structure annotation:'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">2</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">211</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plot_segments(ann_ref, ax<span class="op">=</span>ax, colors<span class="op">=</span>color_label)<span class="op">;</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.set_xticks([])</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">212</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plot_segments(ann_est, ax<span class="op">=</span>ax, colors<span class="op">=</span>color_label)<span class="op">;</span> </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.set_xticks([])</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Frame-based label sequence:'</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">2</span>))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">211</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plot_seq_label(ax, X_ref, color_label<span class="op">=</span>color_label, time_axis<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">212</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plot_seq_label(ax, X_est, color_label<span class="op">=</span>color_label, time_axis<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment-based structure annotation:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frame-based label sequence:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-7-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>첫 번째 시퀀스를 참조 <span class="math inline">\(\varphi^\mathrm{Est}\)</span>로 사용하고, 두 번째 시퀀스를 추정 <span class="math inline">\(\varphi^\mathrm{Est}\)</span>로 사용하여 이제 pairwise precision, recall, F-measure를 설명한다.</li>
+<li>특히 참조 및 추정 주석의 양의 항목(회색 항목으로 표시)을 표시한다. 또한 true positive (TP), false negative (FN), false positive (FP) 항목을 시각화한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:50.389965Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:50.366030Z&quot;}" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_pairwise(X):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute set of positive items from label sequence [FMP, Section 4.5.3]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">        X (list or np.ndarray): Label sequence</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">        I_pos (np.ndarray): Set of positive items</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(X)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    I_pos <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N):</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> X[n] <span class="kw">is</span> X[m]:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                I_pos[n, m] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> I_pos</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate_pairwise(I_ref_pos, I_est_pos):</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute pairwise evaluation measures [FMP, Section 4.5.3]</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">        I_ref_pos (np.ndarray): Referenence set of positive items</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">        I_est_pos (np.ndarray): Set of items being estimated as positive</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">        P (float): Precision</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">        R (float): Recall</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">        F (float): F-measure</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">        num_TP (int): Number of true positives</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FN (int): Number of false negatives</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FP (int): Number of false positives</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">        I_eval (np.ndarray): Data structure encoding TP, FN, FP</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    I_eval <span class="op">=</span> np.zeros(I_ref_pos.shape)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    TP <span class="op">=</span> (I_ref_pos <span class="op">+</span> I_est_pos) <span class="op">&gt;</span> <span class="dv">1</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    FN <span class="op">=</span> (I_ref_pos <span class="op">-</span> I_est_pos) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    FP <span class="op">=</span> (I_ref_pos <span class="op">-</span> I_est_pos) <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    I_eval[TP] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    I_eval[FN] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    I_eval[FP] <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    num_TP <span class="op">=</span> np.<span class="bu">sum</span>(TP)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    num_FN <span class="op">=</span> np.<span class="bu">sum</span>(FN)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    num_FP <span class="op">=</span> np.<span class="bu">sum</span>(FP)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    P, R, F <span class="op">=</span> measure_prf(num_TP, num_FN, num_FP)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P, R, F, num_TP, num_FN, num_FP, I_eval</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_matrix_label(M, X, color_label<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), cmap<span class="op">=</span><span class="st">'gray_r'</span>, fontsize<span class="op">=</span><span class="dv">8</span>, print_labels<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot matrix and label sequence</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co">        M: Matrix</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co">        X: Label sequence</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co">        color_label: List of colors for labels (Default value = None)</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (3, 3))</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co">        cmap: Colormap for imshow (Default value = 'gray_r')</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="co">        fontsize: Font size (Default value = 8)</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co">        print_labels: Display labels inside Rectangles (Default value = True)</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Handle for axes</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">0.05</span>],</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">'wspace'</span>: <span class="fl">0.2</span>, <span class="st">'height_ratios'</span>: [<span class="dv">1</span>, <span class="fl">0.1</span>]},</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>                           figsize<span class="op">=</span>figsize)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    colorList <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],  [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.7</span>]])</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    cmap <span class="op">=</span> ListedColormap(colorList)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax[<span class="dv">0</span>, <span class="dv">1</span>].imshow(M, aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span>cmap,  origin<span class="op">=</span><span class="st">'lower'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>    im.set_clim(vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>    ax_cb <span class="op">=</span> plt.colorbar(im, cax<span class="op">=</span>ax[<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticks(np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticklabels(np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">1</span>].set_xticks([])</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">1</span>].set_yticks([])</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>    plot_seq_label(ax[<span class="dv">1</span>, <span class="dv">1</span>], X, color_label<span class="op">=</span>color_label, fontsize<span class="op">=</span>fontsize, print_labels<span class="op">=</span>print_labels)</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">2</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>    plot_seq_label(ax[<span class="dv">0</span>, <span class="dv">0</span>], X, color_label<span class="op">=</span>color_label, fontsize<span class="op">=</span>fontsize, print_labels<span class="op">=</span>print_labels,</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>                   direction<span class="op">=</span><span class="st">'vertical'</span>)</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_matrix_pairwise(I_eval, figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="fl">2.5</span>)):</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot matrix I_eval encoding TP, FN, FP (see :func:`libfmp.c4.c4s5_evaluation.evaluate_pairwise`)</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="co">   Args:</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="co">        I_eval: Data structure encoding TP, FN, FP</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (3, 2.5))</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="co">        im: Handle for imshow</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>figsize)</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>    colorList <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="fl">0.7</span>, <span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>]])</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>    cmap <span class="op">=</span> ListedColormap(colorList)</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> plt.imshow(I_eval, aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span>cmap,  origin<span class="op">=</span><span class="st">'lower'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>    im.set_clim(vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">3.5</span>)</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>    plt.xticks([])</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>    plt.yticks([])</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    ax_cb <span class="op">=</span> plt.colorbar(im)</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticks(np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticklabels([<span class="st">''</span>, <span class="st">'TP'</span>, <span class="st">'FN'</span>, <span class="st">'FP'</span>])</span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, im</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:53:51.216634Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:53:50.781976Z&quot;}" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>I_ref_pos <span class="op">=</span> compare_pairwise(X_ref)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plot_matrix_label(I_ref_pos, X_ref, color_label<span class="op">=</span>color_label)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Reference'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>I_est_pos <span class="op">=</span> compare_pairwise(X_est)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plot_matrix_label(I_est_pos, X_est, color_label<span class="op">=</span>color_label)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Estimation'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>P, R, F, num_TP, num_FN, num_FP, I_eval <span class="op">=</span>  evaluate_pairwise(I_ref_pos, I_est_pos)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>fig, im <span class="op">=</span> plot_matrix_pairwise(I_eval)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Pairwise TP, FN, FP'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'#TP = '</span>, num_TP, <span class="st">'</span><span class="ch">\n</span><span class="st">#FN = '</span>, num_FN, <span class="st">'</span><span class="ch">\n</span><span class="st">#FP = '</span>, num_FP)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'precision = </span><span class="sc">%0.4f</span><span class="ch">\n</span><span class="st">recall = </span><span class="sc">%0.4f</span><span class="ch">\n</span><span class="st">F-measure = </span><span class="sc">%0.4f</span><span class="st">'</span> <span class="op">%</span> (P, R, F))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-9-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#TP =  10 
+#FN =  14 
+#FP =  3
+precision = 0.7692
+recall = 0.4167
+F-measure = 0.5405</code></pre>
+</div>
+</div>
+<ul>
+<li><p>첫 번째 그림에 참조 주석이 표시된다. <span class="math inline">\(45\)</span> 아이템 중 <span class="math inline">\(24\)</span>는 이 주석과 관련하여 positive(회색 상자로 표시됨)이다.</p></li>
+<li><p>추정된 주석을 나타내는 두 번째 그림에는 <span class="math inline">\(13\)</span>의 positive 항목이 있다(회색 상자로 표시됨).</p></li>
+<li><p>세 번째 그림에서 true positive(<span class="math inline">\(\#\mathrm{TP}=10\)</span>), false positive (<span class="math inline">\(\#\mathrm{FP}=3\)</span>) 및 false negative(<span class="math inline">\(\#\mathrm{FN) }=14\)</span>)가 표시된다.</p></li>
+<li><p>이로부터 다음을 얻을 수 있다. <span class="math display">\[\begin{eqnarray}
+\mathrm{P} &amp;=&amp; \#\mathrm{TP}/(\#\mathrm{TP}+\#\mathrm{FP})=10/13\approx 0.769,\\
+\mathrm{R} &amp;=&amp; \#\mathrm{TP}/(\#\mathrm{TP}+\#\mathrm{FN})=10/24\approx 0.417,\\
+\mathrm{F} &amp;=&amp; 2\mathrm{P}\mathrm{R}/(\mathrm{P} + \mathrm{R})\approx 0.541.
+\end{eqnarray}\]</span></p></li>
+<li><p>이 예에서 거의 <span class="math inline">\(77\%\)</span>의 precision은 상대적으로 높은 반면 <span class="math inline">\(42\%\)</span>의 recall은 상대적으로 낮다.</p></li>
+<li><p>F-measure은 이 두 값 사이이며 더 작은 쪽으로 편향된다.</p></li>
+<li><p>추가 예시로 브람스 주석을 보자.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T06:54:17.041381Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T06:54:15.526226Z&quot;}" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X_0 <span class="op">=</span> convert_ann_to_seq_label(ann_Brahms[<span class="dv">0</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>X_1 <span class="op">=</span> convert_ann_to_seq_label(ann_Brahms[<span class="dv">1</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>X_2 <span class="op">=</span> convert_ann_to_seq_label(ann_Brahms[<span class="dv">2</span>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X_set <span class="op">=</span> [X_0, X_1, X_2]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>combinations <span class="op">=</span> [(<span class="dv">0</span>,<span class="dv">1</span>), (<span class="dv">0</span>,<span class="dv">2</span>), (<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>case_label <span class="op">=</span> [<span class="st">'Coarse'</span>, <span class="st">'Medium'</span>, <span class="st">'Fine'</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> combinations:</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    X_ref <span class="op">=</span> X_set[c[<span class="dv">0</span>]]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    X_est <span class="op">=</span> X_set[c[<span class="dv">1</span>]]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    I_ref_pos <span class="op">=</span> compare_pairwise(X_ref)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plot_matrix_label(I_ref_pos, X_ref, color_label<span class="op">=</span>color_ann_Brahms, print_labels<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Reference: '</span><span class="op">+</span>case_label[c[<span class="dv">0</span>]])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    I_est_pos <span class="op">=</span> compare_pairwise(X_est)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plot_matrix_label(I_est_pos, X_est, color_label<span class="op">=</span>color_ann_Brahms, print_labels<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Estimation: '</span><span class="op">+</span>case_label[c[<span class="dv">1</span>]])</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    P, R, F, num_TP, num_FN, num_FP, I_eval <span class="op">=</span>  evaluate_pairwise(I_ref_pos, I_est_pos)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    fig, im <span class="op">=</span> plot_matrix_pairwise(I_eval)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Pairwise TP, FN, FP'</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'#TP = '</span>, num_TP, <span class="st">';  #FN = '</span>, num_FN, <span class="st">';  #FP = '</span>, num_FP)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'P = </span><span class="sc">%0.3f</span><span class="st">;  R = </span><span class="sc">%0.3f</span><span class="st">;  F = </span><span class="sc">%0.3f</span><span class="st">'</span> <span class="op">%</span> (P, R, F))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#TP =  226 ;  #FN =  218 ;  #FP =  12
+P = 0.950;  R = 0.509;  F = 0.663
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-7.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#TP =  143 ;  #FN =  301 ;  #FP =  4
+P = 0.973;  R = 0.322;  F = 0.484
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-9.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-10.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-10-output-11.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#TP =  136 ;  #FN =  102 ;  #FP =  11
+P = 0.925;  R = 0.571;  F = 0.706
+</code></pre>
+</div>
+</div>
+</section>
+<section id="경계-평가-boundary-evaluation" class="level1">
+<h1>경계 평가 (Boundary Evaluation)</h1>
+<ul>
+<li><p>쌍별(pairwise) precision, recall, F-measure은 전적으로 레이블 정보를 기반으로 하는 반면, 세그먼트 경계는 레이블 변경의 존재에 의해 암시적으로 처리된다.</p></li>
+<li><p>노벨티(novelty) 기반 분할과 같은 다른 구조 분석 작업의 경우 경계의 정확한 감지가 중요하다.</p></li>
+<li><p>이러한 절차를 평가하기 위해 참조 주석의 경계에서 추정된 세그먼트 경계의 편차를 측정한다.</p></li>
+<li><p>이를 수학적으로 모델링하기 위해 시퀀스로 제공되는 <strong>경계 주석(boundary annotation)</strong> 개념을 도입한다. <span class="math display">\[B=(b_1,b_2,\ldots,b_K)\]</span> <span class="math inline">\(b_k\in[1:N]\)</span>, <span class="math inline">\(k\in[1:K]\)</span>는 증가하는 인덱스</p></li>
+<li><p>예를 들어, 이러한 경계 주석은 주석이 달린 세그먼트의 시작 및 가능한 끝 인덱스를 취함으로써 구조 주석에서 유도될 수 있다.</p></li>
+<li><p><span class="math inline">\(B^\mathrm{Ref}\)</span>를 참조 경계 주석, <span class="math inline">\(B^\mathrm{Est}\)</span>를 추정 경계 주석이라고 하자.</p></li>
+<li><p><span class="math inline">\(B^\mathrm{Est}\)</span>와 <span class="math inline">\(B^\mathrm{Ref}\)</span>를 비교하는 방법에는 여러 가지가 있다. 예를 들어 <span class="math inline">\(\mathcal{I}=[1:N]\)</span> 집합을 사용하면 <span class="math inline">\(\mathcal{I}^\mathrm{Ref}_+:=B^\mathrm{Ref}\)</span> 및 <span class="math inline">\(\mathcal{I}^\mathrm{Est}_+:=B^\mathrm{Est}\)</span>를 정의할 수 있다.</p></li>
+<li><p>이로부터 Precision, Recall, F-Measure를 일반적인 방법으로 계산할 수 있다. 이 경우 추정된 경계는 참조 경계와 일치하는 경우에만 올바른 것으로 간주된다.</p></li>
+<li><p>특정 응용의 경우 경계 위치의 작은 편차가 허용된다. 따라서 최대 허용 편차에 대한 허용(tolerance) 매개변수 <span class="math inline">\(\tau\geq 0\)</span>를 도입하여 이전 측정을 일반화한다.</p></li>
+<li><p>추정된 경계 <span class="math inline">\(b^\mathrm{Est}\in B^\mathrm{Est}\)</span>는 참조 경계 <span class="math inline">\(b^\mathrm{Ref}\in B^\mathrm{Ref}\)</span>의 <span class="math inline">\(\tau\)</span>-이웃(-neighborhood) 내에 있는 경우 <strong>올바른</strong> 것으로 간주된다.: <span class="math display">\[|b^\mathrm{Est}-b^\mathrm{Ref}|\leq \tau\]</span></p></li>
+<li><p>이 경우 <span class="math inline">\(\mathcal{I}^\mathrm{Ref}_+\)</span> 및 <span class="math inline">\(\mathcal{I}^\mathrm{Est}_+\)</span> 집합은 더 이상 precision 및 recall을 정의하는 데 사용할 수 없다.</p></li>
+<li><p>대신, true positives, false positives, 및 false negatives의 개념을 일반화한다.</p></li>
+<li><p><strong>true positive</strong>(TP)은 올바른 항목 <span class="math inline">\(b^\mathrm{Est}\in B^\mathrm{Est}\)</span>로 정의되고 <strong>false positive</strong>(FP)은 올바르지 않은 <span class="math inline">\(b^\mathrm{Est}\in B^\mathrm{Est}\)</span> 항목이다. 또한, <strong>false negative</strong>(FN)은 <span class="math inline">\(\tau\)</span>-neighborhood에 추정 항목이 없는 <span class="math inline">\(b^\mathrm{Ref}\in B^\mathrm{Ref}\)</span> 항목으로 정의된다.</p></li>
+<li><p>이러한 정의에 따라 이전과 같이 <span class="math inline">\(\#\mathrm{TP}\)</span>, <span class="math inline">\(\#\mathrm{FP}\)</span> 및 <span class="math inline">\(\#\mathrm{FN}\)</span>에서 precision, recall을 및 F-measure을 계산할 수 있다.</p></li>
+<li><p>그러나 이러한 일반화는 주의해야 할 점이 있다. 허용오차(tolerance) 매개변수 <span class="math inline">\(\tau\)</span>로 인해 여러 추정 경계가 단일 참조 경계의 <span class="math inline">\(\tau\)</span>-이웃에 포함될 수 있다. 반대로, 여러 참조 경계의 <span class="math inline">\(\tau\)</span>-neighborhood에 단일 추정 경계가 포함될 수도 있다.</p></li>
+<li><p>결과적으로 <span class="math inline">\(B^\mathrm{Est}\)</span>와 <span class="math inline">\(B^\mathrm{Ref}\)</span>가 서로 다른 수의 경계를 포함하는 경우에도 완벽한 F-measure을 얻을 수 있다. 그러나 이것은 의미가 없다.</p></li>
+<li><p>이러한 변칙을 피하기 위해 다음을 요구하는 경계 주석의 정의의 가정을 추가할 수 있다. <span class="math display">\[|b_{k+1}-b_k| &gt; 2\tau\]</span> for <span class="math inline">\(k\in[1:N-1]\)</span></p></li>
+<li><p>이것은 또한 음악적 관점에서 의미 있는 가정이다. 음악 섹션(두 개의 후속 경계로 결정됨)은 허용 오차 매개변수의 크기보다 훨씬 길어야 한다.</p></li>
+<li><p>다음 그림은 간단한 예를 통해 경계 평가 측정을 보여준다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T09:02:05.607833Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T09:02:05.601847Z&quot;}" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_F31_text.png"</span>, width<span class="op">=</span><span class="dv">800</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<p><img src="5.5.Evaluation_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>허용오차 매개변수 <span class="math inline">\(\tau=0\)</span>((c) 참고)를 사용하여 <span class="math inline">\(\#\mathrm{TP}=1\)</span>, <span class="math inline">\(\#\mathrm{FP}=3\)</span> 및 <span class="math inline">\(\#\mathrm{FN}=2\)</span>을 얻는다. 그 결과 <span class="math inline">\(\mathrm{P}=1/4\)</span>, <span class="math inline">\(\mathrm{R}=1/3\)</span> 및 <span class="math inline">\(\mathrm{F}=2/7\)</span>이다.</p></li>
+<li><p><span class="math inline">\(\tau=1\)</span>의 경우((e) 참고) <span class="math inline">\(\#\mathrm{TP}=2\)</span>, <span class="math inline">\(\#\mathrm{FP}=2\)</span>, <span class="math inline">\(\#\mathrm{FN}=1\)</span>, 결과는 <span class="math inline">\(\mathrm{P}=1/2\)</span>, <span class="math inline">\(\mathrm{R}=2/3\)</span> 및 <span class="math inline">\(\mathrm{F}=4/7\)</span>이다.</p></li>
+<li><p>마지막으로 <span class="math inline">\(\tau=2\)</span>((g) 참고)를 사용하면 완벽한 F-measure을 얻을 수 있다. 그러나 이 경우 최소 거리 조건을 위반하기에 평가 척도로의 의미가 없다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T09:00:29.002383Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T09:00:28.984463Z&quot;}" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate_boundary(B_ref, B_est, tau):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute boundary evaluation measures [FMP, Section 4.5.4]</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">        B_ref (np.ndarray): Reference boundary annotations</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">        B_est (np.ndarray): Estimated boundary annotations</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">        tau (int): Tolerance parameter.</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">            Note: Condition ``|b_{k+1}-b_k|&gt;2tau`` should be fulfilled [FMP, Eq. 4.58]</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">        P (float): Precision</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">        R (float): Recall</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">        F (float): F-measure</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">        num_TP (int): Number of true positives</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FN (int): Number of false negatives</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">        num_FP (int): Number of false positives</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">        B_tol (np.ndarray): Data structure encoding B_ref with tolerance</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">        I_eval (np.ndarray): Data structure encoding TP, FN, FP</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(B_ref)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    num_TP <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    num_FN <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    num_FP <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    B_tol <span class="op">=</span> np.zeros((np.array([B_ref])).shape)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    B_eval <span class="op">=</span> np.zeros((np.array([B_ref])).shape)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        min_idx <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, n <span class="op">-</span> tau)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        max_idx <span class="op">=</span> <span class="bu">min</span>(N <span class="op">-</span> <span class="dv">1</span>, n <span class="op">+</span> tau)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> B_ref[n] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>            B_tol[:, min_idx:max_idx<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>            B_tol[:, n] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> <span class="bu">sum</span>(B_est[min_idx:max_idx<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> temp <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>                num_TP <span class="op">+=</span> temp</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>                num_FN <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>                B_eval[:, n] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> B_est[n] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">sum</span>(B_ref[min_idx:max_idx<span class="op">+</span><span class="dv">1</span>]) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>                num_FP <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>                B_eval[:, n] <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>                B_eval[:, n] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>    P, R, F <span class="op">=</span> measure_prf(num_TP, num_FN, num_FP)</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P, R, F, num_TP, num_FN, num_FP, B_tol, B_eval</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_boundary_measures(B_ref, B_est, tau, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">2.5</span>)):</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot B_ref and B_est (see :func:`libfmp.c4.c4s5_evaluation.evaluate_boundary`)</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="co">        B_ref: Reference boundary annotations</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="co">        B_est: Estimated boundary annotations</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="co">        tau: Tolerance parameter</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (8, 2.5))</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Handle for axes</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>    P, R, F, num_TP, num_FN, num_FP, B_tol, B_eval <span class="op">=</span> evaluate_boundary(B_ref, B_est, tau)</span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>    colorList <span class="op">=</span> np.array([[<span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>], [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">1.</span>], [<span class="fl">0.7</span>, <span class="fl">0.7</span>, <span class="fl">0.7</span>, <span class="fl">1.</span>]])</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>    cmap_tol <span class="op">=</span> ListedColormap(colorList)</span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>    colorList <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="fl">0.7</span>, <span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>    cmap_measures <span class="op">=</span> ListedColormap(colorList)</span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">1</span>, <span class="fl">0.02</span>],</span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">'wspace'</span>: <span class="fl">0.2</span>, <span class="st">'height_ratios'</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]},</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>                           figsize<span class="op">=</span>figsize)</span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax[<span class="dv">0</span>, <span class="dv">0</span>].imshow(B_tol, cmap<span class="op">=</span>cmap_tol, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'Reference boundaries (with tolerance)'</span>)</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>    im.set_clim(vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_xticks([])</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_yticks([])</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>    ax_cb <span class="op">=</span> plt.colorbar(im, cax<span class="op">=</span>ax[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticks(np.arange(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticklabels([<span class="st">''</span>, <span class="st">'Positive'</span>, <span class="st">'Tolerance'</span>])</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax[<span class="dv">1</span>, <span class="dv">0</span>].imshow(np.array([B_est]), cmap<span class="op">=</span>cmap_tol, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'Estimated boundaries'</span>)</span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>    im.set_clim(vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">0</span>].set_xticks([])</span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">0</span>].set_yticks([])</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>    ax_cb <span class="op">=</span> plt.colorbar(im, cax<span class="op">=</span>ax[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticks(np.arange(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticklabels([<span class="st">''</span>, <span class="st">'Positive'</span>, <span class="st">'Tolerance'</span>])</span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax[<span class="dv">2</span>, <span class="dv">0</span>].imshow(B_eval, cmap<span class="op">=</span>cmap_measures, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">2</span>, <span class="dv">0</span>].set_title(<span class="st">'Evaluation'</span>)</span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>    im.set_clim(vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">3.5</span>)</span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">2</span>, <span class="dv">0</span>].set_xticks([])</span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">2</span>, <span class="dv">0</span>].set_yticks([])</span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a>    ax_cb <span class="op">=</span> plt.colorbar(im, cax<span class="op">=</span>ax[<span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticks(np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>    ax_cb.set_ticklabels([<span class="st">''</span>, <span class="st">'TP'</span>, <span class="st">'FN'</span>, <span class="st">'FP'</span>])</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-10T09:02:16.962658Z&quot;,&quot;start_time&quot;:&quot;2023-01-10T09:02:16.441819Z&quot;}" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>B_ref <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B_est <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tau_list <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tau <span class="kw">in</span> tau_list:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'====== Evaluation using tau = </span><span class="sc">%d</span><span class="st"> ======'</span><span class="op">%</span>tau)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    P, R, F, num_TP, num_FN, num_FP, B_tol, B_eval <span class="op">=</span> evaluate_boundary(B_ref, B_est, tau)    </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'#TP = '</span>, num_TP, <span class="st">';  #FN = '</span>, num_FN, <span class="st">';  #FP = '</span>, num_FP)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'P = </span><span class="sc">%0.3f</span><span class="st">;  R = </span><span class="sc">%0.3f</span><span class="st">;  F = </span><span class="sc">%0.3f</span><span class="st">'</span> <span class="op">%</span> (P, R, F))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plot_boundary_measures(B_ref, B_est, tau<span class="op">=</span>tau, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Evaluation using tau = 0 ======
+#TP =  1 ;  #FN =  2 ;  #FP =  3
+P = 0.250;  R = 0.333;  F = 0.286</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Evaluation using tau = 1 ======
+#TP =  2 ;  #FN =  1 ;  #FP =  2
+P = 0.500;  R = 0.667;  F = 0.571</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-13-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Evaluation using tau = 2 ======
+#TP =  4 ;  #FN =  0 ;  #FP =  0
+P = 1.000;  R = 1.000;  F = 1.000</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.5.Evaluation_files/figure-html/cell-13-output-6.png" class="img-fluid"></p>
+</div>
+</div>
+<p>이외에도</p>
+<ul>
+<li>파이썬 라이브러리 <code>mir_eval</code>를 사용할 수도 있다.</li>
+<li>자세한 것은 사이트에서 확인해보자: https://craffel.github.io/mir_eval/#module-mir_eval.segment</li>
+</ul>
+<hr>
+<p>출처:</p>
+<ul>
+<li>https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html</li>
+</ul>
+<hr>
+<p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/5.%20Music%20Structure%20Analysis/5.5.Evaluation.ipynb">구글 Colab 링크</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="jo-cho/MIRBlog-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

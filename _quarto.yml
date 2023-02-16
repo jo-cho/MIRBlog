@@ -4,6 +4,8 @@ project:
   
 website:
   title: "조조의 음악정보검색 입문"
+  site-url: https://jo-cho.github.io/MIRBlog/
+  description: "음악정보검색 공부 블로그"
   navbar:
     right:
       - about.qmd

@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-02-16">
+
+<title>조조의 음악정보검색 입문 - 5.3. 오디오 썸네일</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">조조의 음악정보검색 입문</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jo-cho/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">5.3. 오디오 썸네일</h1>
+            <p class="subtitle lead">Audio Thumbnail</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">음악구조분석</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cheonghyo Cho </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 16, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>음악 녹음의 가장 대표적인 섹션을 자동으로 결정하는 오디오 썸네일(thumbnail)에 대해 다룬다. 세그먼트의 반복 기반 접근 방식의 최적화 방법을 알아본다.</p>
+<blockquote class="blockquote">
+<p>이 글은 <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html">FMP(Fundamentals of Music Processing) Notebooks</a>을 참고로 합니다.</p>
+</blockquote>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:51:18.258200Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:51:18.252216Z&quot;}" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.gridspec <span class="im">as</span> gridspec</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> ListedColormap</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> ipd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa, librosa.display</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.feature_tools <span class="im">import</span> normalize_feature_sequence, smooth_downsample_feature_sequence, median_downsample_feature_sequence</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.plot_tools <span class="im">import</span> plot_matrix, compressed_gray_cmap, plot_chromagram, plot_segments, plot_segments_overlay</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.structure_tools <span class="im">import</span> compute_sm_from_filename, compute_tempo_rel_set, read_structure_annotation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="오디오-썸네일-audio-thumbnail" class="level1">
+<h1>오디오 썸네일 (Audio Thumbnail)</h1>
+<ul>
+<li><p>음악 구조 분석의 중요한 하위 문제로 <strong>오디오 썸네일링(thumbnailing)</strong> 이 있다. 음악 녹음에서 가장 대표적인 섹션을 자동으로 결정하는 것이며, 이는 청취자에게 노래 또는 음악 작품에 대한 첫인상을 주는 일종의 “미리 보기” 역할을 할 수 있다.</p></li>
+<li><p>이러한 미리 보기를 기반으로 사용자는 노래를 듣고 싶은지 또는 다음 녹음으로 이동할지 빠르게 결정할 수 있어야 한다.</p></li>
+<li><p>따라서 오디오 썸네일은 대규모 음악 컬렉션에서 흥미로운 부분을 찾는 데 중요한 탐색 및 탐색 보조 도구이다. 이 포스트에서는 <strong>반복 기반 접근 방식(repetition-based approach)</strong> 을 설명한다.</p></li>
+<li><p>종종 후렴구 또는 노래의 메인 테마와 같은 섹션은 오디오 썸네일의 좋은 후보이다. 이러한 부분은 일반적으로 녹음 내내 여러 번 반복된다.</p></li>
+<li><p>따라서 썸네일을 자동으로 결정하기 위한 대부분의 절차는 특정 최소 기간이 있으면서 <strong>많은 (대략적인) 반복</strong>이 있는 섹션을 식별하는 것이다.</p></li>
+<li><p>다음 그림은 서양 음악에서 볼 수 있는 음악 구조의 몇 가지 예를 보여준다.</p>
+<ul>
+<li>론도는 당연히 썸네일 후보가 테마(A파트)이다. 소나타는 제시부의 시작 부분(파트 E1, E2 및 R에서 발생)은 적절한 썸네일 축소판일 수 있다. ’Yesterday’와 같은 팝송은 벌스 섹션(V1 파트)이 특징이다. 마지막으로 이전 실행 예제로 이미 봤던 Brahms 예제에서는 A 파트 또는 B 파트를 썸네일로 선택할 수 있다.</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:51:19.632978Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:51:19.618019Z&quot;}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_F04+.png"</span>, width<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>한 가지 문제는 반복되는 섹션이 다이나믹(dynamics), 악기 편성, 아티큘레이션 및 템포와 관련된 측면에서 상당한 음향 및 음악적 차이를 보일 수 있다는 것이다.</p></li>
+<li><p>따라서 주어진 음악 녹음에서 반복적인 세그먼트를 추출하기 위한 썸네일링 절차는 특정 변형에 robust해야 한다.</p></li>
+<li><p>이제 음악적, 템포적인 변동을 다루기 위해, 향상된 자기 유사성 행렬(SSM)과 타임 워핑(time warping) 기술을 기반으로 하는 절차를 설명한다. 주요 기술 도구로 각 오디오 세그먼트에 적합도(fitness) 값을 할당하는 <strong>적합도 측정(fitness measure)</strong> 을 소개한다. 이 측정은 두 가지 측면을 동시에 포착한다. 첫째, 주어진 세그먼트가 다른 관련 세그먼트를 <strong>얼마나 잘</strong> 설명하는지를 나타내고, 둘째, 이러한 모든 관련 세그먼트가 전체 음악 녹음의 <strong>얼마나 많은</strong> 부분을 포함하는지 나타낸다. 그런 다음 <strong>오디오 썸네일</strong>은 <strong>최대 적합도 세그먼트</strong>로 정의된다.</p></li>
+</ul>
+<section id="ssm의-필요조건" class="level2">
+<h2 class="anchored" data-anchor-id="ssm의-필요조건">SSM의 필요조건</h2>
+<ul>
+<li><p>적합도(fitness) 측정의 아이디어는 주어진 세그먼트와 그것의 대략적인 반복 간의 모든 관계를 동시에 설정하는 것이다. 이를 위해서는 <strong>자기 유사성 행렬(SSM)</strong> 이 필요하다. 적합도 측정에 대한 다음 설명은 일부 기본 <strong>정규화 속성(normalization properties)</strong> 만 충족하는 일반 자기 유사성 행렬과 함께 작동한다는 점에서 일반적이다. <span class="math display">\[\mathbf{S}(n,m)\leq 1 \text{ and } \mathbf{S}(n,n)=1 \text{ for all } n,m\in[1:N]\]</span></p></li>
+<li><p><a href="https://jo-cho.github.io/MIRBlog/posts/5.%20Music%20Structure%20Analysis/5.2.Self_Similarity_Matrix.html">5.2. 자기 유사성 행렬</a>에서 사용한 브람스 예시를 계속하여 보면, 향상된(enhanced) SSM에서 시작하여 정규화 속성을 만족시키는 임계값 절차(thresholding procedure)를 거친다. 결과적으로 SSM의 모든 상관있는(relevant) 성분은 0과 1 사이(주대각선 성분은 1)가 되며, 상관없는 성분은 <span class="math inline">\(\delta=-2\)</span>의 음수 점수를 가진다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:51:23.824687Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:51:23.803743Z&quot;}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> colormap_penalty(penalty<span class="op">=-</span><span class="dv">2</span>, cmap<span class="op">=</span>compressed_gray_cmap(alpha<span class="op">=</span><span class="dv">5</span>)):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Extend colormap with white color between the penalty value and zero</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">        penalty (float): Negative number (Default value = -2.0)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">        cmap (mpl.colors.Colormap): Original colormap (Default value = libfmp.b.compressed_gray_cmap(alpha=5))</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">        cmap_penalty (mpl.colors.Colormap): Extended colormap</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(cmap, <span class="bu">str</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        cmap <span class="op">=</span> matplotlib.cm.get_cmap(cmap, <span class="dv">128</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    cmap_matrix <span class="op">=</span> cmap(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">128</span>))[:, :<span class="dv">3</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    num_row <span class="op">=</span> <span class="bu">int</span>(np.<span class="bu">abs</span>(penalty)<span class="op">*</span><span class="dv">128</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cmap_penalty = np.flip(np.concatenate((cmap_matrix, np.ones((num_row, 3))), axis=0), axis=0)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    cmap_penalty <span class="op">=</span> np.concatenate((np.ones((num_row, <span class="dv">3</span>)), cmap_matrix), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    cmap_penalty <span class="op">=</span> ListedColormap(cmap_penalty)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cmap_penalty</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalization_properties_ssm(S):</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Normalizes self-similartiy matrix to fulfill S(n,n)=1.</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Yields a warning if max(S)&lt;=1 is not fulfilled</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">        S (np.ndarray): Self-similarity matrix (SSM)</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">        S_normalized (np.ndarray): Normalized self-similarity matrix</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    S_normalized <span class="op">=</span> S.copy()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> S_normalized.shape[<span class="dv">0</span>]</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        S_normalized[n, n] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        max_S <span class="op">=</span> np.<span class="bu">max</span>(S_normalized)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> max_S <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Normalization condition for SSM not fulfill (max &gt; 1)'</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S_normalized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:52:39.670612Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:52:39.658643Z&quot;}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_ssm_ann(S, ann, Fs<span class="op">=</span><span class="dv">1</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>, color_ann<span class="op">=</span>[], ann_x<span class="op">=</span><span class="va">True</span>, ann_y<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">12</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="fl">4.5</span>), xlabel<span class="op">=</span><span class="st">''</span>, ylabel<span class="op">=</span><span class="st">''</span>, title<span class="op">=</span><span class="st">''</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot SSM and annotations (horizontal and vertical as overlay)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">        S: Self-similarity matrix</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">        ann: Annotations</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Feature rate of path_family (Default value = 1)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">        cmap: Color map for S (Default value = 'gray_r')</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">        color_ann: color scheme used for annotations (see :func:`libfmp.b.b_plot.plot_segments`)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">            (Default value = [])</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">        ann_x: Plot annotations on x-axis (Default value = True)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">        ann_y: Plot annotations on y-axis (Default value = True)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">        fontsize: Font size used for annotation labels (Default value = 12)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Size of figure (Default value = (5, 4.5))</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">        xlabel: Label for x-axis (Default value = '')</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">        ylabel: Label for y-axis (Default value = '')</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">        title: Figure size (Default value = '')</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Handle for axes</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">        im: Handle for imshow</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">1</span>, <span class="fl">0.05</span>],</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">'height_ratios'</span>: [<span class="dv">1</span>, <span class="fl">0.1</span>]}, figsize<span class="op">=</span>figsize)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    fig_im, ax_im, im <span class="op">=</span> plot_matrix(S, Fs<span class="op">=</span>Fs, Fs_F<span class="op">=</span>Fs,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                                             ax<span class="op">=</span>[ax[<span class="dv">0</span>, <span class="dv">0</span>], ax[<span class="dv">0</span>, <span class="dv">1</span>]], cmap<span class="op">=</span>cmap,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                                             xlabel<span class="op">=</span><span class="st">''</span>, ylabel<span class="op">=</span><span class="st">''</span>, title<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(ylabel)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(xlabel)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>, <span class="dv">0</span>].set_title(title)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ann_y:</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        plot_segments_overlay(ann, ax<span class="op">=</span>ax_im[<span class="dv">0</span>], direction<span class="op">=</span><span class="st">'vertical'</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                                       time_max<span class="op">=</span>S.shape[<span class="dv">0</span>]<span class="op">/</span>Fs, print_labels<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                                       colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ann_x:</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        plot_segments(ann, ax<span class="op">=</span>ax[<span class="dv">1</span>, <span class="dv">0</span>], time_max<span class="op">=</span>S.shape[<span class="dv">0</span>]<span class="op">/</span>Fs, colors<span class="op">=</span>color_ann,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                               time_axis<span class="op">=</span><span class="va">False</span>, fontsize<span class="op">=</span>fontsize)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        ax[<span class="dv">1</span>, <span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>, <span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax, im</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:53:19.690800Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:53:19.074895Z&quot;}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fn_wav <span class="op">=</span> <span class="st">'../data_FMP/FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy.wav'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tempo_rel_set <span class="op">=</span> compute_tempo_rel_set(<span class="fl">0.66</span>, <span class="fl">1.5</span>, <span class="dv">5</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>penalty <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x, x_duration, X, Fs_feature, S, I <span class="op">=</span> compute_sm_from_filename(fn_wav, L<span class="op">=</span><span class="dv">21</span>, H<span class="op">=</span><span class="dv">5</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                        L_smooth<span class="op">=</span><span class="dv">12</span>, tempo_rel_set<span class="op">=</span>tempo_rel_set, penalty<span class="op">=</span>penalty, thresh<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> normalization_properties_ssm(S)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>fn_ann <span class="op">=</span> <span class="st">'../data_FMP/FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy.csv'</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ann_frames, color_ann <span class="op">=</span> read_structure_annotation(fn_ann, Fs<span class="op">=</span>Fs_feature)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>cmap_penalty <span class="op">=</span> colormap_penalty(penalty<span class="op">=</span>penalty)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> plot_ssm_ann(S, ann_frames, Fs<span class="op">=</span><span class="dv">1</span>, color_ann<span class="op">=</span>color_ann, cmap<span class="op">=</span>cmap_penalty, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                       xlabel<span class="op">=</span><span class="st">'Time (frames)'</span>, ylabel<span class="op">=</span><span class="st">'Time (frames)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:53:26.386573Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:53:26.379591Z&quot;}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>S.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>(409, 409)</code></pre>
+</div>
+</div>
+</section>
+<section id="경로군-path-family" class="level2">
+<h2 class="anchored" data-anchor-id="경로군-path-family">경로군 (Path Family)</h2>
+<ul>
+<li><p><span class="math inline">\(P=((n_1,m_1), (n_2,m_2), \ldots,(n_L,m_L))\)</span>를 주어진 <strong>세그먼트</strong> <span class="math inline">\(\alpha=[s:t]\subseteq [ 1:N]\)</span>의 경로(path)라고 하고, <span class="math inline">\(\Sigma\)</span>를 기본 <strong>허용 가능한 step size 집합</strong>을 나타낸다고 하자. 그러면 정의에 따라 <span class="math inline">\(m_1=s\)</span> 및 <span class="math inline">\(m_L=t\)</span> 이고, 경로 <span class="math inline">\(P\)</span>는 <span class="math inline">\(\alpha=\pi_2(P)\)</span>와 유도된(induced) 세그먼트 <span class="math inline">\(\pi_1(P)\)</span> 사이의 관계를 인코딩한다.</p></li>
+<li><p>경로의 개념을 확장하여 이제 음악 녹음에서 <span class="math inline">\(\alpha\)</span>와 다른 여러 세그먼트 간의 관계를 캡처할 수 있는 경로군(path family)의 개념을 소개한다. 이를 위해 먼저 <span class="math inline">\(K\)</span> 크기의 <strong>세그먼트 군</strong>(<strong>segment family</strong>)을 다음의 집합으로 정의한다. <span class="math display">\[\mathcal{A}:=\{\alpha_1,\alpha_2,\ldots,\alpha_K\}\]</span></p></li>
+<li><p>즉, <span class="math inline">\(k\not= j\)</span>인 모든 <span class="math inline">\(k,j\in[1:K]\)</span>에 대해 <span class="math inline">\(\alpha_k\cap\alpha_j=\emptyset\)</span>이다. <span class="math inline">\(\alpha\)</span> 위의 <strong>경로군</strong>는 다음의 집합으로 정의된다. <span class="math display">\[\mathcal{P}:=\{P_1,P_2,\ldots,P_K\}\]</span></p>
+<ul>
+<li>of size <span class="math inline">\(K\)</span>,</li>
+<li>consisting of paths <span class="math inline">\(P_k\)</span> over <span class="math inline">\(\alpha\)</span> for <span class="math inline">\(k\in[1:K]\)</span></li>
+</ul></li>
+<li><p>또한 추가 조건으로 유도된 세그먼트가 “pairwise disjoint”이어야 한다. 즉, <span class="math inline">\(\{\pi_1(P_1),\ldots,\pi_1(P_K)\}\)</span> 집합이 세그먼트 군이 되어야 한다.</p></li>
+<li><p>이러한 정의는 다음의 그림으로 설명된다.</p>
+<ul>
+<li>(왼쪽부터) 세그먼트 <span class="math inline">\(\alpha\)</span>가 있는 SSM / 세 개의 경로로 구성된 <span class="math inline">\(\alpha\)</span> 위에 경로군가 있이 SSM / 경로군이 <strong>아닌</strong> 경로들(유도된 세그먼트가 겹치기 때문에) / 두 개의 경로로 구성된 경로군</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:54:08.415279Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:54:08.403311Z&quot;}" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_F16.png"</span>, width<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:54:10.212166Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:54:10.203164Z&quot;}" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_path_family(ax, path_family, Fs<span class="op">=</span><span class="dv">1</span>, x_offset<span class="op">=</span><span class="dv">0</span>, y_offset<span class="op">=</span><span class="dv">0</span>, proj_x<span class="op">=</span><span class="va">True</span>, w_x<span class="op">=</span><span class="dv">7</span>, proj_y<span class="op">=</span><span class="va">True</span>, w_y<span class="op">=</span><span class="dv">7</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot path family into a given axis</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Axis of plot</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">        path_family: Path family</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Feature rate of path_family (Default value = 1)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">        x_offset: Offset x-axis (Default value = 0)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">        y_offset: Yffset x-axis (Default value = 0)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">        proj_x: Display projection on x-axis (Default value = True)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">        w_x: Width used for projection on x-axis (Default value = 7)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">        proj_y: Display projection on y-axis (Default value = True)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">        w_y: Width used for projection on y-axis (Default value = 7)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> path_family:</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> [(path[i][<span class="dv">0</span>] <span class="op">+</span> y_offset)<span class="op">/</span>Fs <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path))]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> [(path[i][<span class="dv">1</span>] <span class="op">+</span> x_offset)<span class="op">/</span>Fs <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path))]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        ax.plot(x, y, <span class="st">"o"</span>, color<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>], linewidth<span class="op">=</span><span class="dv">3</span>, markersize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        ax.plot(x, y, <span class="st">'.'</span>, color<span class="op">=</span>[<span class="fl">0.7</span>, <span class="dv">1</span>, <span class="dv">1</span>], linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> proj_y:</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> path <span class="kw">in</span> path_family:</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>            y1 <span class="op">=</span> path[<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">/</span>Fs</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            y2 <span class="op">=</span> path[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]<span class="op">/</span>Fs</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            ax.add_patch(plt.Rectangle((<span class="dv">0</span>, y1), w_y, y2<span class="op">-</span>y1, linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                                       facecolor<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>], edgecolor<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]))</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ax.plot([0, 0], [y1, y2], linewidth=8, color=[0, 1, 0])</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> proj_x:</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> path <span class="kw">in</span> path_family:</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            x1 <span class="op">=</span> (path[<span class="dv">0</span>][<span class="dv">1</span>] <span class="op">+</span> x_offset)<span class="op">/</span>Fs</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            x2 <span class="op">=</span> (path[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>] <span class="op">+</span> x_offset)<span class="op">/</span>Fs</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            ax.add_patch(plt.Rectangle((x1, <span class="dv">0</span>), x2<span class="op">-</span>x1, w_x, linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                                       facecolor<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>], edgecolor<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]))</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ax.plot([x1, x2], [0, 0], linewidth=8, color=[0, 0, 1])                 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:54:32.180278Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:54:31.730647Z&quot;}" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually defined path family</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For implementation reasons, the seconds components are of the paths </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start with index 0 (corresponding to seg[0])</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>seg_sec <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">80</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> [<span class="bu">int</span>(seg_sec[<span class="dv">0</span>]<span class="op">*</span>Fs_feature), <span class="bu">int</span>(seg_sec[<span class="dv">1</span>]<span class="op">*</span>Fs_feature)]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>path_1 <span class="op">=</span> [np.array([i<span class="op">+</span>seg[<span class="dv">0</span>],i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, seg[<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>seg[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>path_2 <span class="op">=</span> [np.array([<span class="bu">int</span>(i<span class="op">+</span><span class="dv">130</span><span class="op">*</span>Fs_feature),i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, seg[<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>seg[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> [path_1, path_2]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Segment:'</span>, seg)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> plot_ssm_ann(S, ann_frames, Fs<span class="op">=</span><span class="dv">1</span>, color_ann<span class="op">=</span>color_ann, cmap<span class="op">=</span>cmap_penalty, </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                       xlabel<span class="op">=</span><span class="st">'Time (frames)'</span>, ylabel<span class="op">=</span><span class="st">'Time (frames)'</span>) </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plot_path_family(ax[<span class="dv">0</span>,<span class="dv">0</span>], path_family, Fs<span class="op">=</span><span class="dv">1</span>, x_offset<span class="op">=</span>seg[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment: [20, 80]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="커버리지-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="커버리지-coverage">커버리지 (Coverage)</h2>
+<ul>
+<li><p>이제 경로군 <span class="math inline">\(\mathcal{P}\)</span>의 특정 속성을 설명하는 몇 가지 측정값을 정의한다.</p></li>
+<li><p><span class="math inline">\(\mathcal{A}:=\{\alpha_1,\alpha_2,\ldots,\alpha_K\}\)</span>를 세그먼트 군이라고 하자.</p></li>
+<li><p><span class="math inline">\(\mathcal{A}\)</span>의 <strong>커버리지/반영범위(coverage)</strong> <span class="math inline">\(\gamma(\mathcal{A})\)</span>는 다음과 같이 정의된다. <span class="math display">\[\gamma(\mathcal{A}):=\sum_{k=1}^K|\alpha_k|\]</span></p></li>
+<li><p>또한, 경로군 <span class="math inline">\(\mathcal{P}=\{P_1,P_2,\ldots,P_K\}\)</span>의 범위 <span class="math inline">\(\gamma(\mathcal{P})\)</span>는 유도된 세그먼트 군 <span class="math inline">\(\{\pi_1(P_1),\ldots,\pi_1(P_K)\}\)</span>의 커버리지로 정의된다.</p></li>
+<li><p>다음 코드에서 유도된 세그먼트군과 주어진 경로군에 대한 커버리지를 유도하는 함수를 제공한다. 이 함수는 위에서 생성한 경로군에 적용된다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:54:36.752226Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:54:36.731282Z&quot;}" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_induced_segment_family_coverage(path_family):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute induced segment family and coverage from path family</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">        path_family (list): Path family</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">        segment_family (np.ndarray): Induced segment family</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">        coverage (float): Coverage of path family</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    num_path <span class="op">=</span> <span class="bu">len</span>(path_family)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    coverage <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num_path <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        segment_family <span class="op">=</span> np.zeros((num_path, <span class="dv">2</span>), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(num_path):</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            segment_family[n, <span class="dv">0</span>] <span class="op">=</span> path_family[n][<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            segment_family[n, <span class="dv">1</span>] <span class="op">=</span> path_family[n][<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            coverage <span class="op">=</span> coverage <span class="op">+</span> segment_family[n, <span class="dv">1</span>] <span class="op">-</span> segment_family[n, <span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        segment_family <span class="op">=</span> np.empty</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> segment_family, coverage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:54:38.745351Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:54:38.739367Z&quot;}" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>segment_family, coverage <span class="op">=</span> compute_induced_segment_family_coverage(path_family)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Segment (alpha):'</span>, seg)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Induced segment family:'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(segment_family)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Coverage: </span><span class="sc">%d</span><span class="st">'</span><span class="op">%</span>coverage)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [20, 80]
+Induced segment family:
+[[ 20  80]
+ [130 190]]
+Coverage: 122</code></pre>
+</div>
+</div>
+</section>
+<section id="점수와-최적-score-and-optimality" class="level2">
+<h2 class="anchored" data-anchor-id="점수와-최적-score-and-optimality">점수와 최적 (Score and Optimality)</h2>
+<ul>
+<li><p>다음으로 점수(score)의 개념을 경로에서 경로군로 전환한다. 주어진 SSM <span class="math inline">\(\mathbf{S}\)</span>에서 경로 <span class="math inline">\(P\)</span>의 <strong>점수</strong> <span class="math inline">\(\sigma(P)\)</span>는 다음과 같이 정의된다. <span class="math display">\[\sigma(P)=\sum_{\ell=1}^L \mathbf{S}(n_\ell,m_\ell).\]</span></p></li>
+<li><p>이 값은 세그먼트 <span class="math inline">\(\pi_1(P)\)</span>와 <span class="math inline">\(\pi_2(P)\)</span> 사이의 유사성 관계에 대한 품질 척도로 생각할 수 있다. 경로군 <span class="math inline">\(\mathcal{P}\)</span>의 경우 <strong>점수</strong> <span class="math inline">\(\sigma(\mathcal{P})\)</span>는 다음과 같이 정의된다. <span class="math display">\[\sigma(\mathcal{P}) := \sum_{k=1}^{K} \sigma(P_k).\]</span></p></li>
+<li><p>큰 점수 <span class="math inline">\(\sigma(\mathcal{P})\)</span>는 <span class="math inline">\(\mathcal{P}\)</span>의 경로 구성 요소가 해당 세그먼트 간에 강력한 유사성 관계를 표현함을 나타낸다.</p></li>
+<li><p>일반적으로 많은 수의 <span class="math inline">\(\alpha\)</span> 위로의 가능한 경로군가 있다. 이러한 경로군 중에서 <span class="math inline">\(\mathcal{P}^\ast := \underset{\mathcal{P}}{\mathrm{argmax}} \,\,\, \sigma(\mathcal{P})\)</span>를 최대 점수의 최적 경로군을 나타낸다고 하자.</p></li>
+<li><p>다음에서는 <span class="math inline">\(\mathcal{P}^\ast\)</span> 경로에 의해 유도된(induced) 세그먼트로 구성된 것을 <strong>유도된(induced) 세그먼트 군</strong> (of <span class="math inline">\(\mathcal{P}^\ast\)</span> 또는 간단히 <span class="math inline">\(\alpha\)</span>)이라고 한다. 직관적으로, 유도된 세그먼트 군은 세그먼트 <span class="math inline">\(\alpha\)</span>의 (겹치지 않는) 반복을 포함한다.</p></li>
+</ul>
+</section>
+<section id="최적-경로군-계산-computation-of-optimal-path-families" class="level2">
+<h2 class="anchored" data-anchor-id="최적-경로군-계산-computation-of-optimal-path-families">최적 경로군 계산 (Computation of Optimal Path Families)</h2>
+<ul>
+<li><p>최적 워핑 경로를 계산하는 DTW(dynamic time warping)과 유사하게 동적(dynamic) 프로그래밍을 사용하여 최적 경로군 <span class="math inline">\(\mathcal{P}^\ast\)</span>를 계산하는 효율적인 알고리즘이 있다.</p></li>
+<li><p>다음 코드에서 허용 가능한 step size의 <span class="math inline">\(\Sigma = \{(2,1),(1,2),(1,1)\}\)</span> 집합을 사용하여 이 알고리즘의 구현한다.</p></li>
+<li><p><span class="math inline">\(\mathbf{S}\)</span>를 필요한 정규화 속성(<strong>점수 매트릭스</strong>라고도 함)과 세그먼트 <span class="math inline">\(\alpha=[s:t]\subseteq [ 1:N]\)</span>와 <span class="math inline">\(M:=|\alpha|\)</span>을 충족하는 <span class="math inline">\(N\)</span>-square SSM이라고 하자.</p></li>
+<li><p>알고리즘의 입력(input)은 <span class="math inline">\(\mathbf{S}\)</span>의 열 <span class="math inline">\(s\)</span>에서 <span class="math inline">\(t\)</span>로 구성된 <span class="math inline">\(N\times M\)</span> 부분행렬(submatrix) <span class="math inline">\(\mathcal{S}^{\alpha}\)</span>이다.</p></li>
+<li><p>먼저 동적 프로그래밍을 사용하여 <strong>누적 점수 매트릭스</strong> <span class="math inline">\(D\)</span>를 계산한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:55:01.023944Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:55:01.010974Z&quot;}" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_accumulated_score_matrix(S_seg):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the accumulated score matrix</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">        S_seg (np.ndarray): Submatrix of an enhanced and normalized SSM ``S``.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">            Note: ``S`` must satisfy ``S(n,m) &lt;= 1 and S(n,n) = 1``</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">        D (np.ndarray): Accumulated score matrix</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">        score (float): Score of optimal path family</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    inf <span class="op">=</span> math.inf</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> S_seg.shape[<span class="dv">0</span>]</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> S_seg.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Iinitializing score matrix</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> <span class="op">-</span>inf <span class="op">*</span> np.ones((N, M), dtype<span class="op">=</span>np.float64)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    D[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    D[<span class="dv">0</span>, <span class="dv">1</span>] <span class="op">=</span> D[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">+</span> S_seg[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dynamic programming</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N):</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        D[n, <span class="dv">0</span>] <span class="op">=</span> <span class="bu">max</span>(D[n<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], D[n<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        D[n, <span class="dv">1</span>] <span class="op">=</span> D[n, <span class="dv">0</span>] <span class="op">+</span> S_seg[n, <span class="dv">0</span>]</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, M):</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>            D[n, m] <span class="op">=</span> S_seg[n, m<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="bu">max</span>(D[n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">1</span>], D[n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">2</span>], D[n<span class="op">-</span><span class="dv">2</span>, m<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Score of optimal path family</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> np.maximum(D[N<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], D[N<span class="op">-</span><span class="dv">1</span>, M<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> D, score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>다음으로, 역추적(backtracking)을 이용하여 최적 경로군 <span class="math inline">\(\mathcal{P}^\ast\)</span>를 도출한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:55:02.655264Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:55:02.635318Z&quot;}" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_optimal_path_family(D):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute an optimal path family given an accumulated score matrix</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">        D (np.ndarray): Accumulated score matrix</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">        path_family (list): Optimal path family consisting of list of paths</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">            (each path being a list of index pairs)</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialization</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    inf <span class="op">=</span> math.inf</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">int</span>(D.shape[<span class="dv">0</span>])</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="bu">int</span>(D.shape[<span class="dv">1</span>])</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    path_family <span class="op">=</span> []</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> []</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> N <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(D[n, M<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> D[n, <span class="dv">0</span>]):</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> M<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>        path_point <span class="op">=</span> (N<span class="op">-</span><span class="dv">1</span>, M<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        path.append(path_point)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Backtracking</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">or</span> m <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># obtaining the set of possible predecesors given our current position</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(n <span class="op">&lt;=</span> <span class="dv">2</span> <span class="kw">and</span> m <span class="op">&lt;=</span> <span class="dv">2</span>):</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>            predecessors <span class="op">=</span> [(n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span>(n <span class="op">&lt;=</span> <span class="dv">2</span> <span class="kw">and</span> m <span class="op">&gt;</span> <span class="dv">2</span>):</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>            predecessors <span class="op">=</span> [(n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">1</span>), (n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">2</span>)]</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span>(n <span class="op">&gt;</span> <span class="dv">2</span> <span class="kw">and</span> m <span class="op">&lt;=</span> <span class="dv">2</span>):</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>            predecessors <span class="op">=</span> [(n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">1</span>), (n<span class="op">-</span><span class="dv">2</span>, m<span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>            predecessors <span class="op">=</span> [(n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">1</span>), (n<span class="op">-</span><span class="dv">2</span>, m<span class="op">-</span><span class="dv">1</span>), (n<span class="op">-</span><span class="dv">1</span>, m<span class="op">-</span><span class="dv">2</span>)]</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># case for the first row. Only horizontal movements allowed</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>            cell <span class="op">=</span> (<span class="dv">0</span>, m<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># case for the elevator column: we can keep going down the column or jumping to the end of the next row</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> D[n<span class="op">-</span><span class="dv">1</span>, M<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> D[n<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]:</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>                cell <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>, M<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>                path_point <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>, M<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span>(<span class="bu">len</span>(path) <span class="op">&gt;</span> <span class="dv">0</span>):</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>                    path.reverse()</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>                    path_family.append(path)</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>                path <span class="op">=</span> [path_point]</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>                cell <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># case for m=1, only horizontal steps to the elevator column are allowed</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>            cell <span class="op">=</span> (n, <span class="dv">0</span>)</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># regular case</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>            <span class="co"># obtaining the best of the possible predecesors</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>            max_val <span class="op">=</span> <span class="op">-</span>inf</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, cur_predecessor <span class="kw">in</span> <span class="bu">enumerate</span>(predecessors):</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span>(max_val <span class="op">&lt;</span> D[cur_predecessor[<span class="dv">0</span>], cur_predecessor[<span class="dv">1</span>]]):</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>                    max_val <span class="op">=</span> D[cur_predecessor[<span class="dv">0</span>], cur_predecessor[<span class="dv">1</span>]]</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>                    cell <span class="op">=</span> cur_predecessor</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>            <span class="co"># saving the point in the current path</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>            path_point <span class="op">=</span> (cell[<span class="dv">0</span>], cell[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>            path.append(path_point)</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>        (n, m) <span class="op">=</span> cell</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adding last path to the path family</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>    path.reverse()</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>    path_family.append(path)</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>    path_family.reverse()</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path_family</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>다음 그림에서 부분 행렬 <span class="math inline">\(\mathcal{S}^{\alpha}\)</span>와 세그먼트 <span class="math inline">\(\alpha=[83:137]\)</span> (<code>seg = [82, 136]</code>)에 대한 누적 점수 행렬 <span class="math inline">\(D\)</span>가 나타나 있다.</p></li>
+<li><p><span class="math inline">\(2~\mathrm{Hz}\)</span>의 프레임 속도(frame rate)를 사용하여 이 세그먼트는 <span class="math inline">\(41\)</span>에서 <span class="math inline">\(68\)</span>초 범위의 간격에 해당하며 대략적으로 Brahms 레코딩의 <span class="math inline">\(B_1\)</span> 부분이다. 다음 사항에 유의하자.</p>
+<ul>
+<li>부분 행렬 <span class="math inline">\(\mathcal{S}^{\alpha}\)</span>의 열 수는 <span class="math inline">\(M=55\)</span>이다.</li>
+<li>Python 구현에서 <span class="math inline">\(\mathcal{S}^{\alpha}\)</span>의 열은 인덱스 <code>0</code>부터 인덱스 <code>M-1</code>까지 열거된다.</li>
+<li>행렬 <span class="math inline">\(D\)</span>에는 소위 엘리베이터(elevator) 컬럼을 포함하는 <span class="math inline">\(M+1\)</span> 컬럼이 있다.</li>
+<li>단계 크기(step size) 조건 <span class="math inline">\(\Sigma = \{(2,1),(1,2),(1,1)\}\)</span>를 사용하면, 경로가 로컬 템포 차이에 적응할 수 있다.</li>
+<li>최적의 경로군은 4개의 경로로 구성된다. 유도된(induced) 세그먼트는 Brahms 녹음의 4개의 <span class="math inline">\(B\)</span> 파트 섹션에 대략 해당된다.</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:55:21.404305Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:55:20.441780Z&quot;}" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_matrix_seg(ax, M, seg, title<span class="op">=</span><span class="st">''</span>, xlabel<span class="op">=</span><span class="st">''</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    plot_matrix(M, Fs<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span>[ax], cmap<span class="op">=</span>cmap, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span>xlabel, ylabel<span class="op">=</span><span class="st">'Time (frames)'</span>, title<span class="op">=</span>title)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks([<span class="dv">0</span>, M.shape[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>])    </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>seg_sec <span class="op">=</span> [<span class="dv">41</span>,<span class="dv">68</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> [<span class="bu">int</span>(seg_sec[<span class="dv">0</span>]<span class="op">*</span>Fs_feature), <span class="bu">int</span>(seg_sec[<span class="dv">1</span>]<span class="op">*</span>Fs_feature)]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Segment:'</span>, seg)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Length of segment: M = '</span>, seg[<span class="dv">1</span>]<span class="op">-</span>seg[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>S_seg <span class="op">=</span> S[:,seg[<span class="dv">0</span>]:seg[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>D, score <span class="op">=</span> compute_accumulated_score_matrix(S_seg)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> compute_optimal_path_family(D)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="vs">r'$\mathcal</span><span class="sc">{S}</span><span class="vs">^{\alpha}$'</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plot_matrix_seg(ax, S_seg, seg, title<span class="op">=</span>title, xlabel<span class="op">=</span><span class="st">''</span>, cmap<span class="op">=</span>cmap_penalty)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="vs">r'$D$'</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plot_matrix_seg(ax, D, seg, title<span class="op">=</span>title)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="vs">r'$\mathcal</span><span class="sc">{S}</span><span class="vs">^{\alpha}$ with optimal path family'</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plot_matrix_seg(ax, S_seg, seg, title<span class="op">=</span>title, xlabel<span class="op">=</span><span class="st">''</span>, cmap<span class="op">=</span>cmap_penalty)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plot_path_family(ax, path_family, x_offset<span class="op">=</span><span class="dv">0</span>, w_y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="vs">r'$D$ with optimal path family'</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>plot_matrix_seg(ax, D, seg, title<span class="op">=</span>title)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plot_path_family(ax, path_family, x_offset<span class="op">=</span><span class="dv">1</span>, w_y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment: [41, 68]
+Length of segment: M =  28</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="적합도-측정-fitness-measure" class="level2">
+<h2 class="anchored" data-anchor-id="적합도-측정-fitness-measure">적합도 측정 (Fitness Measure)</h2>
+<ul>
+<li><p>주어진 세그먼트 <span class="math inline">\(\alpha\)</span>에 대해, <span class="math inline">\(\mathcal{P}^\ast=\{P_1,\ldots,P_K\}\)</span>를 최적 경로군이라고 하자. 이제 <span class="math inline">\(\sigma(\mathcal{P}^\ast)\)</span> 점수와 <span class="math inline">\(\mathcal{P}^\ast\)</span>의 유도된 세그먼트 군에서 적합도(fitness) 측정을 유도하는 방법을 설명한다.</p></li>
+<li><p>첫 번째, 총 점수 <span class="math inline">\(\sigma(\mathcal{P}^\ast)\)</span>를 <span class="math inline">\(\alpha\)</span>의 적합도 값으로 사용한다. 그러나 이 측정은 <span class="math inline">\(\alpha\)</span>의 길이와 경로에 의존할 뿐만 아니라 당연한 자체-설명(self-explanation)도 캡처하기 때문에 아직 원하는 속성을 갖지 않는다.</p>
+<ul>
+<li>예를 들어 <span class="math inline">\(\alpha=[1:N]\)</span> 세그먼트는 전체 시퀀스 <span class="math inline">\(X\)</span>를 완벽하게 설명하며 이는 당연한 사실이다. 좀 더 일반적으로 각 세그먼트 <span class="math inline">\(\alpha\)</span>는 자기 유사성 행렬의 주 대각선으로 인코딩된 정보를 완벽하게 설명한다.</li>
+</ul></li>
+<li><p>따라서 적합도 측정을 정의할 때의 한 가지 방법은 이러한 당연한 자기-설명(trivial self-explanation)을 무시하는 것이다.</p>
+<ul>
+<li>정규화 속성 <span class="math inline">\(\mathbf{S}(n,m)\leq 1\)</span> 및 <span class="math inline">\(\mathbf{S}(n,n)=1\)</span>를 가정하면, <span class="math inline">\(\sigma(\mathcal{P}^\ast)\)</span> 점수에서 <span class="math inline">\(|\alpha|\)</span> 길이를 빼는 방법을 사용할 수 있다.</li>
+</ul></li>
+<li><p>또한 최적 경로군 <span class="math inline">\(\mathcal{P}^\ast\)</span>에 포함된 경로 <span class="math inline">\(P_k\)</span>의 길이 <span class="math inline">\(L_k:=|P_k|\)</span>에 대한 점수를 정규화한다.</p>
+<ul>
+<li>다음과 같이 정의된 <strong>정규화 점수(normalized score)</strong> <span class="math inline">\(\bar{\sigma}(\alpha)\)</span>를 산출한다. <span class="math display">\[\bar{\sigma}(\alpha) := \frac{\sigma(\mathcal{P}^\ast) - |\alpha|}{\sum_{k=1}^{K} L_k}\]</span></li>
+</ul></li>
+<li><p>직관적으로 <span class="math inline">\(\bar{\sigma}(\alpha)\)</span> 값은 최적 경로군 <span class="math inline">\(\mathcal{P}^\ast\)</span>의 <strong>평균 점수</strong>를 나타낸다.</p></li>
+<li><p>정규화 <strong>점수</strong>는 주어진 세그먼트가 다른 세그먼트를 <strong>얼마나 잘</strong> 설명하는지를 나타내며, 여기서 정규화는 세그먼트 길이의 영향을 제거한다. 이렇게 하면 길이가 다른 세그먼트를 비교할 때 정규화된 점수가 공정한 측정이 될 수 있다.</p></li>
+<li><p>반복성 외에 또 다른 문제는 썸네일 및 썸네일 관련 세그먼트가 기본 음악 녹음을 <strong>얼마나 많이 (how much)</strong> 포함하는지이다.</p></li>
+<li><p>이 속성을 포착하기 위해 주어진 <span class="math inline">\(\alpha\)</span>에 대한 <strong>커버리지(coverage)</strong> 측정을 정의한다.</p></li>
+<li><p>이를 위해 <span class="math inline">\(\mathcal{A}^\ast:=\{\pi_1(P_1),\ldots,\pi_1(P_K)\}\)</span>를 최적 경로군 <span class="math inline">\(\mathcal{P}^\ast\)</span>에 의해 유도된 세그먼트 군이라고 하고, <span class="math inline">\(\gamma(\mathcal{A}^\ast)\)</span>를 그것의 커버리지라고 하자.</p></li>
+<li><p>그런 다음 <strong>정규화 커버리지</strong> <span class="math inline">\(\bar{\gamma}(\alpha)\)</span>를 다음과 같이 정의한다. <span class="math display">\[\bar{\gamma}(\alpha) := \frac{\gamma(\mathcal{A}^\ast) - |\alpha|}{N}.\]</span></p></li>
+<li><p>위와 같이 사소한(trivial) 커버리지에 대해 <span class="math inline">\(|\alpha|\)</span> 길이를 뺀다.</p></li>
+<li><p><span class="math inline">\(\bar{\gamma}(\alpha)\)</span> 값은 <span class="math inline">\(\alpha\)</span>의 유도된 세그먼트의 합집합과 원본 녹음의 전체 길이 사이의 비율을 나타낸다(자기-설명의 비율을 뺀 값).</p></li>
+<li><p>높은 평균 점수와 높은 커버리지는 썸네일 세그먼트를 정의하는 데 바람직한 속성이다. 그러나 이 두 가지 속성을 동시에 만족시키기 어려운 경우가 있다.</p></li>
+<li><p>세그먼트가 짧을수록 평균 점수는 더 높지만 커버리지는 더 낮고, 길이가 더 긴 세그먼트는 평균 점수가 더 낮지만 커버리지가 더 높은 경향이 있다.</p></li>
+<li><p>이 두 추세의 균형을 맞추기 위해 적절한 평균을 취하여 점수와 커버리지 측정을 결합한다.</p></li>
+<li><p>특히 세그먼트 <span class="math inline">\(\alpha\)</span>의 <strong>적합도(fitness)</strong> <span class="math inline">\(\varphi(\alpha)\)</span>를 정규화된 점수와 정규화된 커버리지 사이의 <strong>조화 평균 (harmonic mean)</strong> 을 <span class="math display">\[\varphi(\alpha) := 2\cdot \frac{\bar{\sigma}(\alpha) \cdot \bar{\gamma}(\alpha)}{\bar{\sigma}(\alpha)+\bar{\gamma}(\alpha )}\]</span> 라고 정의한다.</p></li>
+<li><p>정규화된 값 <span class="math inline">\(\bar{\sigma}(\alpha)\)</span> 및 <span class="math inline">\(\bar{\gamma}(\alpha)\)</span>를 기반으로, <span class="math inline">\(\varphi(\alpha)\leq 1-|\alpha |/N\)</span> 임을 보일 수 있다.</p></li>
+<li><p>다음 코드 셀에서는 이전 코드 셀에서 고려한 경로군에 대해 이러한 다양한 측정값을 계산한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:55:35.565783Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:55:35.554153Z&quot;}" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_fitness(path_family, score, N):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute fitness measure and other metrics from path family</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">        path_family (list): Path family</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">        score (float): Score</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">        N (int): Length of feature sequence</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">        fitness (float): Fitness</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">        score (float): Score</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">        score_n (float): Normalized score</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">        coverage (float): Coverage</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">        coverage_n (float): Normalized coverage</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">        path_family_length (int): Length of path family (total number of cells)</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    eps <span class="op">=</span> <span class="fl">1e-16</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    num_path <span class="op">=</span> <span class="bu">len</span>(path_family)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> path_family[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalized score</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    path_family_length <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(num_path):</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        path_family_length <span class="op">=</span> path_family_length <span class="op">+</span> <span class="bu">len</span>(path_family[n])</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    score_n <span class="op">=</span> (score <span class="op">-</span> M) <span class="op">/</span> (path_family_length <span class="op">+</span> eps)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalized coverage</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    segment_family, coverage <span class="op">=</span> compute_induced_segment_family_coverage(path_family)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    coverage_n <span class="op">=</span> (coverage <span class="op">-</span> M) <span class="op">/</span> (N <span class="op">+</span> eps)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fitness measure</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    fitness <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> score_n <span class="op">*</span> coverage_n <span class="op">/</span> (score_n <span class="op">+</span> coverage_n <span class="op">+</span> eps)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fitness, score, score_n, coverage, coverage_n, path_family_length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T06:55:36.600894Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T06:55:36.585935Z&quot;}" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> S.shape[<span class="dv">0</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>segment_family, coverage <span class="op">=</span> compute_induced_segment_family_coverage(path_family)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>fitness, score, score_n, coverage, coverage_n, path_family_length <span class="op">=</span> compute_fitness(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    path_family, score, N)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Segment (alpha):'</span>, seg)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Length of segment:'</span>, seg[<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>seg[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Length of feature sequence:'</span>, N)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Induced segment path family:</span><span class="ch">\n</span><span class="st">'</span>, segment_family)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Fitness: </span><span class="sc">%0.3f</span><span class="st">'</span><span class="op">%</span>fitness) </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Score: </span><span class="sc">%0.3f</span><span class="st">'</span><span class="op">%</span>score) </span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Normalized score: </span><span class="sc">%0.3f</span><span class="st">'</span><span class="op">%</span>score_n) </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Coverage: </span><span class="sc">%d</span><span class="st">'</span><span class="op">%</span>coverage) </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Normalized coverage: </span><span class="sc">%0.3f</span><span class="st">'</span><span class="op">%</span>coverage_n) </span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Length of all paths of family: </span><span class="sc">%d</span><span class="st">'</span><span class="op">%</span>path_family_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [41, 68]
+Length of segment: 28
+Length of feature sequence: 205
+Induced segment path family:
+ [[ 41  67]
+ [ 68  88]
+ [149 174]
+ [175 196]]
+Fitness: 0.392
+Score: 73.857
+Normalized score: 0.478
+Coverage: 96
+Normalized coverage: 0.332
+Length of all paths of family: 96</code></pre>
+</div>
+</div>
+</section>
+<section id="썸네일-선정-thumbnail-selection" class="level2">
+<h2 class="anchored" data-anchor-id="썸네일-선정-thumbnail-selection">썸네일 선정 (Thumbnail Selection)</h2>
+<ul>
+<li><p>적합도 측정을 기반으로 구한 <strong>오디오 썸네일</strong>을 <strong>최대 적합도(maximizing-fitness)</strong> 세그먼트로 정의한다. <span class="math display">\[\alpha^\ast := \underset{\alpha}{\mathrm{argmax}} \,\, \varphi(\alpha)\]</span></p></li>
+<li><p>적합도 측정으로 이 세그먼트는 오디오 녹음의 “가능한 많은 부분을 포함하는 겹치지 않는 반복”을 가지게 된다. 또한 이러한 반복은 오디오 녹음을 “pairwise disjoint” 세그먼트로 분할하는 <span class="math inline">\(\alpha^\ast\)</span>의 최적 경로군으로 얻은 유도된 세그먼트에 의해 주어진다.</p></li>
+<li><p>사전 지식을 설명하고 잘못된 추정을 제거하기 위해 썸네일 솔루션에 추가 요구 사항을 부과할 수 있다. 가능한 최소 썸네일 길이에 대한 하한 <span class="math inline">\(\theta\)</span>를 도입하면 자기 유사성 행렬(SSM)에 분산된 노이즈의 영향을 줄일 수 있다. 위의 정의를 확장하여 <span class="math inline">\(\alpha^\ast_\theta := \underset{\alpha, |\alpha|\geq \theta}{\mathrm{argmax}} \,\, \varphi(\alpha)\)</span>를 정의한다.</p></li>
+<li><p>오디오 썸네일 계산에는 가능한 모든 세그먼트 <span class="math inline">\(\alpha\)</span>에 대한 적합도 측정 계산이 포함된다.</p></li>
+<li><p>적합도 최대화 세그먼트를 선택하는 것 외에도 모든 세그먼트에 대한 적합도 값의 시각화는 매우 유익하며 음악 녹음의 구조적 속성에 대한 음악적 통찰력을 제공한다. 그 중 scape plot에 대해 뒤에서 다룰 것이며, 여기서 적합도 측정의 추가 속성에 대해서도 논의하기로 한다.</p></li>
+</ul>
+</section>
+</section>
+<section id="스케이프-플롯-scape-plot" class="level1">
+<h1>스케이프 플롯 (Scape Plot)</h1>
+<section id="세그먼트의-삼각형-표현triangular-representation" class="level2">
+<h2 class="anchored" data-anchor-id="세그먼트의-삼각형-표현triangular-representation">세그먼트의 삼각형 표현(Triangular Representation)</h2>
+<ul>
+<li><p>위에서 오디오 썸네일링의 맥락에서 세그먼트 특정의 속성을 표현하는 적합도(fitness) 값을 가능한 각 세그먼트에 할당하도록 적합도 측정을 계산했다.</p></li>
+<li><p>이제 세그먼트 의존적(segment-dependent) 속성을 간결하고(compact) 계층적인(hierarchical) 방식으로 시각화할 수 있는 표현을 소개한다.</p></li>
+<li><p><strong>세그먼트</strong> <span class="math inline">\(\alpha=[s:t]\subseteq [1:N]\)</span>는 시작점 <span class="math inline">\(s\)</span>와 끝점 <span class="math inline">\(t\)</span>에 의해 고유하게 결정된다. <span class="math inline">\(s\leq t\)</span>인 임의의 두 숫자 <span class="math inline">\(s,t\in[1:N]\)</span>가 세그먼트를 정의하므로, <span class="math inline">\((N+1)N/2\)</span>개의 다른 세그먼트가 있다고 볼 수 있다.</p></li>
+<li><p>시작점과 끝점을 고려하는 대신 각 세그먼트를 그것의 중심(center) <span class="math inline">\(c(\alpha):=(s+t)/2\)</span>과 길이 <span class="math inline">\(|\alpha|\)</span>로 고유하게 설명할 수도 있다. 중심을 사용하여 수평 축을 매개변수화하고, 길이를 사용하여 높이를 매개변수화하면 각 세그먼트는 <strong>삼각형 표현(triangular representation)</strong> 의 점으로 표시될 수 있다.</p></li>
+<li><p>이렇게 하면 세그먼트 집합이 길이에 따라 계층적 방식으로 아래에서 위로 정렬된다. 특히, 이 삼각형의 상단은 최대 길이 <span class="math inline">\(N\)</span>의 고유 세그먼트에 해당하고, 삼각형의 하단 점은 길이가 1인 <span class="math inline">\(N\)</span> 세그먼트에 해당한다(시작점과 끝점이 일치함). 또한 주어진 세그먼트 <span class="math inline">\(\alpha\)</span>에 포함된 모든 세그먼트 <span class="math inline">\(\alpha'\subseteq\alpha\)</span>는 <span class="math inline">\(\alpha\)</span>로 주어진 점 아래의 하위 삼각형에 있는 삼각형 표현의 점에 해당한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:25.470733Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:25.440814Z&quot;}" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_F19.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\([1:N]\)</span> 내의 모든 세그먼트를 삼각형으로 표현한 경우, 다음 예는 다음 세그먼트 집합을 시각적으로 나타낸다.
+<ul>
+<li><ol type="a">
+<li>주어진 임계값 <span class="math inline">\(\theta\geq 0\)</span> 이상의 최소 길이를 갖는 모든 세그먼트</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>주어진 세그먼트 <span class="math inline">\(\alpha\)</span>를 포함하는 모든 세그먼트</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>주어진 세그먼트 <span class="math inline">\(\alpha\)</span>와 분리된 모든 세그먼트</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>주어진 세그먼트 <span class="math inline">\(\alpha\)</span>의 중심 <span class="math inline">\(c(\alpha)\)</span>를 포함하는 모든 세그먼트</li>
+</ol></li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:31.283845Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:31.264896Z&quot;}" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/FMP_C4_E12.png"</span>, width<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="scape-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scape-plot">Scape Plot</h2>
+<ul>
+<li><p>삼각형 표현은 모든 세그먼트 <span class="math inline">\(\alpha\)</span>에 대해 계산할 수 있는 특정 숫자 속성 <span class="math inline">\(\varphi(\alpha)\in\mathbb{R}\)</span>를 시각화하기 위한 그리드로 사용할 수 있다. 예를 들어 이 속성은 오디오 썸네일에 사용되는 적합성 값(fitness value)일 수 있다.</p></li>
+<li><p>이러한 시각적 표현은 속성의 “<strong>scape plot</strong>” 표현이라고도 한다.</p></li>
+<li><p>보다 정확하게는 다음을 설정하여 scape plot <span class="math inline">\(\Delta\)</span>를 정의한다. <span class="math display">\[\label{eq:AudioStru:Thumb:SPfitness} \Delta(c(\alpha),|\alpha|):=\varphi(\alpha)\]</span></p></li>
+<li><p>쉬운 예제로 <span class="math inline">\(\alpha=[s:t]\)</span>에 대해 <span class="math inline">\(\varphi(\alpha):= (t-s+1)/N\)</span>로 정의된 <span class="math inline">\(\varphi\)</span> 함수를 고려해보자. 총 길이 <span class="math inline">\(N\)</span>에 대한 세그먼트 길이를 인코딩한다.</p></li>
+<li><p>주의: 이 구현에서는 세그먼트 종속 속성 <span class="math inline">\(\varphi(\alpha)\in\mathbb{R}\)</span>을 저장하기 위한 데이터 구조로 <code>N</code>-스퀘어 행렬 <code>SP</code>를 사용한다. 길이를 인코딩하기 위해 <code>SP</code>의 첫 번째 차원을 사용하고 중심을 인코딩하기 위해 두 번째 차원을 사용한다. Python의 인덱싱은 인덱스 <code>0</code>부터 시작하므로 길이 차원을 해석할 때 주의해야 한다. 특히, 엔트리 <code>SP[length_minus_one, start]</code>는 <code>length_minus_one = 0, ..., N-1</code>에 대해 <code>length_minus_one + 1</code>의 길이를 갖는 세그먼트에 대한 정보를 포함한다. 또한 <code>SP</code>는 왼쪽 위 부분(대각선 포함)만 사용한다는 점에 유의해야 한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:35.118631Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:35.104668Z&quot;}" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_scape_plot(SP, Fs<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>), title<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                         xlabel<span class="op">=</span><span class="st">'Center (seconds)'</span>, ylabel<span class="op">=</span><span class="st">'Length (seconds)'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visualize scape plot</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">        SP: Scape plot data (encodes as start-duration matrix)</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Sampling rate (Default value = 1)</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Used axes (Default value = None)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (4, 3))</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">        title: Title of figure (Default value = '')</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">        xlabel: Label for x-axis (Default value = 'Center (seconds)')</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">        ylabel: Label for y-axis (Default value = 'Length (seconds)')</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">        interpolation: Interpolation value for imshow (Default value = 'nearest')</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Handle for axes</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">        im: Handle for imshow</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>figsize)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> plt.gca()</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> SP.shape[<span class="dv">0</span>]</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    SP_vis <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> length_minus_one <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> start <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span>length_minus_one):</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            center <span class="op">=</span> start <span class="op">+</span> length_minus_one<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>            SP_vis[length_minus_one, center] <span class="op">=</span> SP[length_minus_one, start]</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    extent <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">0.5</span>, (N<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>, (N<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="fl">0.5</span>]) <span class="op">/</span> Fs</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> plt.imshow(SP_vis, cmap<span class="op">=</span><span class="st">'hot_r'</span>, aspect<span class="op">=</span><span class="st">'auto'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>extent, interpolation<span class="op">=</span>interpolation)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.asarray(<span class="bu">range</span>(N))</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    x_half_lower <span class="op">=</span> x<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    x_half_upper <span class="op">=</span> x<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> N<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_half_lower<span class="op">/</span>Fs, x<span class="op">/</span>Fs, <span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_half_upper<span class="op">/</span>Fs, np.flip(x, axis<span class="op">=</span><span class="dv">0</span>)<span class="op">/</span>Fs, <span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    plt.plot(x<span class="op">/</span>Fs, np.zeros(N)<span class="op">/</span>Fs, <span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    plt.xlim([<span class="dv">0</span>, (N<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> Fs])</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    plt.ylim([<span class="dv">0</span>, (N<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> Fs])</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(xlabel)</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(ylabel)</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(im, ax<span class="op">=</span>ax)</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax, im</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:35.839765Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:35.463741Z&quot;}" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> np.zeros((N,N))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span>k):</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        length <span class="op">=</span> k <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        SP[k, s]<span class="op">=</span> length<span class="op">/</span>N  </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">3</span>))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">121</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(SP, cmap<span class="op">=</span><span class="st">'hot_r'</span>, aspect<span class="op">=</span><span class="st">'auto'</span>) </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Data structure (N = </span><span class="sc">%d</span><span class="st">)'</span><span class="op">%</span>N)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Segment start (samples)'</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Length minus one (samples)'</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>plt.colorbar()  </span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">122</span>)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> visualize_scape_plot(SP, Fs<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span>ax, title<span class="op">=</span><span class="st">'Scape plot visualization'</span>, </span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>                xlabel<span class="op">=</span><span class="st">'Segment center (samples)'</span>, ylabel<span class="op">=</span><span class="st">'Length minus one (samples)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="적합도-scape-plot" class="level2">
+<h2 class="anchored" data-anchor-id="적합도-scape-plot">적합도 Scape Plot</h2>
+<ul>
+<li>scape plot 표현을 사용해 모든 세그먼트에 대한 적합도 측정을 시각화한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:39.173063Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:38.665085Z&quot;}" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fn_wav <span class="op">=</span> <span class="st">'../data_FMP/FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy.wav'</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tempo_rel_set <span class="op">=</span> compute_tempo_rel_set(<span class="fl">0.66</span>, <span class="fl">1.5</span>, <span class="dv">5</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>penalty <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>x, x_duration, X, Fs_feature, S, I <span class="op">=</span> compute_sm_from_filename(fn_wav, L<span class="op">=</span><span class="dv">41</span>, H<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                        L_smooth<span class="op">=</span><span class="dv">8</span>, tempo_rel_set<span class="op">=</span>tempo_rel_set, penalty<span class="op">=</span>penalty, thresh<span class="op">=</span> <span class="fl">0.15</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> normalization_properties_ssm(S)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>fn_ann <span class="op">=</span> <span class="st">'../data_FMP/FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy.csv'</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>ann_frames, color_ann <span class="op">=</span> read_structure_annotation(fn_ann, Fs<span class="op">=</span>Fs_feature)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>cmap_penalty <span class="op">=</span> colormap_penalty(penalty<span class="op">=</span>penalty)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> plot_ssm_ann(S, ann_frames, Fs<span class="op">=</span><span class="dv">1</span>, color_ann<span class="op">=</span>color_ann, cmap<span class="op">=</span>cmap_penalty, </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>                       xlabel<span class="op">=</span><span class="st">'Time (frames)'</span>, ylabel<span class="op">=</span><span class="st">'Time (frames)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>다음 코드는 세그먼트 <span class="math inline">\(\alpha\)</span>에 대한 적합도 척도 <span class="math inline">\(\varphi(\alpha)\in\mathbb{R}\)</span> (및 점수 <span class="math inline">\(\sigma(\alpha)\)</span>, 정규화된 점수 <span class="math inline">\(\bar{\sigma}(\alpha)\)</span>, 커버리지(coverage) <span class="math inline">\(\gamma(\alpha)\)</span>, 정규화된 커버리지 <span class="math inline">\(\bar{\gamma}(\alpha)\)</span>)를 계산한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:19:40.947826Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:40.935832Z&quot;}" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_fitness_scape_plot(S):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute scape plot for fitness and other measures</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">        S (np.ndarray): Self-similarity matrix</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">        SP_all (np.ndarray): Vector containing five different scape plots for five measures</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">            (fitness, score, normalized score, coverage, normlized coverage)</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> S.shape[<span class="dv">0</span>]</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    SP_fitness <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    SP_score <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    SP_score_n <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    SP_coverage <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    SP_coverage_n <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> length_minus_one <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> start <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span>length_minus_one):</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>            S_seg <span class="op">=</span> S[:, start:start<span class="op">+</span>length_minus_one<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>            D, score <span class="op">=</span> compute_accumulated_score_matrix(S_seg)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>            path_family <span class="op">=</span> compute_optimal_path_family(D)</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>            fitness, score, score_n, coverage, coverage_n, path_family_length <span class="op">=</span> compute_fitness(</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>                path_family, score, N)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>            SP_fitness[length_minus_one, start] <span class="op">=</span> fitness</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>            SP_score[length_minus_one, start] <span class="op">=</span> score</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>            SP_score_n[length_minus_one, start] <span class="op">=</span> score_n</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>            SP_coverage[length_minus_one, start] <span class="op">=</span> coverage</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>            SP_coverage_n[length_minus_one, start] <span class="op">=</span> coverage_n</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    SP_all <span class="op">=</span> [SP_fitness, SP_score, SP_score_n, SP_coverage, SP_coverage_n]</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> SP_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:00.604790Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:19:41.623708Z&quot;}" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>SP_all <span class="op">=</span> compute_fitness_scape_plot(S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>다음으로 <strong>적합도 scape plot</strong>라고도 하는 scape plot 표현을 사용하여 적합성 값 <span class="math inline">\(\varphi(\alpha)\)</span>를 시각화한다.</p></li>
+<li><p>또한 경로군 및 유도된 세그먼트에 걸쳐 적합도-최대화 세그먼트 또는 오디오 썸네일 <span class="math inline">\(\alpha^\ast := \underset{\alpha}{\mathrm{argmax}} \,\, \varphi(\alpha)\)</span>를 그린다.</p></li>
+<li><p>썸네일과 유도된 세그먼트는 scape plot 표현에서 점(각각 파란색과 녹색 점)으로 표시된다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:00.619722Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:00.606757Z&quot;}" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seg_max_sp(SP):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return segment with maximal value in SP</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">        SP (np.ndarray): Scape plot</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">        seg (tuple): Segment ``(start_index, end_index)``</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> SP.shape[<span class="dv">0</span>]</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># value_max = np.max(SP)</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    arg_max <span class="op">=</span> np.argmax(SP)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    ind_max <span class="op">=</span> np.unravel_index(arg_max, [N, N])</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    seg <span class="op">=</span> [ind_max[<span class="dv">1</span>], ind_max[<span class="dv">1</span>]<span class="op">+</span>ind_max[<span class="dv">0</span>]]</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> seg</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_seg_in_sp(ax, seg, S<span class="op">=</span><span class="va">None</span>, Fs<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot segment and induced segements as points in SP visualization</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Axis for image</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co">        seg: Segment ``(start_index, end_index)``</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="co">        S: Self-similarity matrix (Default value = None)</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Sampling rate (Default value = 1)</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> S <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        S_seg <span class="op">=</span> S[:, seg[<span class="dv">0</span>]:seg[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        D, score <span class="op">=</span> compute_accumulated_score_matrix(S_seg)</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        path_family <span class="op">=</span> compute_optimal_path_family(D)</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>        segment_family, coverage <span class="op">=</span> compute_induced_segment_family_coverage(path_family)</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>        length <span class="op">=</span> segment_family[:, <span class="dv">1</span>] <span class="op">-</span> segment_family[:, <span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>        center <span class="op">=</span> segment_family[:, <span class="dv">0</span>] <span class="op">+</span> length<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>        ax.scatter(center<span class="op">/</span>Fs, length<span class="op">/</span>Fs, s<span class="op">=</span><span class="dv">64</span>, c<span class="op">=</span><span class="st">'white'</span>, zorder<span class="op">=</span><span class="dv">9999</span>)</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>        ax.scatter(center<span class="op">/</span>Fs, length<span class="op">/</span>Fs, s<span class="op">=</span><span class="dv">16</span>, c<span class="op">=</span><span class="st">'lime'</span>, zorder<span class="op">=</span><span class="dv">9999</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> seg[<span class="dv">1</span>] <span class="op">-</span> seg[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> seg[<span class="dv">0</span>] <span class="op">+</span> length<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>    ax.scatter(center<span class="op">/</span>Fs, length<span class="op">/</span>Fs, s<span class="op">=</span><span class="dv">64</span>, c<span class="op">=</span><span class="st">'white'</span>, zorder<span class="op">=</span><span class="dv">9999</span>)</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>    ax.scatter(center<span class="op">/</span>Fs, length<span class="op">/</span>Fs, s<span class="op">=</span><span class="dv">16</span>, c<span class="op">=</span><span class="st">'blue'</span>, zorder<span class="op">=</span><span class="dv">9999</span>)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_sp_ssm(SP, seg, S, ann, color_ann<span class="op">=</span>[], title<span class="op">=</span><span class="st">''</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>)):</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visulization of SP and SSM</span></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="co">        SP: Scape plot</span></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="co">        seg: Segment ``(start_index, end_index)``</span></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="co">        S: Self-similarity matrix</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="co">        ann: Annotation</span></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a><span class="co">        color_ann: color scheme used for annotations (Default value = [])</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="co">        title: Title of figure (Default value = '')</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Figure size (Default value = (5, 4))</span></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> visualize_scape_plot(SP, figsize<span class="op">=</span>figsize, title<span class="op">=</span>title,</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>                                       xlabel<span class="op">=</span><span class="st">'Center (frames)'</span>, ylabel<span class="op">=</span><span class="st">'Length (frames)'</span>)</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>    plot_seg_in_sp(ax, seg, S)</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>    penalty <span class="op">=</span> np.<span class="bu">min</span>(S)</span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>    cmap_penalty <span class="op">=</span> colormap_penalty(penalty<span class="op">=</span>penalty)</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_ssm_ann_optimal_path_family(</span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>        S, ann, seg, color_ann<span class="op">=</span>color_ann, fontsize<span class="op">=</span><span class="dv">8</span>, cmap<span class="op">=</span>cmap_penalty, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">'Time (frames)'</span>)</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_segment(seg, S):</span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Prints properties of segments with regard to SSM ``S``</span></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a><span class="co">        seg (tuple): Segment ``(start_index, end_index)``</span></span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a><span class="co">        S (np.ndarray): Self-similarity matrix</span></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a><span class="co">         path_family (list): Optimal path family</span></span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> S.shape[<span class="dv">0</span>]</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>    S_seg <span class="op">=</span> S[:, seg[<span class="dv">0</span>]:seg[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>    D, score <span class="op">=</span> compute_accumulated_score_matrix(S_seg)</span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>    path_family <span class="op">=</span> compute_optimal_path_family(D)</span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>    fitness, score, score_n, coverage, coverage_n, path_family_length <span class="op">=</span> compute_fitness(</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>                path_family, score, N)</span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a>    segment_family, coverage2 <span class="op">=</span> compute_induced_segment_family_coverage(path_family)</span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Segment (alpha):'</span>, seg)</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Length of segment:'</span>, seg[<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>seg[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Length of feature sequence:'</span>, N)</span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Induced segment path family:</span><span class="ch">\n</span><span class="st">'</span>, segment_family)</span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Fitness: </span><span class="sc">%0.10f</span><span class="st">'</span> <span class="op">%</span> fitness)</span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Score: </span><span class="sc">%0.10f</span><span class="st">'</span> <span class="op">%</span> score)</span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Normalized score: </span><span class="sc">%0.10f</span><span class="st">'</span> <span class="op">%</span> score_n)</span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Coverage: </span><span class="sc">%d</span><span class="st">, </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> (coverage, coverage2))</span>
+<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Normalized coverage: </span><span class="sc">%0.10f</span><span class="st">'</span> <span class="op">%</span> coverage_n)</span>
+<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Length of all paths of family: </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> path_family_length)</span>
+<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path_family</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:01.188712Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:00.621720Z&quot;}" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">4</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> SP_all[<span class="dv">0</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> seg_max_sp(SP)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plot_sp_ssm(SP<span class="op">=</span>SP, seg<span class="op">=</span>seg, S<span class="op">=</span>S, ann<span class="op">=</span>ann_frames, color_ann<span class="op">=</span>color_ann, </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">'Scape plot: Fitness'</span>, figsize<span class="op">=</span>figsize)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> check_segment(seg, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [175, 197]
+Length of segment: 23
+Length of feature sequence: 205
+Induced segment path family:
+ [[ 41  67]
+ [ 68  90]
+ [150 175]
+ [176 197]]
+Fitness: 0.4286698291
+Score: 68.0249475309
+Normalized score: 0.5175281325
+Coverage: 98, 98
+Normalized coverage: 0.3658536585
+Length of all paths of family: 87</code></pre>
+</div>
+</div>
+<ul>
+<li><p>결과의 적합도 scape plot는 계층적 방식으로 음악적 구조를 반영한다.</p></li>
+<li><p><strong>썸네일 세그먼트</strong>는 <span class="math inline">\(\alpha^\ast=[175:197]\)</span>이며 음악적으로 <span class="math inline">\(B_4\)</span> 부분에 해당한다.</p></li>
+<li><p>scape plot의 좌표는 중심 <span class="math inline">\(c(\alpha)=186\)</span> 및 길이 <span class="math inline">\(|\alpha|=23\)</span>로 지정된다.</p></li>
+<li><p><strong>유도된 세그먼트</strong> 군은 4개의 <span class="math inline">\(B\)</span> 부분으로 구성된다. 네 개의 <span class="math inline">\(B\)</span> 부분 세그먼트는 모두 거의 동일한 적합성을 가지며 거의 동일한 세그먼트 군으로 이어진다.</p></li>
+<li><p>적합도 측정은 짧은 세그먼트를 조금 더 선호한다. 따라서 이 녹음에서 <span class="math inline">\(B_4\)</span>-파트가 <span class="math inline">\(B_1\)</span>-파트보다 빠르게 재생되기 때문에 적합도 측정은 <span class="math inline">\(B_1\)</span>-파트 세그먼트보다 <span class="math inline">\(B_4\)</span>-파트 세그먼트를 선호한다. 즉, 이 절차는 가장 짧은 가장 대표적인 세그먼트를 썸네일로 선택하게 된다.</p></li>
+</ul>
+</section>
+<section id="정규화된-점수와-커버리지" class="level2">
+<h2 class="anchored" data-anchor-id="정규화된-점수와-커버리지">정규화된 점수와 커버리지</h2>
+<ul>
+<li><p>다음으로 적합도 측정의 정의에서 점수(score)와 커버리지(coverage)의 정규화(normalization)와 두 측정의 조합(조화 평균)이 매우 중요함을 설명한다.</p></li>
+<li><p>이를 위해 다양한 척도(및 척도-최대화(measure-maximizing) 세그먼트)의 scape plot를 개별적으로 살펴보자.</p></li>
+<li><p>점수 척도 <span class="math inline">\(\sigma\)</span>를 시작한다. 점수 극대화 구간은 전체 녹음인 <span class="math inline">\(\alpha=[1:N]\)</span> 이다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:02.071531Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:01.190702Z&quot;}" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> SP_all[<span class="dv">1</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> seg_max_sp(SP)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plot_sp_ssm(SP<span class="op">=</span>SP, seg<span class="op">=</span>seg, S<span class="op">=</span>S, ann<span class="op">=</span>ann_frames, color_ann<span class="op">=</span>color_ann, </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">'Scape plot: Score'</span>, figsize<span class="op">=</span>figsize)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> check_segment(seg, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [0, 204]
+Length of segment: 205
+Length of feature sequence: 205
+Induced segment path family:
+ [[  0 204]]
+Fitness: 0.0000000000
+Score: 205.0000000000
+Normalized score: 0.0000000000
+Coverage: 205, 205
+Normalized coverage: 0.0000000000
+Length of all paths of family: 205</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-27-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-27-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>사소한(trivial) 자기-설명을 빼고 최적 경로군의 길이에 대해 정규화하면 <strong>정규화 점수</strong> <span class="math inline">\(\bar{\sigma}\)</span>가 된다.</p></li>
+<li><p>이 척도는 오디오 자료가 실제로 얼마나 커버되는지를 나타내지 않고 경로군의 평균 점수를 나타내므로, 많은 작은 세그먼트가 상대적으로 높은 점수를 얻는다. 이러한 측정을 사용하면 일반적으로 짧은 길이의 false-positive 세그먼트가 생성된다.</p></li>
+<li><p>이는 다음과 같은 scape plot와 <span class="math inline">\(\bar{\sigma}\)</span>-최대화 경로 군으로도 증명된다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:02.700339Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:02.073526Z&quot;}" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> SP_all[<span class="dv">2</span>]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> seg_max_sp(SP)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plot_sp_ssm(SP<span class="op">=</span>SP, seg<span class="op">=</span>seg, S<span class="op">=</span>S, ann<span class="op">=</span>ann_frames, color_ann<span class="op">=</span>color_ann, </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">'Scape plot: Normalized score'</span>, figsize<span class="op">=</span>figsize)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> check_segment(seg, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [183, 188]
+Length of segment: 6
+Length of feature sequence: 205
+Induced segment path family:
+ [[ 54  61]
+ [ 76  81]
+ [163 168]
+ [183 188]]
+Fitness: 0.1680842515
+Score: 20.5560875887
+Normalized score: 0.6065036495
+Coverage: 26, 26
+Normalized coverage: 0.0975609756
+Length of all paths of family: 24</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-28-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>다음 그림은 커버리지 측정 <span class="math inline">\(\gamma\)</span>에 대한 scape plot를 보여준다. 악보의 경우 커버리지-최대화 세그먼트는 <span class="math inline">\(\alpha=[1:N]\)</span>로 전체 녹음이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:03.373377Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:02.701370Z&quot;}" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> SP_all[<span class="dv">3</span>]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> seg_max_sp(SP)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plot_sp_ssm(SP<span class="op">=</span>SP, seg<span class="op">=</span>seg, S<span class="op">=</span>S, ann<span class="op">=</span>ann_frames, color_ann<span class="op">=</span>color_ann, </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">'Scape plot: Coverage'</span>, figsize<span class="op">=</span>figsize)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> check_segment(seg, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [91, 204]
+Length of segment: 114
+Length of feature sequence: 205
+Induced segment path family:
+ [[  0  92]
+ [ 93 204]]
+Fitness: 0.1205736958
+Score: 128.2312820570
+Normalized score: 0.0697611866
+Coverage: 205, 205
+Normalized coverage: 0.4439024390
+Length of all paths of family: 204</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-29-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>trivial한 자기-설명을 빼고 길이 <span class="math inline">\(N\)</span>에 대해 정규화하면 <strong>정규화 커버리지</strong> <span class="math inline">\(\bar{\gamma}\)</span>가 된다.</li>
+<li><span class="math inline">\(\bar{\gamma}\)</span>-최대화 세그먼트와 함께 다음 scape plot에서 볼 수 있듯이, 커버리지(coverage)는 점수(score)와는 개념적으로 다른 속성을 측정한다. 정규화된 점수와 달리, 정규화된 커버리지는 일반적으로 입력 시퀀스의 많은 부분을 차지하는 세그먼트군을 유도하는 세그먼트를 선호한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:04.002168Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:03.374380Z&quot;}" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>SP <span class="op">=</span> SP_all[<span class="dv">4</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>seg <span class="op">=</span> seg_max_sp(SP)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plot_sp_ssm(SP<span class="op">=</span>SP, seg<span class="op">=</span>seg, S<span class="op">=</span>S, ann<span class="op">=</span>ann_frames, color_ann<span class="op">=</span>color_ann, </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">'Scape plot: Normalized coverage'</span>, figsize<span class="op">=</span>figsize)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>path_family <span class="op">=</span> check_segment(seg, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Segment (alpha): [56, 76]
+Length of segment: 21
+Length of feature sequence: 205
+Induced segment path family:
+ [[ 32  55]
+ [ 56  76]
+ [ 77  94]
+ [140 163]
+ [164 184]
+ [185 204]]
+Fitness: 0.3370126389
+Score: 50.3634037795
+Normalized score: 0.2488424049
+Coverage: 128, 128
+Normalized coverage: 0.5219512195
+Length of all paths of family: 118</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-30-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="최적-경로군의-예시" class="level1">
+<h1>최적 경로군의 예시</h1>
+<ul>
+<li>Brahms 예의 오디오 썸네일 <span class="math inline">\(\alpha^\ast\)</span>를 계산해보자.</li>
+<li><span class="math inline">\((N+1)N/2\)</span>개의 가능한 세그먼트 <span class="math inline">\(\alpha \subseteq [1:N]\)</span>가 있으며, 따라서 <span class="math inline">\(\alpha^\ast\)</span>를 결정하는 것은 시간이 많이 걸리는 작업이다.
+<ul>
+<li>다음에서는 <code>libfmp.c4.compute_fitness_scape_plot</code> 함수를 적용하여 모든 세그먼트의 적합도를 계산하며, 데이터 구조 <code>SP=SP_all[0]</code>에 저장된다.</li>
+<li><code>libfmp.c4.seg_max_sp</code> 함수를 사용하면 <code>SP</code>로부터 적합도-최대화 세그먼트를 결정할 수 있다.</li>
+<li><code>libfmp.c4.check_segment</code> 함수는 썸네일 세그먼트 <span class="math inline">\(\alpha \ast\)</span>의 속성을 출력한다.</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:24:04.017148Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:24:04.004162Z&quot;}" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_ssm_ann_optimal_path_family(S, ann, seg, Fs<span class="op">=</span><span class="dv">1</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>, color_ann<span class="op">=</span>[], fontsize<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                                     figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="fl">4.5</span>), ylabel<span class="op">=</span><span class="st">''</span>):</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot SSM, annotations, and computed optimal path family</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co">        S: Self-similarity matrix</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">        ann: Annotations</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co">        seg: Segment for computing the optimal path family</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Fs: Feature rate of path_family (Default value = 1)</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">        cmap: Color map for S (Default value = 'gray_r')</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co">        color_ann: color scheme used for annotations (see :func:`libfmp.b.b_plot.plot_segments`)</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co">            (Default value = [])</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co">        fontsize: Font size used for annotation labels (Default value = 12)</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Size of figure (Default value = (5, 4.5))</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="co">        ylabel: Label for y-axis (Default value = '')</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: Handle for figure</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: Handle for axes</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="co">        im: Handle for imshow</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> S.shape[<span class="dv">0</span>]</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    S_seg <span class="op">=</span> S[:, seg[<span class="dv">0</span>]:seg[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    D, score <span class="op">=</span> compute_accumulated_score_matrix(S_seg)</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    path_family <span class="op">=</span> compute_optimal_path_family(D)</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>    fitness, score, score_n, coverage, coverage_n, path_family_length <span class="op">=</span> compute_fitness(</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>        path_family, score, N)</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="vs">r'$\bar{\sigma}(\alpha)=</span><span class="sc">%0.2f</span><span class="vs">$, $\bar{\gamma}(\alpha)=</span><span class="sc">%0.2f</span><span class="vs">$, $\varphi(\alpha)=</span><span class="sc">%0.2f</span><span class="vs">$'</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>            (score_n, coverage_n, fitness)</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_ssm_ann(S, ann, color_ann<span class="op">=</span>color_ann, Fs<span class="op">=</span>Fs, cmap<span class="op">=</span>cmap,</span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>                               figsize<span class="op">=</span>figsize, fontsize<span class="op">=</span>fontsize,</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>                               xlabel<span class="op">=</span><span class="vs">r'$\alpha=[</span><span class="sc">%d</span><span class="vs">:</span><span class="sc">%d</span><span class="vs">]$'</span> <span class="op">%</span> (seg[<span class="dv">0</span>], seg[<span class="op">-</span><span class="dv">1</span>]), ylabel<span class="op">=</span>ylabel, title<span class="op">=</span>title)</span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>    plot_path_family(ax[<span class="dv">0</span>, <span class="dv">0</span>], path_family, Fs<span class="op">=</span>Fs, x_offset<span class="op">=</span>seg[<span class="dv">0</span>])</span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax, im</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T08:37:59.729426Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T08:37:59.416941Z&quot;}" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tempo_rel_set <span class="op">=</span> compute_tempo_rel_set(<span class="fl">0.66</span>, <span class="fl">1.5</span>, <span class="dv">5</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>penalty <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>x, x_duration, X, Fs_feature, S, I <span class="op">=</span> compute_sm_from_filename(fn_wav, L<span class="op">=</span><span class="dv">21</span>, H<span class="op">=</span><span class="dv">5</span>, </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                        L_smooth<span class="op">=</span><span class="dv">12</span>, tempo_rel_set<span class="op">=</span>tempo_rel_set, penalty<span class="op">=</span>penalty, thresh<span class="op">=</span> <span class="fl">0.15</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> normalization_properties_ssm(S)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>ann_frames, color_ann <span class="op">=</span> read_structure_annotation(fn_ann, Fs<span class="op">=</span>Fs_feature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:33:19.754015Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:33:19.742046Z&quot;}" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SP_all = compute_fitness_scape_plot(S) </span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SP = SP_all[0]</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># seg = seg_max_sp(SP)</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax, im = plot_ssm_ann_optimal_path_family(S, ann_frames, seg,</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#                     color_ann=color_ann, cmap=cmap_penalty, ylabel='Time (frames)')</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># path_family = check_segment(seg, S)</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 오래걸리기 때문에 사진을 불러와 출력값을 보자.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:36:19.884034Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:36:19.864088Z&quot;}" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/5.3.3.output1.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>적합도-최대화 세그먼트는 <span class="math inline">\(\alpha^\ast=[353:396]\)</span> (<code>seg = [352, 395]</code>) with <span class="math inline">\(\varphi(\alpha^\ast)=0.452\)</span>로 주어진다.</li>
+<li>음악적으로 <span class="math inline">\(B_4\)</span> 파트(<span class="math inline">\(176\)</span>와 <span class="math inline">\(197.5\)</span> 사이의 간격)에 해당하는 이 세그먼트는 실제로 가장 반복적인 부분이다.</li>
+<li>유도된 세그먼트 군은 4개의 <span class="math inline">\(B\)</span> 부분 세그먼트로 구성된다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:33:18.584823Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:33:18.584823Z&quot;}" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seg = [84, 137]</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax, im = plot_ssm_ann_optimal_path_family(S, ann_frames, seg,  </span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#               color_ann=color_ann, cmap=cmap_penalty, ylabel='Time (frames)')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:36:24.455419Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:36:24.445445Z&quot;}" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/5.3.3.output2.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>4개의 <span class="math inline">\(B\)</span> 부분 세그먼트가 모두 거의 동일한 적합도를 가지고 있고 거의 동일한 세그먼트군으로 이어지는 것을 확인할 수 있다. 예를 들어 <span class="math inline">\(B_1\)</span> 부분에 해당하는 <span class="math inline">\(\alpha=[85:138]\)</span> (<code>seg = [84, 137]</code>) (초 <span class="math inline">\(42\)</span>와 <span class="math inline">\(69\)</span> 사이의 간격)을 보면, 적합도는 <span class="math inline">\(\varphi(\alpha)=0.41\)</span>이며 가능한 최대-적합도보다 약간 낮다.</li>
+<li>다시, 유도된 세그먼트군은 4개의 <span class="math inline">\(B\)</span> 부분 세그먼트로 구성되며, 이는 각각의 <span class="math inline">\(B\)</span> 부분 세그먼트가 썸네일과 똑같이 잘 작동할 수 있다는 사실을 반영한다. 적합도 측정은 짧은 세그먼트를 약간 선호하고 이 기록에서 <span class="math inline">\(B_4\)</span>-파트가 <span class="math inline">\(B_1\)</span>-파트보다 빠르게 재생되기 때문에 적합도 측정은 <span class="math inline">\(B_1\)</span>-파트 세그먼트보다 <span class="math inline">\(B_4\)</span>-파트 세그먼트를 선호한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:33:18.585819Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:33:18.585819Z&quot;}" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seg = [260, 306]</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax, im = plot_ssm_ann_optimal_path_family(S, ann_frames, seg,  </span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 color_ann=color_ann, cmap=cmap_penalty, ylabel='Time (frames)')</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># path_family = check_segment(seg, S)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:36:28.319032Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:36:28.310056Z&quot;}" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/5.3.3.output3.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>또한 다른 세그먼트는 높은 적합도 값을 가질 수 있고, 다른 반복 세그먼트와 높은 유사성을 나타낸다. 예를 들어, <span class="math inline">\(A_3\)</span> 부분에 해당하는 세그먼트 <span class="math inline">\(\alpha=[261:307]\)</span> (<code>seg = [260, 306]</code>, 초 <span class="math inline">\(130\)</span>와 <span class="math inline">\(153\)</span> 사이의 간격)의 적합도는 다음과 같다. <span class="math inline">\(\varphi(\alpha)=0.30\)</span>. 유도 세그먼트 군은 세 개의 <span class="math inline">\(A\)</span> 부분을 나타낸다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:33:18.586816Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:33:18.586816Z&quot;}" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seg = [41, 180]</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax, im = plot_ssm_ann_optimal_path_family(S, ann_frames, seg,  </span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 color_ann=color_ann, cmap=cmap_penalty, ylabel='Time (frames)')</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># path_family = check_segment(seg, S)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-09T09:36:32.632896Z&quot;,&quot;start_time&quot;:&quot;2023-01-09T09:36:32.613953Z&quot;}" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"../img/5.music_structure_analysis/5.3.3.output4.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<p><img src="5.3.Audio_Thumbnail_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>마지막 예로, <span class="math inline">\(\alpha=[42:181]\)</span> (<code>seg = [41, 180]</code>, <span class="math inline">\(20.5\)</span>와 <span class="math inline">\(90\)</span> 사이의 간격) 세그먼트를 보자. 이 세그먼트는 <span class="math inline">\(A_2B_1B_2\)</span>에 해당하며 <span class="math inline">\(A_3B_3B_4\)</span>로 반복된다. 다시 말하지만, 자기-설명이 무시되는 정규화 때문에 다소 긴 세그먼트 <span class="math inline">\(\alpha=[42:181]\)</span> (<code>seg = [41, 180]</code>)의 적합도 <span class="math inline">\(\varphi(\alpha)=0.37\)</span>는 썸네일 <span class="math inline">\(\alpha^\ast=[353:396]\)</span> (<code>seg = [352, 395]</code>)의 적합도 <span class="math inline">\(\varphi(\alpha^\ast)=0.45\)</span>보다 훨씬 낮다.</li>
+</ul>
+<hr>
+<p>출처:</p>
+<ul>
+<li>https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html</li>
+</ul>
+<hr>
+<p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/5.%20Music%20Structure%20Analysis/5.3.Audio_Thumbnail.ipynb">구글 Colab 링크</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="jo-cho/MIRBlog-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
