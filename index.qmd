@@ -1,5 +1,5 @@
 ---
-title: "Music Information Retrieval"
+title: "Music Information Retrieval Posts"
 subtitle: ""
 listing:
   contents: posts
