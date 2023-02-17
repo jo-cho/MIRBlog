@@ -347,9 +347,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="라벨링-평가-labeling-evaluation" class="level1">
 <h1>라벨링 평가 (Labeling Evaluation)</h1>
 <ul>
-<li><p>프레임 수준의 음악 분석 작업을 고려해보자.</p></li>
-<li><p><span class="math inline">\(\varphi:[1:N]\)</span>를 프레임으로 주어진 시간 축으로 하고 <span class="math inline">\(\Lambda\)</span>를 가능한 레이블 집합이라고 하자.</p></li>
-<li><p><strong>레이블 함수(label function)</strong> 는 각 프레임 인덱스 <span class="math inline">\(n\in[1:N]\)</span>에 레이블 <span class="math inline">\(\varphi(n)\in\Lambda\)</span>를 할당하는 함수 <span class="math inline">\(\varphi:[1:N] \to \Lambda\)</span>로 정의한다.</p></li>
+<li>프레임 수준의 음악 분석 작업을 고려해보자.</li>
+<li><span class="math inline">\(\varphi:[1:N]\)</span>를 프레임으로 주어진 시간 축으로 하고 <span class="math inline">\(\Lambda\)</span>를 가능한 레이블 집합이라고 하자.</li>
+<li><strong>레이블 함수(label function)</strong> 는 각 프레임 인덱스 <span class="math inline">\(n\in[1:N]\)</span>에 레이블 <span class="math inline">\(\varphi(n)\in\Lambda\)</span>를 할당하는 함수 <span class="math inline">\(\varphi:[1:N] \to \Lambda\)</span>로 정의한다.</li>
+</ul>
+<section id="쌍별pair-wise-평가-척도" class="level2">
+<h2 class="anchored" data-anchor-id="쌍별pair-wise-평가-척도">쌍별(pair-wise) 평가 척도</h2>
+<ul>
 <li><p>이제 <strong>pair-wise precision</strong>, <strong>pair-wise recall</strong> 및 <strong>pair-wise F-measure</strong>라고 하는 몇 가지 프레임 기반 평가 측정값을 소개한다.</p></li>
 <li><p><span class="math inline">\(\varphi^\mathrm{Ref}\)</span> 및 <span class="math inline">\(\varphi^\mathrm{Est}\)</span>를 각각 참조 및 추정 구조 주석에 대한 레이블 함수로 둔다.</p></li>
 <li><p>실제 레이블 네이밍에서 독립적이기 위해서는, 레이블을 직접 보지 않고 레이블 동시 발생을 찾는 것이 주요 아이디어다.</p></li>
@@ -682,6 +686,7 @@ P = 0.925;  R = 0.571;  F = 0.706
 </div>
 </div>
 </section>
+</section>
 <section id="경계-평가-boundary-evaluation" class="level1">
 <h1>경계 평가 (Boundary Evaluation)</h1>
 <ul>
@@ -853,7 +858,6 @@ P = 1.000;  R = 1.000;  F = 1.000</code></pre>
 <p><img src="5.5.Evaluation_files/figure-html/cell-13-output-6.png" class="img-fluid"></p>
 </div>
 </div>
-<p>이외에도</p>
 <ul>
 <li>파이썬 라이브러리 <code>mir_eval</code>를 사용할 수도 있다.</li>
 <li>자세한 것은 사이트에서 확인해보자: https://craffel.github.io/mir_eval/#module-mir_eval.segment</li>
@@ -1003,7 +1007,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://utteranc.es/client.js" repo="jo-cho/MIRBlog-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="jo-cho/MIRBlog" data-repo-id="R_kgDOI83zeg" data-category="General" data-category-id="DIC_kwDOI83zes4CUQJ2" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 

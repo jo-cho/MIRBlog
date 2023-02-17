@@ -16,7 +16,11 @@
       "/posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html",
       "/posts/5. Music Structure Analysis/5.3.Audio_Thumbnail.html",
       "/posts/5. Music Structure Analysis/5.4.Novelty-Based_Segmentation.html",
-      "/posts/5. Music Structure Analysis/5.5.Evaluation.html"
+      "/posts/5. Music Structure Analysis/5.5.Evaluation.html",
+      "/posts/6. Chord Recognition/6.1.Basic_Theory_of_Harmony.html",
+      "/posts/6. Chord Recognition/6.2.Template-Based_Chord_Recognition.html",
+      "/posts/6. Chord Recognition/6.3.HMM-Based_Chord_Recognition.html",
+      "/posts/6. Chord Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.html"
     ]
   }
 ]

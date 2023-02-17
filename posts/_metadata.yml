@@ -9,5 +9,5 @@ title-block-banner: true
 
 # blog-comments
 comments: 
-  utterances: 
-    repo:  jo-cho/MIRBlog-comments
+  giscus: 
+    repo:  jo-cho/MIRBlog

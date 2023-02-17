@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-02-17">
+
+<title>조조의 음악정보검색 입문 - 6.4. 화음 인식 예시: 비틀즈</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">조조의 음악정보검색 입문</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jo-cho/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">6.4. 화음 인식 예시: 비틀즈</h1>
+            <p class="subtitle lead">Chord Recognition Example: The Beatles</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">화음인식</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cheonghyo Cho </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 17, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>간단한 예시로 비틀즈의 노래를 이용해 화음 인식 절차를 확인해보고, 결과를 해석해본다.</p>
+<blockquote class="blockquote">
+<p>이 글은 <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html">FMP(Fundamentals of Music Processing) Notebooks</a>을 참고로 합니다.</p>
+</blockquote>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:31.848264Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:29.845814Z&quot;}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.plot_tools <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.feature_tools <span class="im">import</span> smooth_downsample_feature_sequence, median_downsample_feature_sequence</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.structure_tools <span class="im">import</span> read_structure_annotation</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.chord_tools <span class="im">import</span> get_chord_labels, compute_chromagram_from_filename, compute_eval_measures, <span class="op">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>convert_chord_ann_matrix, chord_recognition_template</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.chord_tools <span class="im">import</span> viterbi_log_likelihood, plot_matrix_chord_eval, uniform_transition_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>실험: 비틀즈 컬렉션</strong></p>
+<section id="오디오-데이터-주석" class="level1">
+<h1>오디오 데이터, 주석</h1>
+<ul>
+<li>12개의 비틀즈 앨범 (180트랙)의 컬렉션</li>
+<li>고품질의 참조 주석
+<ul>
+<li>화음, 비트, 음조 변화, 음악 구조</li>
+<li>출처: [Christopher Harte’s PhD thesis (2010)] <a href="http://isophonics.net/content/reference-annotations-beatles">Isophonics Website</a></li>
+<li>단 여기서는 24개의 화음 유형으로 축소</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:31.878135Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:31.850236Z&quot;}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read annotation files</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fn_ann_orig <span class="op">=</span> <span class="st">'../data_FMP/FMP_C5_Audio_Beatles_LetItBe_Beatles_1970-LetItBe-06_Chords.csv'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fn_ann <span class="op">=</span> <span class="st">'../data_FMP/FMP_C5_Audio_Beatles_LetItBe_Beatles_1970-LetItBe-06_Chords_simplified.csv'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ann_orig, _ <span class="op">=</span> read_structure_annotation(fn_ann_orig)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ann, _ <span class="op">=</span> read_structure_annotation(fn_ann)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:32.178052Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:31.879133Z&quot;}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot chord annotations</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>color_ann <span class="op">=</span> {<span class="st">'N'</span>: <span class="st">'white'</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">'C'</span>: <span class="st">'red'</span>, <span class="st">'C#'</span>: <span class="st">'peru'</span>, <span class="st">'D'</span>: <span class="st">'orange'</span>, <span class="st">'D#'</span>: <span class="st">'yellow'</span>, <span class="st">'Eb'</span>: <span class="st">'yellow'</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">'E'</span>: <span class="st">'springgreen'</span>, <span class="st">'F'</span>: <span class="st">'cyan'</span>, <span class="st">'F#'</span>: <span class="st">'coral'</span>, <span class="st">'G'</span>: <span class="st">'blue'</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">'G#'</span>: <span class="st">'olive'</span>, <span class="st">'A'</span>: <span class="st">'teal'</span>, <span class="st">'A#'</span>: <span class="st">'indigo'</span>, <span class="st">'Bb'</span>: <span class="st">'indigo'</span>, <span class="st">'B'</span>: <span class="st">'pink'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">'C#:min'</span>: <span class="st">'steelblue'</span>, <span class="st">'C#m'</span>: <span class="st">'steelblue'</span>, <span class="st">'A:min'</span>: <span class="st">'greenyellow'</span>, <span class="st">'A:m'</span>: <span class="st">'greenyellow'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">'G:min'</span>: <span class="st">'olive'</span>, <span class="st">'E:min'</span>: <span class="st">'lightcoral'</span>, <span class="st">'B:min'</span>: <span class="st">'saddlebrown'</span>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>chord_labels <span class="op">=</span> get_chord_labels(ext_minor<span class="op">=</span><span class="st">'m'</span>, nonchord<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plot_segments(ann_orig[:<span class="dv">7</span>], figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">1.2</span>), time_label<span class="op">=</span><span class="st">'Time (seconds)'</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                        fontsize<span class="op">=</span><span class="dv">9</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Reference annotations with original chord labels'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plot_segments(ann[:<span class="dv">7</span>], figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">1.2</span>), time_label<span class="op">=</span><span class="st">'Time (seconds)'</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                       fontsize<span class="op">=</span><span class="dv">9</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Reference annotations with reduced chord labels'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>여기서는 4개의 노래만 예시로 보기로 한다. 무음이나 박수 소리같은 비음악적인 부분이 적은 노래들이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:32.193015Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:32.179082Z&quot;}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fn_wav1 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_LetItBe_Beatles_1970-LetItBe-06.wav"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fn_wav2 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_HereComesTheSun_Beatles_1969-AbbeyRoad-07.wav"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fn_wav3 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_ObLaDiObLaDa_Beatles_1968-TheBeatlesTheWhiteAlbumDisc1-04.wav"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fn_wav4 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_PennyLane_Beatles_1967-MagicalMysteryTour-09.wav"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fn_ann1 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_LetItBe_Beatles_1970-LetItBe-06_Chords_simplified.csv"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>fn_ann2 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_HereComesTheSun_Beatles_1969-AbbeyRoad-07_Chords_simplified.csv"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fn_ann3 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_ObLaDiObLaDa_Beatles_1968-TheBeatlesTheWhiteAlbumDisc1-04_Chords_simplified.csv"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fn_ann4 <span class="op">=</span> <span class="st">"../data_FMP/Beatles_Collection/FMP_C5_Audio_Beatles_PennyLane_Beatles_1967-MagicalMysteryTour-09_Chords_simplified.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:33.720515Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:32.194038Z&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>song_dict <span class="op">=</span> {} <span class="co"># song name, color, wav filename, annotation filename</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>song_dict[<span class="dv">0</span>] <span class="op">=</span> [<span class="st">'Let It Be'</span>, <span class="st">'r'</span>, fn_wav1, fn_ann1]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>song_dict[<span class="dv">1</span>] <span class="op">=</span> [<span class="st">'Here Comes The Sun'</span>, <span class="st">'b'</span>, fn_wav2, fn_ann2]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>song_dict[<span class="dv">2</span>] <span class="op">=</span> [<span class="st">'Ob-La-Di Ob-La-Da'</span>, <span class="st">'c'</span>, fn_wav3, fn_ann3]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>song_dict[<span class="dv">3</span>] <span class="op">=</span> [<span class="st">'Penny Lane'</span>, <span class="st">'g'</span>, fn_wav4, fn_ann4]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>chord_labels <span class="op">=</span> get_chord_labels(ext_minor<span class="op">=</span><span class="st">'m'</span>, nonchord<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    song_id <span class="op">=</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    fn_ann <span class="op">=</span> song_dict[s][<span class="dv">3</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    fn_ann_orig <span class="op">=</span> fn_ann.replace(<span class="st">'_simplified'</span>,<span class="st">''</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ann_orig, _ <span class="op">=</span> read_structure_annotation(fn_ann_orig)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ann, _ <span class="op">=</span> read_structure_annotation(fn_ann)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann_orig[:<span class="dv">30</span>], figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">1</span>), </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                           fontsize<span class="op">=</span><span class="dv">9</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Song: </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> song_id)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann[:<span class="dv">30</span>], figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">1.2</span>), time_label<span class="op">=</span><span class="st">'Time (seconds)'</span>, </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                           fontsize<span class="op">=</span><span class="dv">9</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-7.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-6-output-8.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="특징-추출-feature-extraction" class="level1">
+<h1>특징 추출 (Feature Extraction)</h1>
+<ul>
+<li><p>전통적인 화음 인식 접근 방식의 첫 번째 단계는 오디오 녹음을 크로마(chroma) 기반 오디오 특징(feature)의 시퀀스로 변환하는 것이다.</p></li>
+<li><p>이러한 특징은 적절한 스무딩(smoothing) 필터를 적용하여 시간적(temporal) 이상값을 고르게 하거나, 로그 압축(logarithmic compression)을 적용하여 작지만 지각적으로 관련된 스펙트럼 구성 요소(spectral components)를 향상시키는 등 추가로 처리될 수 있다.</p></li>
+<li><p>사용된 크로마 유형은 <a href="https://secure.aes.org/forum/pubs/conferences/?elib=15943">Jiang et al.</a>에 의해 입증된 것처럼, 화음 인식 결과에 큰 영향을 미칠 수 있다.</p></li>
+<li><p><code>librosa</code>에서 제공하는 세 가지 다른 크로마 유형을 고려하여 이 사실을 설명한다.</p>
+<ul>
+<li>작은 로그 압축을 사용하는 STFT 기반 크로마 특징(<code>librosa.feature.chroma_stft</code>)</li>
+<li>CQT 기반 크로마 특징(<code>librosa.feature.chroma_cqt</code>)</li>
+<li>로그 압축을 사용한 IIR 기반 크로마 특징(<code>librosa.iirt</code> + 크로마 비닝(binning))</li>
+</ul></li>
+<li><p>오디오 녹음은 <span class="math inline">\(F_\mathrm{s}=22050~\mathrm{Hz}\)</span>의 rate으로 샘플링된다.</p>
+<ul>
+<li>STFT 계산을 위해서는 <span class="math inline">\(N=2048\)</span> 샘플(<span class="math inline">\(92.9~\mathrm{ms}\)</span>에 해당)의 윈도우(window) 크기와 <span class="math inline">\(H=1024\)</span> 샘플(<span class="math inline">\(46.4~\mathrm{ms}\)</span>에 해당)의 홉 크기를 사용한다. 이는 <span class="math inline">\(21.5~\mathrm{Hz}\)</span>의 feature rate으로 이어진다.</li>
+<li>또한 IIR 기반 주파수 표현을 계산하기 위해 동일한 매개변수 <span class="math inline">\(N\)</span> 및 <span class="math inline">\(H\)</span>를 사용한다.</li>
+<li>마지막으로 CQT의 경우 동일한 홉 크기 <span class="math inline">\(H=1024\)</span>를 사용하여 동일한 feature rate의 크로마 표현을 생성한다.</li>
+</ul></li>
+<li><p>모든 크로마 특징은 유클리드 norm에 따라 정규화된다. 또한 크로마 시퀀스와 일치하도록 화음 주석을 프레임-수준 라벨 시퀀스로 변환한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:15:33.735422Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:33.722479Z&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_X_dict(song_selected, version<span class="op">=</span><span class="st">'STFT'</span>, details<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    X_dict <span class="op">=</span> {}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Fs_X_dict <span class="op">=</span> {}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ann_dict <span class="op">=</span> {}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x_dur_dict <span class="op">=</span> {}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    chord_labels <span class="op">=</span> get_chord_labels(ext_minor<span class="op">=</span><span class="st">'m'</span>, nonchord<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> details <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'Processing: '</span>, song_dict[s][<span class="dv">0</span>])</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        fn_wav <span class="op">=</span> song_dict[s][<span class="dv">2</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        fn_ann <span class="op">=</span> song_dict[s][<span class="dv">3</span>]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> <span class="dv">2048</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        H <span class="op">=</span> <span class="dv">1024</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> version <span class="op">==</span> <span class="st">'STFT'</span>:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            X, Fs_X, x, Fs, x_dur <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                compute_chromagram_from_filename(fn_wav, N<span class="op">=</span>N, H<span class="op">=</span>H, gamma<span class="op">=</span><span class="fl">0.1</span>, version<span class="op">=</span><span class="st">'STFT'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> version <span class="op">==</span> <span class="st">'CQT'</span>:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>            X, Fs_X, x, Fs, x_dur <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                compute_chromagram_from_filename(fn_wav, H<span class="op">=</span>H, version<span class="op">=</span><span class="st">'CQT'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> version <span class="op">==</span> <span class="st">'IIR'</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            X, Fs_X, x, Fs, x_dur <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                compute_chromagram_from_filename(fn_wav, N<span class="op">=</span>N, H<span class="op">=</span>H, gamma<span class="op">=</span><span class="dv">10</span>, version<span class="op">=</span><span class="st">'IIR'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        X_dict[s] <span class="op">=</span> X</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        Fs_X_dict[s] <span class="op">=</span> Fs_X</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        x_dur_dict[s] <span class="op">=</span> x_dur</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        N_X <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        ann_dict[s] <span class="op">=</span> convert_chord_ann_matrix(fn_ann, chord_labels, Fs<span class="op">=</span>Fs_X, N<span class="op">=</span>N_X, last<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X_dict, Fs_X_dict, ann_dict, x_dur_dict, chord_labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:17.212496Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:15:33.739410Z&quot;}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Computation of STFT-based chromagrams ====='</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>X_dict_STFT, Fs_X_dict_STFT, ann_dict_STFT, x_dur_dict, chord_labels <span class="op">=</span> compute_X_dict(song_selected, version<span class="op">=</span><span class="st">'STFT'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Computation of CQT-based chromagrams ====='</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X_dict_CQT, Fs_X_dict_CQT, ann_dict_CQT, x_dur_dict, chord_labels <span class="op">=</span> compute_X_dict(song_selected, version<span class="op">=</span><span class="st">'CQT'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Computation of IIR-based chromagrams ====='</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>X_dict_IIR, Fs_X_dict_IIR, ann_dict_IIR, x_dur_dict, chord_labels <span class="op">=</span> compute_X_dict(song_selected, version<span class="op">=</span><span class="st">'IIR'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>===== Computation of STFT-based chromagrams =====
+Processing:  Let It Be
+Processing:  Here Comes The Sun
+Processing:  Ob-La-Di Ob-La-Da
+Processing:  Penny Lane
+===== Computation of CQT-based chromagrams =====
+Processing:  Let It Be
+Processing:  Here Comes The Sun
+Processing:  Ob-La-Di Ob-La-Da
+Processing:  Penny Lane
+===== Computation of IIR-based chromagrams =====
+Processing:  Let It Be
+Processing:  Here Comes The Sun
+Processing:  Ob-La-Di Ob-La-Da
+Processing:  Penny Lane
+</code></pre>
+</div>
+</div>
+<p>맨 앞 15초만 보자.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:19.037873Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:16:17.216513Z&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> <span class="st">'gray_r'</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>], </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">'height_ratios'</span>: [<span class="dv">2</span>]}, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">2.5</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'</span><span class="sc">%s</span><span class="st">, STFT (</span><span class="sc">%0.1f</span><span class="st"> Hz)'</span> <span class="op">%</span> (song_dict[s][<span class="dv">0</span>], Fs_X_dict_STFT[s])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    plot_chromagram(X_dict_STFT[s], Fs<span class="op">=</span>Fs_X_dict_CQT[s], ax<span class="op">=</span>[ax[<span class="dv">0</span>]],  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                             chroma_yticks<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">11</span>], clim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>], cmap<span class="op">=</span>cmap,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                             title<span class="op">=</span>title, ylabel<span class="op">=</span><span class="st">'Chroma'</span>, colorbar<span class="op">=</span><span class="va">True</span>, xlim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">15</span>])</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'</span><span class="sc">%s</span><span class="st">, CQT (</span><span class="sc">%0.1f</span><span class="st"> Hz)'</span> <span class="op">%</span> (song_dict[s][<span class="dv">0</span>], Fs_X_dict_CQT[s])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    plot_chromagram(X_dict_CQT[s], Fs<span class="op">=</span>Fs_X_dict_CQT[s], ax<span class="op">=</span>[ax[<span class="dv">1</span>]],  </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                             chroma_yticks<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">11</span>], clim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>], cmap<span class="op">=</span>cmap,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                             title<span class="op">=</span>title, ylabel<span class="op">=</span><span class="st">'Chroma'</span>, colorbar<span class="op">=</span><span class="va">True</span>, xlim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">15</span>])  </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'</span><span class="sc">%s</span><span class="st">, IIR (</span><span class="sc">%0.1f</span><span class="st"> Hz)'</span> <span class="op">%</span> (song_dict[s][<span class="dv">0</span>], Fs_X_dict_IIR[s])</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    plot_chromagram(X_dict_IIR[s], Fs<span class="op">=</span>Fs_X_dict_IIR[s], ax<span class="op">=</span>[ax[<span class="dv">2</span>]],  </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                             chroma_yticks<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">11</span>], clim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>], cmap<span class="op">=</span>cmap,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                             title<span class="op">=</span>title, ylabel<span class="op">=</span><span class="st">'Chroma'</span>, colorbar<span class="op">=</span><span class="va">True</span>, xlim<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">15</span>])      </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-9-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-9-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>“Let It Be”의 경우 세 크로마그램이 비슷하지만, 나머지 노래들은 꼭 그렇지 않다. 특히 “Penny Lane”은 STFT기반 크로마그램에서 동질적인 모습(<span class="math inline">\(\mathrm{F}\)</span> 크로마 밴드)을 보이지만, 나머지 특히 CQT기반 크로마그램에서는 하향하는 지배 패턴을 보인다.</p></li>
+<li><p>노래를 들어보면 베이스 기타가 연주하는 저주파수(low-frequency)의 강한 베이스라인이 있다. <strong>STFT의 선형 주파수 분해능</strong>(linear frequency resolution)에 기반하면 저주파수의 정보가 잘 포착되지 않는다. 결과적으로 크로마그램을 얻기 위해 로그 비닝(logarithmic binning)을 적용하면 이러한 정보들을 잃게 된다(서로 다른 피치 밴드를 오염시킴).</p></li>
+<li><p>반면에 CQT는 frequency-dependent한 윈도우 크기를 사용하여 신호를 <strong>로그 주파수 해상도</strong>(logarithmic frequency resolution)으로 시간-주파수 표현으로 분해한다. 결과적으로 저주파수 음이 STFT보다 훨씬 높은 스펙트럼 해상도로 포착된다.</p></li>
+</ul>
+</section>
+<section id="화음-인식-절차-chord-recognition-procedures" class="level1">
+<h1>화음 인식 절차 (Chord Recognition Procedures)</h1>
+<ul>
+<li>세 새긩 크로마그램 표현에 기반하여, 크로마 특징을 24 장단화음 라벨로 매핑하는 두 가지의 패턴 매칭 기술을 적용한다.
+<ul>
+<li>템플릿 기반 화음 인식 (Template-based chord recognition)</li>
+<li>HMM 기반 화음 인식 (HMM-based chord recognition)</li>
+</ul></li>
+<li><strong>시간-화음</strong>(time-chord) 시각화를 통해 결과를 보자. 우선 “Let It Be”의 6가지 조합(3개의 크로마그램, 2개의 화음 인식)을 본다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:19.052806Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:16:19.038842Z&quot;}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chord_recognition_all(X, ann_matrix, p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>, filt_type<span class="op">=</span><span class="st">'mean'</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Conduct template- and HMM-based chord recognition and evaluates the approaches</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">        X (np.ndarray): Chromagram</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">        ann_matrix (np.ndarray): Reference annotation as given as time-chord binary matrix</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">        p (float): Self-transition probability used for HMM (Default value = 0.15)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">        filt_len (int): Filter length used for prefilitering (Default value = None)</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        filt_type (str): Filter type used for prefilitering (Default value = 'mean')</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">        result_Tem (tuple): Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for template-based approach</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        result_HMM (tuple): Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for HMM-based approach</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">        chord_Tem (np.ndarray): Template-based chord recogntion result given as binary matrix</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">        chord_HMM (np.ndarray): HMM-based chord recogntion result given as binary matrix</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">        chord_sim (np.ndarray): Chord similarity matrix</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> filt_len <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> filt_type <span class="op">==</span> <span class="st">'mean'</span>:</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            X, Fs_X <span class="op">=</span> smooth_downsample_feature_sequence(X, Fs<span class="op">=</span><span class="dv">1</span>, filt_len<span class="op">=</span>filt_len, down_sampling<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> filt_type <span class="op">==</span> <span class="st">'median'</span>:</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            X, Fs_X <span class="op">=</span> median_downsample_feature_sequence(X, Fs<span class="op">=</span><span class="dv">1</span>, filt_len<span class="op">=</span>filt_len, down_sampling<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Template-based chord recogntion</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    chord_sim, chord_Tem <span class="op">=</span> chord_recognition_template(X, norm_sim<span class="op">=</span><span class="st">'1'</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    result_Tem <span class="op">=</span> compute_eval_measures(ann_matrix, chord_Tem)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># HMM-based chord recogntion</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> uniform_transition_matrix(p<span class="op">=</span>p)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">24</span> <span class="op">*</span> np.ones((<span class="dv">1</span>, <span class="dv">24</span>))</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    B_O <span class="op">=</span> chord_sim</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    chord_HMM, _, _, _ <span class="op">=</span> viterbi_log_likelihood(A, C, B_O)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    result_HMM <span class="op">=</span> compute_eval_measures(ann_matrix, chord_HMM)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_chord_recognition_result(ann_matrix, result, chord_matrix, chord_labels,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>                                  xlim<span class="op">=</span><span class="va">None</span>, Fs_X<span class="op">=</span><span class="dv">1</span>, title<span class="op">=</span><span class="st">''</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>)):</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    P, R, F, TP, FP, FN <span class="op">=</span> result</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'HMM'</span> </span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> title <span class="op">+</span> <span class="st">' (TP=</span><span class="sc">%d</span><span class="st">, FP=</span><span class="sc">%d</span><span class="st">, FN=</span><span class="sc">%d</span><span class="st">, P=</span><span class="sc">%.3f</span><span class="st">, R=</span><span class="sc">%.3f</span><span class="st">, F=</span><span class="sc">%.3f</span><span class="st">)'</span> <span class="op">%</span> (TP, FP, FN, P, R, F)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_matrix_chord_eval(ann_matrix, chord_matrix, Fs<span class="op">=</span>Fs_X, figsize<span class="op">=</span>figsize,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>                         title<span class="op">=</span>title, ylabel<span class="op">=</span><span class="st">'Chord'</span>, xlabel<span class="op">=</span><span class="st">'Time (frames)'</span>, chord_labels<span class="op">=</span>chord_labels)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xlim <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        plt.xlim(xlim)</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:23.916185Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:16:19.053803Z&quot;}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>] <span class="co"># 렛잇비</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_STFT[s], ann_dict_STFT[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [STFT; Template]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_STFT[s][<span class="dv">0</span>], result_Tem, chord_Tem, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [STFT; HMM]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_STFT[s][<span class="dv">0</span>], result_HMM, chord_HMM, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_CQT[s], ann_dict_CQT[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; Template]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_CQT[s][<span class="dv">0</span>], result_Tem, chord_Tem, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; HMM]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_STFT[s][<span class="dv">0</span>], result_HMM, chord_HMM, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_IIR[s], ann_dict_IIR[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [IIR; Template]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_STFT[s][<span class="dv">0</span>], result_Tem, chord_Tem, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [IIR; HMM]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_IIR[s][<span class="dv">0</span>], result_HMM, chord_HMM, chord_labels, title<span class="op">=</span>title)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-11-output-6.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>STFT 기반 크로마그램과 템플렛 기반 화음 인식을 사용하면 F-스코어 <span class="math inline">\(\mathrm{F}=0.491\)</span>을 얻는다.</p>
+<ul>
+<li>화음 라벨 사이의 갑작스런 점프들이 있는 것을 볼 수 있다.</li>
+</ul></li>
+<li><p>HMM 기반 방식을 사용하면 이상치를 줄여 F-스코어를 올린다. (<span class="math inline">\(\mathrm{F}=0.643\)</span>)</p></li>
+<li><p>CQT 기반 크로마그램을 input으로 하면 결과는 상당히 개선된다. (<span class="math inline">\(\mathrm{F}=0.779\)</span>)</p></li>
+<li><p>가장 좋은 결과는 “IIR 기반 크로마그램 + HMM 기반 화음 인식” 이다. (<span class="math inline">\(\mathrm{F}=0.789\)</span>)</p></li>
+<li><p>이제 CQT크로마그램 + HMM 화음 인식 을 사용해 네 노래의 인식 결과를 보자.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:28.465259Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:16:23.918179Z&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 전체</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_CQT[s], ann_dict_CQT[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; HMM]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_STFT[s][<span class="dv">0</span>], result_HMM, chord_HMM, chord_labels, title<span class="op">=</span>title,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-12-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-12-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>Let It Be:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{F}=0.779\)</span></li>
+</ul></li>
+<li><p>Here Comes The Sun:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{F}=0.750\)</span></li>
+</ul></li>
+<li><p>Ob-La-Di Ob-La-Da:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{F}=0.895\)</span></li>
+</ul></li>
+<li><p>PennyLane:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{F}=0.715\)</span></li>
+</ul></li>
+<li><p>Average:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{F}=0.785\)</span></li>
+</ul></li>
+<li><p>참고로 전체 비틀즈 180노래에 대한 F스코어의 평균도 위와 비슷하다.</p></li>
+<li><p>최신의 data-driven 화음 인식 방법 (예: deep neural network)은 80에서 90퍼센트 사이의 점수를 보인다. 하지만 일반적으로 이러한 숫자는 데이터셋의 복잡성, 모델 가정의 적절성, 주석의 신뢰성 및 결과의 음악적 의미에 대한 제한된 통찰력만 제공하므로 주의해야 한다. 노트북의 뒷부분에서 그러한 평가 점수의 음악적 관련성에 대해 다시 설명하기로 한다.</p></li>
+</ul>
+<section id="사전-필터링prefiltering-실험" class="level2">
+<h2 class="anchored" data-anchor-id="사전-필터링prefiltering-실험">사전 필터링(Prefiltering) 실험</h2>
+<ul>
+<li><p>위에서 특징(feature)유형이 화음 인식 결과에 큰 영향을 미치는 것을 볼 수 있었다.</p></li>
+<li><p>마찬가지로 STFT 창 크기를 확대하면 화음 인식의 동작에 상당한 영향을 미칠 수 있다. 각 크로마 차원에 대해 시간 경과에 따른 일종의 local 평균을 계산하는 <strong>temporal smoothing</strong>를 적용할 때 유사한 효과를 얻을 수 있다.</p></li>
+<li><p>이제 <span class="math inline">\(21.5~\mathrm{Hz}\)</span>의 feature rate를 갖는 세 가지 크로마그램 표현(<code>STFT</code>, <code>CQT</code>, <code>IIR</code>)으로 시작하여 화음 인식 정확도에 대한 temporal smoothing의 효과를 확인해본다.</p></li>
+<li><p><span class="math inline">\(L\in\mathbb{N}\)</span>를 스무딩 필터의 길이(프레임 단위로 측정)라고 하자. 스무딩을 위해 각각 <strong>평균</strong> 또는 <strong>중앙값</strong>을 사용하는 두 함수 중 하나를 적용하여 중심(centered) 방식으로 평균을 계산한다.</p></li>
+<li><p>다운샘플링을 적용하지 않으므로 원래 feature rate를 <span class="math inline">\(21.5~\mathrm{Hz}\)</span>로 유지한다.</p></li>
+<li><p>다음에서는 스무딩 매개변수 <span class="math inline">\(L\in\{1,3,5\ldots,63,65\}\)</span>의 sweep을 고려한다. 예를 들어 <span class="math inline">\(L=21\)</span> 매개변수는 오디오 녹음의 약 1초에 해당한다. 스무딩은 실제 패턴 매칭 전에 적용되므로 이 단계를 <strong>사전 필터링</strong>(prefiltering)이라고 한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:16:28.480318Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:16:28.466257Z&quot;}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean_result(result_dict, song_selected):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="bu">len</span>(song_selected)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    result_mean <span class="op">=</span>  np.copy(result_dict[song_selected[<span class="dv">0</span>]])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, S):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        result_mean <span class="op">=</span> result_mean <span class="op">+</span> result_dict[song_selected[s]]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    result_mean <span class="op">=</span> result_mean <span class="op">/</span> S</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result_mean</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_statistics(para_list, song_dict, song_selected, result_dict, ax, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                    ylim<span class="op">=</span><span class="va">None</span>, title<span class="op">=</span><span class="st">''</span>, xlabel<span class="op">=</span><span class="st">''</span>, ylabel<span class="op">=</span><span class="st">'F-measure'</span>, legend<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> song_dict[s][<span class="dv">1</span>]</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        song_id <span class="op">=</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        ax.plot(para_list, result_dict[s], color<span class="op">=</span>color, </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="st">'2'</span>, label<span class="op">=</span>song_id)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ax.plot(para_list, compute_mean_result(result_dict, song_selected), color<span class="op">=</span><span class="st">'k'</span>, </span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            linestyle<span class="op">=</span><span class="st">'-'</span>,linewidth<span class="op">=</span><span class="st">'2'</span>, label<span class="op">=</span><span class="st">'Mean'</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> legend<span class="op">==</span><span class="va">True</span>:</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>).get_frame().set_alpha(<span class="fl">.6</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(xlabel)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(ylabel)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    ax.grid()</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ylim <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        ax.set_ylim(ylim)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim([para_list[<span class="dv">0</span>], para_list[<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> experiment_chord_recognition(song_selected, song_dict, X_dict, ann_dict, </span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>                                 para_list, para_type<span class="op">=</span><span class="va">None</span>, p<span class="op">=</span><span class="fl">0.15</span>, </span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>                                 filt_len<span class="op">=</span><span class="va">None</span>, filt_type<span class="op">=</span><span class="st">'mean'</span>, detail<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="bu">len</span>(para_list)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    result_F_Tem <span class="op">=</span> np.zeros(M)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    result_F_HMM <span class="op">=</span> np.zeros(M)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    result_F_Tem_dict <span class="op">=</span> {}</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    result_F_HMM_dict <span class="op">=</span> {}</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> detail <span class="kw">is</span> <span class="va">True</span>:            </span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'Processing:'</span>, song_dict[s][<span class="dv">0</span>])</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M): </span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> para_type <span class="op">==</span> <span class="st">'smooth'</span>:</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>                filt_len <span class="op">=</span> para_list[m]</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> para_type <span class="op">==</span> <span class="st">'p'</span>:</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>                p <span class="op">=</span> para_list[m]</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>            output <span class="op">=</span> chord_recognition_all(X_dict[s], ann_dict[s][<span class="dv">0</span>], </span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>                                           filt_len<span class="op">=</span>filt_len, filt_type<span class="op">=</span>filt_type, p<span class="op">=</span>p)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>            result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>            result_F_Tem[m] <span class="op">=</span> result_Tem[<span class="dv">2</span>]</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>            result_F_HMM[m] <span class="op">=</span> result_HMM[<span class="dv">2</span>]</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>        result_F_Tem_dict[s] <span class="op">=</span> np.copy(result_F_Tem)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>        result_F_HMM_dict[s] <span class="op">=</span> np.copy(result_F_HMM)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result_F_Tem_dict, result_F_HMM_dict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>4곡 각각에 대해 평활(smoothing) 매개변수 <span class="math inline">\(L\)</span>에 따른 <span class="math inline">\(\mathrm{F}\)</span>스코어를 보여주는 평가 곡선을 계산한다. 또한, 4곡의 평균 곡선이 표시된다. 세 가지 크로마그램(<code>STFT</code>, <code>CQT</code>, <code>IIR</code>)과 두 개의 화음 인식기(<code>템플릿</code>, <code>HMM</code>)에 대한 곡선을 본다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:25:23.874463Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:20:01.316477Z&quot;}" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>para_list <span class="op">=</span> np.arange(<span class="dv">32</span>) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>    </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Prefiltering experiment using STFT-based chromagrams ====='</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>result_STFT <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_STFT, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                           ann_dict_STFT, para_list, para_type<span class="op">=</span><span class="st">'smooth'</span>, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                           p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>, filt_type<span class="op">=</span><span class="st">'mean'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Prefiltering experiment using CQT-based chromagrams ====='</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>result_CQT  <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_CQT, </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                                           ann_dict_CQT, para_list, para_type<span class="op">=</span><span class="st">'smooth'</span>, </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                                           p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>, filt_type<span class="op">=</span><span class="st">'mean'</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Prefiltering experiment using IIR-based chromagrams ====='</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>result_IIR  <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_IIR, </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                                           ann_dict_IIR, para_list, para_type<span class="op">=</span><span class="st">'smooth'</span>, </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                                           p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>, filt_type<span class="op">=</span><span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>===== Prefiltering experiment using STFT-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+
+===== Prefiltering experiment using CQT-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+
+===== Prefiltering experiment using IIR-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+</code></pre>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:19:57.118424Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:19:57.118424Z&quot;}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot result</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>xlabel<span class="op">=</span><span class="st">'Smoothing length (frames)'</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ylim <span class="op">=</span> [<span class="fl">0.3</span>, <span class="dv">1</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'STFT, Template'</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_STFT[<span class="dv">0</span>], ax[<span class="dv">0</span>, <span class="dv">0</span>], </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'STFT, HMM'</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_STFT[<span class="dv">1</span>], ax[<span class="dv">1</span>, <span class="dv">0</span>], </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'CQT, Template'</span>                           </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_CQT[<span class="dv">0</span>], ax[<span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'CQT, HMM'</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_CQT[<span class="dv">1</span>], ax[<span class="dv">1</span>, <span class="dv">1</span>], </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'IIR, Template'</span>                           </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_IIR[<span class="dv">0</span>], ax[<span class="dv">0</span>, <span class="dv">2</span>], </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'IIR, HMM'</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_IIR[<span class="dv">1</span>], ax[<span class="dv">1</span>, <span class="dv">2</span>], </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>STFT 경우와 <strong>템플릿 기반 화음 인식기</strong>에서 F-measure는 <span class="math inline">\(L=1\)</span>에서 <span class="math inline">\(\mathrm{F}=0.39\)</span>이다. <span class="math inline">\(L\)</span>가 증가함에 따라 향상되고 <span class="math inline">\(20\)</span>에서 <span class="math inline">\(30\)</span> 사이 <span class="math inline">\(L\)</span>에 대해 대략 <span class="math inline">\(\mathrm{F}=0.55\)</span>의 최대값에 도달한다. 그런 다음 <span class="math inline">\(L\)</span>를 더 올리면 다시 감소한다. CQT 기반 및 IIR 기반 크로마그램을 사용할 때도 유사한 경향을 관찰할 수 있다.</p></li>
+<li><p>모든 경우(<code>STFT</code>, <code>CQT</code>, <code>IIR</code>)에서 스무딩은 특징의 <strong>시간 변동(temporal fluctuations) 및 로컬 이상값(local outliers)을 제거</strong>하여 프레임별 분류 결과를 개선한다. 또한 스무딩은 음악적으로 동일한 화음에 속하는 <strong>비동기 음(nonsynchronous notes)을 통합</strong>할 수 있다. 반면에 스무딩은 <strong>시간 해상도 (temporal resolution)를 감소</strong>시키고 인식기가 짧은 듀레이션의 화음을 감지하지 못하게 할 수 있다.</p></li>
+<li><p>비틀즈 노래의 경우 오디오의 약 1~2초에 해당하는 스무딩 윈도우는 이상값에 대한 견고성 증가와 시간 해상도 감소 사이에서 적절한 절충안으로 보인다. 그러나 이 trade-off는 실험에 사용된 기본 오디오 자료의 화음 변화 속도에 크게 의존한다.</p></li>
+<li><p><strong>HMM 기반 화음 인식기</strong>의 경우 특징의 시간적 스무딩은 화음 인식 정확도에 덜 중요하거나 심지어 부정적인 영향을 미친다. 이미 분류 단계에서 일부 <strong>사후 필터링(postfiltering)</strong> 을 통합한다. 따라서 분류에 앞서 추가적인 평활화는 전체 인식 결과를 더 이상 개선하지 않는다.</p></li>
+</ul>
+</section>
+<section id="자기-전이-확률-self-transition-probability" class="level2">
+<h2 class="anchored" data-anchor-id="자기-전이-확률-self-transition-probability">자기 전이 확률 (Self-Transition Probability)</h2>
+<ul>
+<li><p>HMM 기반 사후필터링의 맥락에서 <a href="https://ieeeexplore.ieee.org/document/6691936">Cho and Bello</a>는 연구에서 <strong>자기 전이 확률(self-transition probability)</strong> 의 중요성을 강조했다.</p></li>
+<li><p><span class="math inline">\(\mathbf{C}\)</span>에서 <span class="math inline">\(\mathbf{G}\)</span>로의 전환과 같이 음악적으로 두드러진 특정 전환의 강화(예: 으뜸음-딸림음 관계 표현)가 음악적으로 의미 있는 특정 화음의 증폭으로 이어질 수 있지만, 주요 개선은 기본적으로 화음 변경 횟수를 줄이는 <strong>높은 자기 전이 확률</strong>로부터 얻는다.</p></li>
+<li><p><strong>균일 전리 확률 행렬</strong>을 사용할 수 있다. 이 행렬에서는 자기 전환을 제외하고 모든 전환에 동일한(상대적으로 작은) 확률 값이 할당된다. <a href="https://ieeeexplore.ieee.org/document/6691936">Cho and Bello</a>의 연구에 따르면, 이 균일한 전이 확률 행렬을 사용하더라도 더 복잡한 전이 확률 행렬을 사용할 때와 유사한 개선을 얻을 수 있다.</p></li>
+<li><p>균일 전리 확률 행렬을 정의하려면 주대각선으로 인코딩된 자기 전이에 사용되는 매개변수 <span class="math inline">\(p\in[0,1]\)</span>를 지정해야 한다. 대각선이 아닌 확률은 다음과 같이 지정된다. <span class="math display">\[q = \frac{1-p}{I}\]</span> 여기서 <span class="math inline">\(I\)</span>는 HMM 상태(state)의 수이다(이 시나리오에서는 <span class="math inline">\(I=24\)</span>임).</p></li>
+<li><p>다음 코드 셀에서 자기-전이 매개변수 <span class="math inline">\(p\in[0, 0.02, 0.04, \ldots, 0.98, 1]\)</span>의 스윕(sweep)을 고려하는 작은 실험을 제시한다.</p></li>
+<li><p>관찰할 수 있듯이 <span class="math inline">\(p\approx0.22\)</span>(STFT 기반 크로마그램 사용 시)에 대해 대략 <span class="math inline">\(\mathrm{F}=0.60\)</span>, <span class="math inline">\(p\approx0.18\)</span>(CQT 기반 및 IIR 기반 크로마그램 사용 시)에 대해 <span class="math inline">\(\mathrm{F}=0.80\)</span>를 얻는다.</p></li>
+<li><p><span class="math inline">\(p\)</span> 매개변수는 예상되는 화음 변화율과 관련된 속성을 반영하며, 이는 화음 주석들의 통계 및 사용된 feature rate에 크게 의존한다. 데이터 기반 기계 학습에서 자기 전환 매개변수는 독립적인 <strong>validation set</strong>를 사용하여 최적화할 수 있는 <strong>hyperparameter</strong>로 간주할 수 있다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:19:57.119421Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:19:57.119421Z&quot;}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>para_list <span class="op">=</span> (np.arange(<span class="dv">51</span>)) <span class="op">*</span> <span class="fl">0.02</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Self-transition probability experiment using STFT-based chromagrams ====='</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>result_STFT <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_STFT, ann_dict_STFT, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                                           para_list, para_type<span class="op">=</span><span class="st">'p'</span>, p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Self-transition probability experiment using CQT-based chromagrams ====='</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>result_CQT  <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_CQT, ann_dict_CQT, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                           para_list, para_type<span class="op">=</span><span class="st">'p'</span>, p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'===== Self-transition probability experiment using IIR-based chromagrams ====='</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>result_IIR  <span class="op">=</span> experiment_chord_recognition(song_selected, song_dict, X_dict_IIR, ann_dict_IIR, </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                                           para_list, para_type<span class="op">=</span><span class="st">'p'</span>, p<span class="op">=</span><span class="fl">0.15</span>, filt_len<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot result</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.5</span>))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>xlabel<span class="op">=</span><span class="st">'Transition probability'</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ylim <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.95</span>]</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'STFT, HMM'</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_STFT[<span class="dv">1</span>], ax[<span class="dv">0</span>], ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'CQT, HMM'</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_CQT[<span class="dv">1</span>], ax[<span class="dv">1</span>], ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'IIR, HMM'</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plot_statistics(para_list, song_dict, song_selected, result_IIR[<span class="dv">1</span>], ax[<span class="dv">2</span>], ylim<span class="op">=</span>ylim, title<span class="op">=</span>title, xlabel<span class="op">=</span>xlabel)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>===== Self-transition probability experiment using STFT-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+
+===== Self-transition probability experiment using CQT-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+
+===== Self-transition probability experiment using IIR-based chromagrams =====
+Processing: Let It Be
+Processing: Here Comes The Sun
+Processing: Ob-La-Di Ob-La-Da
+Processing: Penny Lane
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="음악적-관련성" class="level1">
+<h1>음악적 관련성</h1>
+<section id="클래스-불균형class-imbalance" class="level2">
+<h2 class="anchored" data-anchor-id="클래스-불균형class-imbalance">클래스 불균형(Class Imbalance)</h2>
+<ul>
+<li><p>이전에 이미 언급했듯이 자동화된 화성 분석 및 참조 주석을 기반으로 한 평가는 일반적으로 상당히 단순화된다. 따라서 평가 측정(예: F-measure)은 알고리즘의 성능과 인식 결과의 음악적 관련성에 대해 매우 제한된 관점만 제공한다.</p></li>
+<li><p>구체적인 예로서 노래의 일부 전면적 통계를 기반으로 단일 장, 단3화음을 결정하고 모든 시간 프레임에 해당하는 화음 라벨을 출력하는 다소 <strong>둔한 화음 인식기</strong>를 고려해 보자.</p>
+<ul>
+<li>노래 “Ob-La-Di, Ob-La-Da”의 경우, 이 접근법은 노래의 키 <span class="math inline">\(\mathrm{B}^\flat\)</span> major를 인식하고 tonic 화음 <span class="math inline">\(\mathrm{B}^\flat\)</span>에 대해 노래에 대한 동일한 화음 라벨을 전체 길이 동안 출력할 수 있다.</li>
+</ul></li>
+<li><p>다음 코드 셀에서 볼 수 있듯이 이 절차는 <span class="math inline">\(\mathrm{F}=0.551\)</span>의 F-점수를 달성한다. 특히 CQT 기반 크로마그램을 사용하는 템플릿 기반 접근 방식이 <span class="math inline">\(\mathrm{F}=0.503\)</span>의 정확도만 달성한다는 점을 고려할 때 이는 나쁘지 않은 것 같다.</p>
+<ul>
+<li>그렇다면 <span class="math inline">\(\mathrm{F}=0.551\)</span> 값은 무엇을 의미할까?</li>
+<li>이 단조로운 절차가 템플릿 기반 접근 방식보다 “더 나은” 것인가?</li>
+</ul></li>
+<li><p>화음 라벨링 작업을 해결하는 대신, 이 단순한 인식기는 가장 흔한 화음 발생에 대한 해당 데이터의 통계에 대해 더 많은 정보를 알려준다.</p></li>
+<li><p>일반적으로 평가 결과를 보다 잘 평가하기 위해서는 데이터 분포에 대한 정보를 포함하는 것이 중요하다.</p></li>
+<li><p>특히 <strong>클래스 분포의 불균형(imbalance)</strong> 은 분류(classification) 접근 방식의 실제 성능에 대해서는 어떤 것도 이야기 할 수 없지만, 매우 높은 평가 측정이 나올 수 있다.</p></li>
+<li><p>이 논의를 마무리하기 위해, HMM 기반 접근법이 <span class="math inline">\(\mathrm{F}=0.895\)</span>의 F-측정값을 생성한다는 점에 주목하자. 이는 위의 단순한 접근법의 <span class="math inline">\(\mathrm{F}=0.551\)</span>보다 훨씬 높다.</p></li>
+<li><p>시각화에서 볼 수 있듯이(예: <span class="math inline">\(1700\)</span>와 <span class="math inline">\(2000\)</span> 프레임 사이의 섹션 참조) HMM 기반 접근 방식은 템플릿 기반 접근 방식의 일부 오류를 수정한다. 여기서 메이저 화음 <span class="math inline">\(\mathrm{E}^\flat\)</span> (참조)는 마이너 화음 <span class="math inline">\(\mathrm{E}^\flat\mathrm{m}\)</span> (추정)과 혼동된다.</p></li>
+<li><p>이러한 “장-단 화음 혼동”은 자동화된 절차에서 발생하는 가장 일반적인 인식 오류 중 하나이다.</p>
+<ul>
+<li>이러한 혼동은 두 개의 3화음이 3개 음 중 2개인 근음(root note)과 5도(fifth)를 공유한다는 사실에 기인한다. 일반적으로 조화 부분음의 존재로 인해 더 많은 혼란이 발생할 수 있다(예: 근음의 5번째 배음은 장3도와 같음).</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:19:57.120418Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:19:57.120418Z&quot;}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">2</span>]    </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_CQT[s], ann_dict_CQT[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    chord_dull <span class="op">=</span> np.zeros(chord_Tem.shape)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    chord_dull[<span class="dv">10</span>, :] <span class="op">=</span> <span class="dv">1</span>    </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    result_dull <span class="op">=</span> compute_eval_measures(ann_dict_CQT[s][<span class="dv">0</span>], chord_dull)    </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; Dull]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_CQT[s][<span class="dv">0</span>], result_dull,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                  chord_dull, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; Template]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_CQT[s][<span class="dv">0</span>], result_Tem, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                                  chord_Tem, chord_labels, title<span class="op">=</span>title)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Song: </span><span class="sc">%s</span><span class="st"> [CQT; HMM]'</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_CQT[s][<span class="dv">0</span>], result_HMM, </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                                  chord_HMM, chord_labels, title<span class="op">=</span>title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-17-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="화음-라벨-감소" class="level2">
+<h2 class="anchored" data-anchor-id="화음-라벨-감소">화음 라벨 감소</h2>
+<ul>
+<li><p>화음 인식 방식의 또 다른 주요 문제는 <span class="math inline">\(12\)</span> 장조 및 <span class="math inline">\(12\)</span> 단조 3화음에 해당하는 <span class="math inline">\(24\)</span> 화음 클래스로만 제한된다는 것이다.</p></li>
+<li><p>보다 일반적인 설정을 설명하기 위해 참조 주석에 사용되는 다른 코드 유형(예: 7도, 증가(augmented) 및 감소(diminished) 화음)을 장조 및 단조 3화음으로 줄였다. 이하에서는 이 변환을 <strong>트라이어드(=3화음) 축소 (triad reduction)</strong> 라고 하자.</p></li>
+<li><p>하나의 명백한 물음은 화음 인식 오류가 그러한 화음 유형 축소가 사용된 악절에서 더 자주 발생하는지 여부이다.</p></li>
+<li><p>이 질문을 조사하기 위해 <span class="math inline">\(24\)</span> 장,단3화음에 포함되지 않은 화음 유형을 비화음(non-chord) 라벨 <span class="math inline">\(\mathbf{N}\)</span>로 대체하는 두 번째 축소 표현을 고려해본다. 이하에서는 이 변환을 <strong>비화음 축소(non-chord reduction)</strong> 라고 하자.</p></li>
+<li><p>예를 들어, 원래 참조 주석에서 이러한 추가 화음 유형이 많이 발생하는 노래 “Penny Lane”을 보자. 다음 그림에서 결과적인 3화음 축소와 비화음 축소(비화음 라벨 <span class="math inline">\(\mathbf{N}\)</span>가 흰색으로 표시됨)를 보여준다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:27:17.602600Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:27:17.074703Z&quot;}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> [<span class="dv">3</span>]:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    song_id <span class="op">=</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    fn_ann <span class="op">=</span> song_dict[s][<span class="dv">3</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    fn_ann_orig <span class="op">=</span> fn_ann.replace(<span class="st">'_simplified'</span>, <span class="st">''</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read original annotation (Harte) and triad-reduced annotation</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    ann_orig, _ <span class="op">=</span> read_structure_annotation(fn_ann_orig)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    ann, _ <span class="op">=</span> read_structure_annotation(fn_ann)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Replace in original annotation all labels that were reducued by non-chord label </span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ann)):</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ann[k][<span class="dv">2</span>] <span class="op">!=</span> ann_orig[k][<span class="dv">2</span>]:</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>            ann_orig[k][<span class="dv">2</span>] <span class="op">=</span> <span class="st">'N'</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">1.2</span>), time_label<span class="op">=</span><span class="st">'Time (seconds)'</span>, </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>                           print_labels<span class="op">=</span><span class="va">False</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Song: </span><span class="sc">%s</span><span class="st">: Triad reduction'</span> <span class="op">%</span> song_id)    </span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    plot_segments(ann_orig, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">1</span>), </span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>                           print_labels<span class="op">=</span><span class="va">False</span>, colors<span class="op">=</span>color_ann, alpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Song: </span><span class="sc">%s</span><span class="st">: Non-chord reduction'</span> <span class="op">%</span> song_id)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>다음으로, 3화음 축소에 기반한 참조 주석을 한 번 사용하고, 비화음 축소에 기반한 주석을 한 번 사용하여 HMM 기반 화음 인식 접근 방식을 평가해보자.</li>
+</ul>
+<ol type="1">
+<li><strong>아이템</strong> <span class="math inline">\((n, \lambda)\)</span>는 세트 <span class="math inline">\(\mathcal{I}=[1:N]\times \Lambda\)</span>의 요소이다. 이 규칙에서 화음이 아닌 라벨 <span class="math inline">\(\mathbf{N}\)</span>는 고려되지 않은 상태로 남는다.</li>
+<li>결과적으로 <strong>관련(relevant)</strong>(또는 <strong>양수</strong>) 아이템은 <span class="math inline">\((n, \lambda^\mathrm{Ref}_{n})\)</span>와 <span class="math inline">\(\lambda^\mathrm{Ref}_{n}\not=\mathbf{N}\)</span>의 쌍이다.</li>
+<li>HMM 기반 화음 인식 접근 방식은 각 프레임 <span class="math inline">\(n\in[1:N]\)</span>에 대한 추정 <span class="math inline">\(\lambda_{n}\in\Lambda\)</span>를 생성하므로, 쌍 <span class="math inline">\((n,\lambda_{n})\)</span>는 참조 주석의 프레임이 <span class="math inline">\(\lambda^\mathrm{Ref}_{n}=\mathbf{N}\)</span>인 경우 <strong>false positive</strong>으로 계산된다.</li>
+</ol>
+<ul>
+<li>이를 염두에 두고 다음 그림에 표시된 화음 인식 결과를 살펴보자.
+<ul>
+<li><strong>3화음 축소</strong>에 기반한 참조 주석을 사용하여 precision <span class="math inline">\(\mathrm{P}=0.704\)</span>, recall <span class="math inline">\(\mathrm{R}=0.726\)</span> 및 F-측정값 <span class="math inline">\(\mathrm{F}=0.715\)</span>를 얻는다.</li>
+<li><strong>비화음 축소</strong>에 기반한 참조 주석을 사용하여 <span class="math inline">\(\mathrm{P}=0.485\)</span>, <span class="math inline">\(\mathrm{R}=0.925\)</span> 및 <span class="math inline">\(\mathrm{F}=0.636\)</span>를 얻는다.</li>
+</ul></li>
+<li><strong>recall의 증가</strong>는 <strong>축소된 화음 라벨에 대해 화음 인식 오류가 종종 발생</strong>한다는 가설을 정확히 뒷받침한다.</li>
+<li><strong>precision 감소</strong>는 화음 인식기가 모든 프레임 <span class="math inline">\(n\in[1:N]\)</span>에 대해 화음 라벨 <span class="math inline">\(\lambda_n\in\Lambda\)</span>를 출력하기 때문이다.</li>
+<li>이 결과는 예를 들어 모든 <span class="math inline">\(24\)</span> 화음 라벨의 출력 확률이 특정 임계값 아래로 떨어지는 경우, 화음 인식기가 비화음의 라벨도 출력하도록 허용함으로써 개선될 수 있다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:33:13.700883Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:33:11.409988Z&quot;}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">3</span>] </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> song_selected:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_CQT[s], ann_dict_CQT[s][<span class="dv">0</span>], p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    result_Tem, result_HMM, chord_Tem, chord_HMM, chord_sim <span class="op">=</span> output</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    song_id <span class="op">=</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    fn_ann <span class="op">=</span> song_dict[s][<span class="dv">3</span>]</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    fn_ann_orig <span class="op">=</span> fn_ann.replace(<span class="st">'_simplified'</span>, <span class="st">''</span>)    </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    ann_orig, _ <span class="op">=</span> read_structure_annotation(fn_ann_orig)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span>  convert_chord_ann_matrix(fn_ann_orig, chord_labels, Fs<span class="op">=</span>Fs_X_dict_CQT[s],</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                                                 N<span class="op">=</span>X_dict_CQT[s].shape[<span class="dv">1</span>], last<span class="op">=</span><span class="va">False</span>)    </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    ann_matrix_N <span class="op">=</span> output[<span class="dv">0</span>]    </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> chord_recognition_all(X_dict_CQT[s], ann_matrix_N, p<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    result_Tem_N, result_HMM_N, chord_Tem_N, chord_HMM_N, chord_sim_N <span class="op">=</span> output    </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Triad reduction: </span><span class="sc">%s</span><span class="st"> [CQT; HMM] '</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_dict_CQT[s][<span class="dv">0</span>], result_HMM, chord_HMM, chord_labels, title<span class="op">=</span>title)    </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Non-chord label: </span><span class="sc">%s</span><span class="st"> [CQT; HMM] '</span> <span class="op">%</span> song_dict[s][<span class="dv">0</span>]</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    plot_chord_recognition_result(ann_matrix_N, result_HMM_N, chord_HMM_N, chord_labels, title<span class="op">=</span>title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="6.4.Chord_Recognition_with_the_Beatles_Example_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="결론" class="level1">
+<h1>결론</h1>
+<ul>
+<li><p>요약하면, 시간적 피쳐 스무딩(temporal feature smoothing)은 순전히 프레임 별로 작동하는 화음 인식기의 전체 평가 측정을 개선하는 쉬운 방법이라고 말할 수 있다. 그러나 “최적” 스무딩 길이는 화음 지속 시간 분포에 따라 크게 달라진다.</p></li>
+<li><p>고정 길이의 평균화 필터를 사용하는 대신, 음악적으로 정보를 얻은 적응형 세분화 기술(adaptive segmentation techniques)을 사용하는 것이 대안이다. 예를 들어 화음 변경은 종종 비트(beat) 위치와 함께 진행된다. 따라서 <strong>beat-synchronous</strong> 방식으로 필터링을 수행할 수 있다. 여기서 각 분석 창은 두 개의 연속 비트 위치에 의해 결정된다. 그러나 자동화된 방법으로 비트 위치를 찾는 것은 그 자체로 어려운 작업이기도 하다.</p></li>
+<li><p>분류 단계 이전에 특징을 수정하는 대신 또 다른 일반적인 접근 방식은 HMM 기반 접근 방식과 정확히 일치하는 패턴 매칭 단계 내에서 일종의 필터링을 수행하는 것이다. <strong>사후 필터링</strong>(HMM 사용)과 <strong>사전 필터링</strong>(피처 스무딩 사용)의 조합이 전체 인식 결과를 크게 개선하지 않는다는 것을 확인했다.</p></li>
+<li><p>비틀즈 컬렉션에는 중심 주파수가 <span class="math inline">\(440~\mathrm{Hz}\)</span>인 예상 참고 피치 <span class="math inline">\(\mathrm{A4}\)</span>에서 벗어난 곡들이 다수 있다. 이러한 편차는 화음 인식기에 대한 입력 역할을 하는 크로마그램의 품질에 치명적인 결과를 초래할 수 있다. 따라서 화음 인식 시스템에서 중요한 단계 중 하나는 튜닝 추정(tuning estimation)을 수행하여 튜닝 효과를 보상한 다음, 주파수 축의 피치 기반 로그 분할에 사용되는 중심 주파수를 조정하는 것이다.</p></li>
+<li><p>비틀즈 컬렉션은 단 하나의 록 밴드로 제한되지만, 이 데이터 세트를 실험하는 것은 화음 인식 시스템을 개발하고 비교할 때 매우 유익할 수 있다. 특히 데이터 기반 기술(예: 최근 딥 러닝 기술)을 사용하는 경우 데이터 세트를 <strong>훈련(training) 세트</strong>, <strong>검증(validation) 세트</strong> 및 <strong>테스트(test) 세트</strong>라는 분리된 하위 집합으로 분할하는 것이 중요하다. 훈련 세트를 사용하여 화음 템플릿을 조정하거나 특정 HMM 매개변수를 학습할 수 있다. 검증 세트는 예를 들어 HMM 아키텍처를 결정하는 하이퍼파라미터를 조정하는 데 사용될 수 있다. 마지막으로 테스트 세트는 최종 시스템을 테스트하고 평가하는 데 사용한다.</p></li>
+<li><p>데이터 세트 분할에 대한 전체 절차의 종속성을 줄이기 위해 종종 여러 라운드의 <strong>교차 검증(cross-validation)</strong> 을 수행한다. 한 가지 방법은 데이터 세트를 동일한 크기의 <span class="math inline">\(K\)</span> 하위 집합(소위 <strong>fold</strong>)으로 임의로 분할하는 것이다. 하위 집합 중 하나는 테스트 집합으로 사용되는 반면 다른 <span class="math inline">\(K-1\)</span> 하위 집합의 합집합은 훈련 및 검증 집합으로 사용된다. 교차 검증은 테스트 세트로 정확히 한 번 제공되는 각 <span class="math inline">\(K\)</span> 하위 집합으로 <span class="math inline">\(K\)</span> 번 반복된다. 그런 다음 <span class="math inline">\(K\)</span> 결과는 예를 들어 고려된 평가 척도의 평균을 취하여 결합되어 단일 추정치를 형성한다. 일반적으로 <strong><span class="math inline">\(K\)</span>-fold 교차 검증</strong> 으로 알려진 이 접근 방식은 일종의 훈련이 포함된 화음 인식 절차를 평가하는 데 자주 사용된다.</p></li>
+</ul>
+<hr>
+<p>출처:</p>
+<ul>
+<li>https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_Beatles.html</li>
+</ul>
+<hr>
+<p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/6.%20Chord%20Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.ipynb">구글 Colab 링크</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jo-cho/MIRBlog" data-repo-id="R_kgDOI83zeg" data-category="General" data-category-id="DIC_kwDOI83zes4CUQJ2" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
