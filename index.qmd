@@ -8,7 +8,7 @@ listing:
   categories: true
   sort-ui: true
   filter-ui: true
-  feed: true
+  feed: false
 page-layout: full
 title-block-banner: false
 ---
