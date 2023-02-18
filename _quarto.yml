@@ -3,7 +3,7 @@ project:
   output-dir: docs
   
 website:
-  page-navigation: true
+  #page-navigation: true
   title: "음악정보검색 입문"
   site-url: https://jo-cho.github.io/MIRBlog/
   repo-url: https://github.com/jo-cho/MIRBlog
@@ -14,16 +14,15 @@ website:
       - about.qmd
       - icon: github
         menu: 
-          - text: Source Code
-            href: https://github.com/jo-cho/MIRBlog/tree/main/docs
-          - text: Report a Bug
-            href: https://github.com/jo-cho/MIRBlog/discussions/4 
+        - text: Source Code
+          href: https://github.com/jo-cho/MIRBlog/tree/main/docs
+        - text: Report a Bug
+          href: https://github.com/jo-cho/MIRBlog/discussions/4 
   sidebar:
-    pinned: true
-    align: center
-    style: "docked"
-    search: true
+    pinned: false
+    header: "내비게이션"
     collapse-level: 2
+    alignment: center
     contents:
       - href: index.qmd
         text: 홈
@@ -95,13 +94,21 @@ website:
                 text: "오디오 매칭"
               - href: posts/8.%20Content-Based%20Audio%20Retrieval/8.4.Version_Identification.ipynb
                 text: "버전 식별"
-          - section: "9. 음악적 오디오 분해"
+          - section: "9. 오디오 분해"
+            contents:
+              - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.1.Harmonic–Percussive_Separation.ipynb
+                text: "화성-타악 분리"
+              - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.2.Melody_Extraction.ipynb
+                text: "멜로디 추출"
+              - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.3.NMF-Based_Audio_Decomposition.ipynb
+                text: "NMF 기반 오디오 분해"
+            
       
 format:
   html:
     theme: flatly
     css: styles.css
-    fontsize: 1.0em
+    fontsize: 1.1em
 
 
         

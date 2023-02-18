@@ -5,7 +5,11 @@
 freeze: true
 
 # Enable banner style title blocks
-title-block-banner: true
+title-block-banner: false
+
+page-navigation: true
+fig-align: center
+fig-width: 100
 
 # blog-comments
 comments: 
@@ -18,3 +22,7 @@ format:
     toc-title: "목차"
     smooth-scroll: true
     page-navigation: true
+    fig-align: center
+    fig-width: 100
+    fontsize: 1.1em
+    
