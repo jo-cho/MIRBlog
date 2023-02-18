@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -199,7 +199,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#이산discrete-단기-푸리에-변환-short-time-fourier-transform-stft" id="toc-이산discrete-단기-푸리에-변환-short-time-fourier-transform-stft" class="nav-link active" data-scroll-target="#이산discrete-단기-푸리에-변환-short-time-fourier-transform-stft">이산(Discrete) 단기 푸리에 변환 (Short-Time Fourier Transform, STFT)</a>
+  <ul class="collapse">
+  <li><a href="#missing-time-localization" id="toc-missing-time-localization" class="nav-link" data-scroll-target="#missing-time-localization">“Missing Time Localization”</a></li>
+  <li><a href="#기본-개념" id="toc-기본-개념" class="nav-link" data-scroll-target="#기본-개념">기본 개념</a></li>
+  <li><a href="#윈도우window" id="toc-윈도우window" class="nav-link" data-scroll-target="#윈도우window">윈도우(window)</a></li>
+  <li><a href="#discrete-stft의-정의" id="toc-discrete-stft의-정의" class="nav-link" data-scroll-target="#discrete-stft의-정의">Discrete-STFT의 정의</a></li>
+  </ul></li>
+  <li><a href="#스펙트로그램-spectrogram" id="toc-스펙트로그램-spectrogram" class="nav-link" data-scroll-target="#스펙트로그램-spectrogram">스펙트로그램 (Spectrogram)</a>
+  <ul class="collapse">
+  <li><a href="#윈도우-유형에-따른-스펙트로그램-차이" id="toc-윈도우-유형에-따른-스펙트로그램-차이" class="nav-link" data-scroll-target="#윈도우-유형에-따른-스펙트로그램-차이">윈도우 유형에 따른 스펙트로그램 차이</a></li>
+  <li><a href="#윈도우-크기에-따른-스펙트로그램-차이" id="toc-윈도우-크기에-따른-스펙트로그램-차이" class="nav-link" data-scroll-target="#윈도우-크기에-따른-스펙트로그램-차이">윈도우 크기에 따른 스펙트로그램 차이</a></li>
+  <li><a href="#시간-및-주파수-인덱스에-대한-해석" id="toc-시간-및-주파수-인덱스에-대한-해석" class="nav-link" data-scroll-target="#시간-및-주파수-인덱스에-대한-해석">시간 및 주파수 인덱스에 대한 해석</a></li>
+  </ul></li>
+  <li><a href="#패딩-전략padding-strategy" id="toc-패딩-전략padding-strategy" class="nav-link" data-scroll-target="#패딩-전략padding-strategy">패딩 전략(padding strategy)</a></li>
+  <li><a href="#예시" id="toc-예시" class="nav-link" data-scroll-target="#예시">예시</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 

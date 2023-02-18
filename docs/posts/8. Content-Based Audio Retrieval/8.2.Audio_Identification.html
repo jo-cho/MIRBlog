@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-02-18">
+
+<title>조조의 음악정보검색 입문 - 8.2. 오디오 식별</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">조조의 음악정보검색 입문</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jo-cho/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">8.2. 오디오 식별</h1>
+            <p class="subtitle lead">Audio Identification</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">내용 기반 오디오 검색</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cheonghyo Cho </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 18, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#오디오-식별-audio-identification" id="toc-오디오-식별-audio-identification" class="nav-link active" data-scroll-target="#오디오-식별-audio-identification">오디오 식별 (Audio Identification)</a>
+  <ul class="collapse">
+  <li><a href="#일반적-요구사항-general-requirements" id="toc-일반적-요구사항-general-requirements" class="nav-link" data-scroll-target="#일반적-요구사항-general-requirements">일반적 요구사항 (General Requirements)</a></li>
+  <li><a href="#스펙트럼-피크spectral-peaks-기반의-오디오-지문" id="toc-스펙트럼-피크spectral-peaks-기반의-오디오-지문" class="nav-link" data-scroll-target="#스펙트럼-피크spectral-peaks-기반의-오디오-지문">스펙트럼 피크(Spectral Peaks) 기반의 오디오 지문</a></li>
+  <li><a href="#constellation-map" id="toc-constellation-map" class="nav-link" data-scroll-target="#constellation-map">Constellation Map</a>
+  <ul class="collapse">
+  <li><a href="#constellation-map의-견고성robustness" id="toc-constellation-map의-견고성robustness" class="nav-link" data-scroll-target="#constellation-map의-견고성robustness">Constellation map의 견고성(robustness)</a></li>
+  </ul></li>
+  <li><a href="#피크-매칭의-평가-지표" id="toc-피크-매칭의-평가-지표" class="nav-link" data-scroll-target="#피크-매칭의-평가-지표">피크 매칭의 평가 지표</a></li>
+  <li><a href="#매칭-함수-matching-function" id="toc-매칭-함수-matching-function" class="nav-link" data-scroll-target="#매칭-함수-matching-function">매칭 함수 (Matching Function)</a></li>
+  <li><a href="#인덱싱indexing" id="toc-인덱싱indexing" class="nav-link" data-scroll-target="#인덱싱indexing">인덱싱(Indexing)</a></li>
+  <li><a href="#피크-쌍-peak-pairs" id="toc-피크-쌍-peak-pairs" class="nav-link" data-scroll-target="#피크-쌍-peak-pairs">피크 쌍 (Peak Pairs)</a></li>
+  </ul></li>
+  <li><a href="#결론" id="toc-결론" class="nav-link" data-scroll-target="#결론">결론</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>내용 기반 오디오 검색 중 쿼리와 일치하는 오디오 녹음을 찾는 오디오 식별(audio identification)에 대해 설명한다. 스펙트럼 피크와 매칭 함수, 컨스텔레이션 맵(constellation map) 등에 대해 다룬다.</p>
+<blockquote class="blockquote">
+<p>이 글은 <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html">FMP(Fundamentals of Music Processing) Notebooks</a>을 참고로 합니다.</p>
+</blockquote>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:58.836933Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:58.822997Z&quot;}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span>  matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa.display</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> ndimage</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.plot_tools <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> ipd</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, Audio</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path_img <span class="op">=</span> <span class="st">'../img/8.content-based_audio_retrieval/'</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>path_data <span class="op">=</span> <span class="st">'../data_FMP/'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="오디오-식별-audio-identification" class="level1">
+<h1>오디오 식별 (Audio Identification)</h1>
+<ul>
+<li><p>레스토랑, 쇼핑몰 등에서 노래를 듣고 그것에 대해 더 알고 싶다고 가정해 보자. 예를 들어 노래 제목이나 연주자 또는 아티스트의 이름을 알고 싶다.</p></li>
+<li><p>최근 음악 검색 서비스는 오디오 녹음을 식별하고 적절한 콘텐츠 정보를 제공함으로써 이러한 상황에서 사용자를 돕는다. 일반적인 시나리오는 <strong>클라이언트</strong>(client)라고도 하는 사용자가 스마트폰을 사용하여 알려지지 않은 노래의 짧은 오디오 조각을 녹음하는 것이다. 그런 다음 오디오 조각은 압축되고 설명적인 오디오 특징인 소위 <strong>오디오 지문(fingerprints)</strong> 으로 변환된다.</p></li>
+<li><p>이러한 오디오 지문은 <strong>서버</strong>(server)라고도 하는 식별 서비스로 전송된다. 서버는 식별할 모든 음악 녹음을 포함하는 지문 데이터베이스와 이러한 녹음에 연결된 콘텐츠 정보를 포함하는 메타데이터 데이터베이스를 포함한 다양한 데이터 리소스를 호스팅한다. 서버는 클라이언트가 보낸 쿼리 핑거프린트를 수신하고 이를 데이터베이스에 포함된 지문과 비교한다. 이 단계는 일반적으로 적절한 인덱스 구조가 지원하는 효율적인 데이터베이스 조회를 통해 실현된다.</p></li>
+<li><p>식별에 성공하면 서버는 식별된 지문과 연동된 콘텐츠 정보를 검색하여 원하는 메타데이터를 클라이언트에 다시 전송한다. 다음 그림은 설명된 메타데이터 전달 서비스의 기본 <strong>클라이언트-서버 모델</strong>에 대한 개략적인 개요를 나타낸다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:58.851893Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:58.838928Z&quot;}" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Image(path_img<span class="op">+</span><span class="st">"FMP_C7_F02.png"</span>, width<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>내용 기반 음악 검색 영역 내에서 오디오 식별 작업은 학술 연구와 산업 모두에서 많은 관심을 받았다. 오디오 식별 기술은 이제 방송 및 저작권 모니터링과 같은 많은 상용 응용 프로그램이나 메타데이터 및 기타 콘텐츠 정보를 제공하기 위한 부가 가치 서비스에 통합된다.</li>
+</ul>
+<section id="일반적-요구사항-general-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="일반적-요구사항-general-requirements">일반적 요구사항 (General Requirements)</h2>
+<ul>
+<li><p>실제 음악 인식 시스템은 강력하고 계산적으로 효율적이어야 하므로 해결해야 할 기술적 과제가 많다. 특히 이러한 시스템에 사용되는 오디오 지문(fingerprints)은 높은 특이성, 견고성, 소형화 및 확장성을 비롯한 특정 요구 사항을 충족해야 한다.</p>
+<ul>
+<li><strong>Specificity</strong>(특이성): 오디오 지문은 몇 초의 오디오 조각으로도 해당 녹음을 안정적으로 식별하고 수백만 개의 다른 녹음과 구별할 수 있도록 높은 특이성을 가져야 한다.</li>
+<li><strong>Robustness</strong>(견고성): 신뢰할 만한 식별을 위해 지문은 손실 압축, 피치 이동, 시간 스케일링, 이퀄라이제이션 또는 동적 압축과 같은 배경 잡음 및 신호 왜곡에 대해 견고해야 한다.</li>
+<li><strong>Compactness</strong>(소형화): 오디오 지문은 대역폭(bandwidth)이 제한된 채널을 통해서도 전송될 수 있고 데이터베이스 측에 쉽게 저장 및 인덱싱될 수 있도록 하는 작은 크기여야 한다.</li>
+<li><strong>Scalability</strong>(확장성): 수백만 개의 녹음으로 확장하려면 오디오 지문 계산이 간단하고 효율적이어야 한다. 이는 처리 능력이 제한된 모바일 장치에서 지문을 계산할 때도 필요한 요구 사항이다.</li>
+</ul></li>
+<li><p>특정 요구 사항을 개선하는 것은 종종 다른 요구 사항의 성능 저하를 의미하며 모순되는 원칙 간의 트레이드-오프에 직면해야 한다.</p></li>
+<li><p>예를 들어 견고성을 높이면 일반적으로 잘못된 식별(오탐)이 증가하여 식별 시스템의 정확도가 떨어진다. 유사하게, 연산 및 소형화에서 유리하지만, 지문 크기의 과도한 감소는 식별 능력에 부정적인 영향을 미친다. 반대로 특이성과 견고성이 높은 지문은 계산에 광범위한 처리 능력이 필요한 경우 실제로 사용하지 못할 수 있다.</p></li>
+</ul>
+
+<table style="border:none;text-align:left;">
+<tbody><tr>
+<th style="border:none;text-align:left;">
+Short name
+</th>
+<th style="border:none;text-align:left;">
+Type of distortion
+</th>
+<th style="border:none;text-align:left;">
+Audio
+</th>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Original
+</td>
+<td style="border:none;text-align:left;">
+Original song
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Talking
+</td>
+<td style="border:none;text-align:left;">
+Superposition with other sources <br>(e.g., people talking in background)
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_Talking.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Noise
+</td>
+<td style="border:none;text-align:left;">
+Superposition with Gaussian noise
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_NoiseSNR-9.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Coding
+</td>
+<td style="border:none;text-align:left;">
+Strong coding artifacts
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_16kbits.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Faster
+</td>
+<td style="border:none;text-align:left;">
+Time scale modification (faster)
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_Faster.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+<tr>
+<td style="border:none;text-align:left;">
+Higher
+</td>
+<td style="border:none;text-align:left;">
+Pitch shifting (higher)
+</td>
+<td style="border:none;text-align:left;">
+<audio style="width: 300px;" src="../data_FMP/FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_higher.wav" type="audio/mpeg" controls="controls">
+</audio>
+</td>
+</tr>
+
+</tbody></table>
+</section>
+<section id="스펙트럼-피크spectral-peaks-기반의-오디오-지문" class="level2">
+<h2 class="anchored" data-anchor-id="스펙트럼-피크spectral-peaks-기반의-오디오-지문">스펙트럼 피크(Spectral Peaks) 기반의 오디오 지문</h2>
+<ul>
+<li><p>이제 스펙트럼 피크의 개념을 기반으로 오디오 지문을 설명한다. 시간-주파수 평면의 특징적인 포인트이기 때문에 이러한 피크는 노이즈 및 추가 음원이 있는 경우에도 변경되지 않는 경우가 많다. Avery Wang이 소개한 피크 기반 지문은 이제 상업용 오디오 식별 시스템에서 성공적으로 사용되고 있다.</p></li>
+<li><p>샘플링된 파형 형태의 오디오 신호가 주어지면 지문을 도출하는 첫 번째 단계는 STFT <span class="math inline">\(\mathcal{X}\)</span>를 계산하는 것이다. <span class="math inline">\(\mathcal{X}(n,k)\)</span>는 <span class="math inline">\(n^{\mathrm{th}}\)</span> 시간 프레임에 대한 <span class="math inline">\(k^{\mathrm{th}}\)</span> 푸리에 계수를 나타낸다. (<span class="math inline">\(k\in [0:K]\)</span> 및 <span class="math inline">\(n\in\mathbb{Z}\)</span>)</p></li>
+<li><p>이하에서 <span class="math inline">\(k\in[0:K]\)</span> 요소는 <strong>주파수 스탬프</strong>(<strong>frequency stamp</strong>)라고도 하고, <span class="math inline">\(n\in\mathbb{Z}\)</span> 요소는 <strong>타임 스탬프</strong>(<strong>time stamp</strong>)라고도 한다. 따라서 푸리에 계수 <span class="math inline">\(\mathcal{X}(n,k)\)</span>의 좌표는 타임 스탬프 <span class="math inline">\(n\)</span> 및 주파수 스탬프 <span class="math inline">\(k\)</span>로 구성된 시간-주파수 점 <span class="math inline">\((n,k)\in\mathbb{Z}\times[0:K]\)</span>로 지정된다.</p></li>
+<li><p>지문 계산의 두 번째 단계에서 신호의 STFT 표현은 희소한(sparse) 시간-주파수 포인트 집합으로 축소된다.</p></li>
+<li><p>이를 위해 각 지점 주변의 영역 내 모든 이웃보다 더 큰 크기를 갖는 시간-주파수 지점을 식별하는 피크 선택 전략을 사용한다. 보다 정확하게는 <span class="math inline">\(\tau\in\mathbb{N}\)</span> 및 <span class="math inline">\(\kappa\in\mathbb{N}\)</span>를 각각 시간 및 주파수 방향에서 <strong>이웃</strong>의 크기를 결정하는 매개변수라고 한다. 그런 다음 다음과 같은 경우 점 <span class="math inline">\((n_0,k_0)\)</span>이 피크로 선택된다. <span class="math display">\[|X(n_0,k_0)| \geq  |X(n,k)|\]</span> for all <span class="math inline">\((n,k) \in \big(\left[n_0-\tau:n_0+\tau\right] \times \left[k_0-\kappa:k_0+\kappa\right]\big)\)</span>.</p></li>
+<li><p>이러한 정의는 스펙트로그램과 추출된 하나의 피크와 그것의 로컬 이웃을 보여주는 다음 그림에 설명되어 있다. 이웃의 크기를 늘리면 점을 선택하기가 더 어려워진다. 따라서 <span class="math inline">\(\tau\)</span> 및 <span class="math inline">\(\kappa\)</span> 매개변수를 사용하여 선택한 피크의 밀도를 조정하고 시간-주파수 평면의 상당히 균일한 커버리지를 얻을 수 있다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:58.866853Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:58.852890Z&quot;}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Image(path_img<span class="op">+</span><span class="st">"FMP_C7_F03a.png"</span>, width<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="constellation-map" class="level2">
+<h2 class="anchored" data-anchor-id="constellation-map">Constellation Map</h2>
+<ul>
+<li><p>피크 선택 단계는 신호의 복잡한 스펙트로그램 표현을 희소한 좌표 세트로 줄인다. 피크의 크기는 더 이상 사용되지 않으며 피크의 시간 및 주파수 스탬프만 고려되어 높은 수준의 견고성을 제공한다. 모든 피크 좌표로 구성된 표현을 <strong>constellation map</strong>이라고 한다.</p></li>
+<li><p>다음 코드 셀에서 주어진 <strong>이웃 매개변수</strong> <span class="math inline">\(\tau\)</span> 및 <span class="math inline">\(\kappa\)</span>에 대한 constellation map을 추출하기 위한 다소 나이브한 구현을 본다. 이 구현에서는 모든 시간-주파수 지점을 반복하고 이웃 조건(<span class="math inline">\(\kappa\)</span> 및 <span class="math inline">\(\tau\)</span>로 지정)이 충족되는지 확인한다. 그림은 위의 Beatles 예제에 대한 constellation map(빨간색으로 표시된 추출된 피크 지문)과 함께 스펙트로그램 표현을 보여준다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:58.896772Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:58.868848Z&quot;}" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_constellation_map_naive(Y, dist_freq<span class="op">=</span><span class="dv">7</span>, dist_time<span class="op">=</span><span class="dv">7</span>, thresh<span class="op">=</span><span class="fl">0.01</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute constellation map (naive implementation)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">        Y (np.ndarray): Spectrogram (magnitude)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">        dist_freq (int): Neighborhood parameter for frequency direction (kappa) (Default value = 7)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">        dist_time (int): Neighborhood parameter for time direction (tau) (Default value = 7)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">        thresh (float): Threshold parameter for minimal peak magnitude (Default value = 0.01)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Cmap (np.ndarray): Boolean mask for peak structure (same size as Y)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># spectrogram dimensions</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> Y.ndim <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        (K, N) <span class="op">=</span> Y.shape</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> Y.shape[<span class="dv">0</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    Cmap <span class="op">=</span> np.zeros((K, N), dtype<span class="op">=</span>np.bool8)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop over spectrogram</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(K):</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        f1 <span class="op">=</span> <span class="bu">max</span>(k <span class="op">-</span> dist_freq, <span class="dv">0</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        f2 <span class="op">=</span> <span class="bu">min</span>(k <span class="op">+</span> dist_freq <span class="op">+</span> <span class="dv">1</span>, K)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            t1 <span class="op">=</span> <span class="bu">max</span>(n <span class="op">-</span> dist_time, <span class="dv">0</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            t2 <span class="op">=</span> <span class="bu">min</span>(n <span class="op">+</span> dist_time <span class="op">+</span> <span class="dv">1</span>, N)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            curr_mag <span class="op">=</span> Y[k, n]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            curr_rect <span class="op">=</span> Y[f1:f2, t1:t2]</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>            c_max <span class="op">=</span> np.<span class="bu">max</span>(curr_rect)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ((curr_mag <span class="op">==</span> c_max) <span class="kw">and</span> (curr_mag <span class="op">&gt;</span> thresh)):</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                Cmap[k, n] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Cmap</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_constellation_map(Cmap, Y<span class="op">=</span><span class="va">None</span>, xlim<span class="op">=</span><span class="va">None</span>, ylim<span class="op">=</span><span class="va">None</span>, title<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                           xlabel<span class="op">=</span><span class="st">'Time (sample)'</span>, ylabel<span class="op">=</span><span class="st">'Frequency (bins)'</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                           s<span class="op">=</span><span class="dv">5</span>, color<span class="op">=</span><span class="st">'r'</span>, marker<span class="op">=</span><span class="st">'o'</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">3</span>), dpi<span class="op">=</span><span class="dv">72</span>):</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot constellation map</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">        Cmap: Constellation map given as boolean mask for peak structure</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">        Y: Spectrogram representation (Default value = None)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">        xlim: Limits for x-axis (Default value = None)</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co">        ylim: Limits for y-axis (Default value = None)</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">        title: Title for plot (Default value = '')</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">        xlabel: Label for x-axis (Default value = 'Time (sample)')</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">        ylabel: Label for y-axis (Default value = 'Frequency (bins)')</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">        s: Size of dots in scatter plot (Default value = 5)</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">        color: Color used for scatter plot (Default value = 'r')</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co">        marker: Marker for peaks (Default value = 'o')</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">        figsize: Width, height in inches (Default value = (7, 3))</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co">        dpi: Dots per inch (Default value = 72)</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">        fig: The created matplotlib figure</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">        ax: The used axes.</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">        im: The image plot</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> Cmap.ndim <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        (K, N) <span class="op">=</span> Cmap.shape</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> Cmap.shape[<span class="dv">0</span>]</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> Y <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>        Y <span class="op">=</span> np.zeros((K, N))</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>figsize, dpi<span class="op">=</span>dpi)</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax.imshow(Y, origin<span class="op">=</span><span class="st">'lower'</span>, aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(xlabel)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(ylabel)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    Fs <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xlim <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        xlim <span class="op">=</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">/</span>Fs, (N<span class="op">-</span><span class="fl">0.5</span>)<span class="op">/</span>Fs]</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ylim <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>        ylim <span class="op">=</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">/</span>Fs, (K<span class="op">-</span><span class="fl">0.5</span>)<span class="op">/</span>Fs]</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(xlim)</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(ylim)</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span>color, s<span class="op">=</span>s, marker<span class="op">=</span>marker)</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax, im</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_spectrogram(fn_wav, Fs<span class="op">=</span><span class="dv">22050</span>, N<span class="op">=</span><span class="dv">2048</span>, H<span class="op">=</span><span class="dv">1024</span>, bin_max<span class="op">=</span><span class="dv">128</span>, frame_max<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    x, Fs <span class="op">=</span> librosa.load(fn_wav)</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    x_duration <span class="op">=</span> <span class="bu">len</span>(x) <span class="op">/</span> Fs</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> librosa.stft(x, n_fft<span class="op">=</span>N, hop_length<span class="op">=</span>H, win_length<span class="op">=</span>N, window<span class="op">=</span><span class="st">'hann'</span>)</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bin_max <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>        bin_max <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> frame_max <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>        frame_max <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.<span class="bu">abs</span>(X[:bin_max, :frame_max])</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:59.300850Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:58.897771Z&quot;}" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wav_dict <span class="op">=</span> {}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Original'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4.wav'</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Noise'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_NoiseSNR-9.wav'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Talking'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_Talking.wav'</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Coding'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_16kbits.wav'</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Faster'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_Faster.wav'</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>wav_dict[<span class="st">'Higher'</span>] <span class="op">=</span> <span class="st">'FMP_C7_Audio_Beatles_ActNaturally_63-3_73-4_Higher.wav'</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>fn_wav <span class="op">=</span> wav_dict[<span class="st">'Original'</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> compute_spectrogram(path_data<span class="op">+</span>fn_wav)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>dist_freq <span class="op">=</span> <span class="dv">11</span>  <span class="co"># kappa: neighborhood in frequency direction</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>dist_time <span class="op">=</span> <span class="dv">3</span>   <span class="co"># tau: neighborhood in time direction</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="vs">r'Constellation map using $\kappa=</span><span class="sc">%d</span><span class="vs">$, $\tau=</span><span class="sc">%d</span><span class="vs">$'</span> <span class="op">%</span> (dist_freq, dist_time)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>Cmap_naive <span class="op">=</span> compute_constellation_map_naive(Y, dist_freq, dist_time)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> plot_constellation_map(Cmap_naive, np.log(<span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">*</span> Y), </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                                     color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">30</span>, title<span class="op">=</span>title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>나이브하고 반복적인 구현에 대한 대안으로 다음 코드 셀에서 다차원 이미지 처리를 위한 Python 패키지 <code>scipy.ndimage</code>를 사용하여 훨씬 더 빠른 구현을 제공한다. 다음 코드 셀에서 두 구현의 결과(동일해야 함)와 런타임을 비교한다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:59.315837Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:59.301849Z&quot;}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_constellation_map(Y, dist_freq<span class="op">=</span><span class="dv">7</span>, dist_time<span class="op">=</span><span class="dv">7</span>, thresh<span class="op">=</span><span class="fl">0.01</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute constellation map (implementation using image processing)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">        Y (np.ndarray): Spectrogram (magnitude)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">        dist_freq (int): Neighborhood parameter for frequency direction (kappa) (Default value = 7)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">        dist_time (int): Neighborhood parameter for time direction (tau) (Default value = 7)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">        thresh (float): Threshold parameter for minimal peak magnitude (Default value = 0.01)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Cmap (np.ndarray): Boolean mask for peak structure (same size as Y)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> ndimage.maximum_filter(Y, size<span class="op">=</span>[<span class="dv">2</span><span class="op">*</span>dist_freq<span class="op">+</span><span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span>dist_time<span class="op">+</span><span class="dv">1</span>], mode<span class="op">=</span><span class="st">'constant'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    Cmap <span class="op">=</span> np.logical_and(Y <span class="op">==</span> result, result <span class="op">&gt;</span> thresh)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Cmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:27:59.734763Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:59.317828Z&quot;}" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dist_freq <span class="op">=</span> <span class="dv">7</span>  <span class="co"># kappa: neighborhood in frequency direction</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dist_time <span class="op">=</span> <span class="dv">3</span>  <span class="co"># tau: neighborhood in time direction</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Cmap_naive <span class="op">=</span> compute_constellation_map_naive(Y, dist_freq, dist_time)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> time.time()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Runtime of naive (iterative) implementation: </span><span class="sc">%.8f</span><span class="st"> seconds'</span> <span class="op">%</span> (end <span class="op">-</span> start))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Cmap <span class="op">=</span> compute_constellation_map(Y, dist_freq, dist_time)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> time.time()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Runtime of fast (scipy.ndimage) implementation: </span><span class="sc">%.8f</span><span class="st"> seconds'</span> <span class="op">%</span> ((end <span class="op">-</span> start)<span class="op">/</span><span class="dv">100</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>fig, ax, im <span class="op">=</span> plot_constellation_map(Cmap_naive, np.log(<span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">*</span> Y), color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>n, k <span class="op">=</span> np.argwhere(Cmap <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>ax.scatter(k, n, color<span class="op">=</span><span class="st">'cyan'</span>, s<span class="op">=</span><span class="dv">5</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Naive implementation'</span>, <span class="st">'Implementation using scipy.ndimage'</span>], </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>           loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Runtime of naive (iterative) implementation: 0.13366747 seconds
+Runtime of fast (scipy.ndimage) implementation: 0.00055850 seconds</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="constellation-map의-견고성robustness" class="level3">
+<h3 class="anchored" data-anchor-id="constellation-map의-견고성robustness">Constellation map의 견고성(robustness)</h3>
+<ul>
+<li><p>앞서 설명한 바와 같이 지문 시스템은 배경 잡음과 신호 왜곡에 견고해야(robust) 한다. 다음 코드 셀에서는 원래 Beatles 예제(<code>Original</code>), 가우시안 노이즈가 중첩된 버전(<code>Noise</code>), 배경 노이즈가 있는 버전(<code>Talking</code>), 코딩 아티팩트(<code>coding</code>)에 의해 왜곡된 버전에 대한 constellation map을 보여준다.</p></li>
+<li><p>또한 이웃 매개변수 <span class="math inline">\(\kappa\)</span> 및 <span class="math inline">\(\tau\)</span>로 constellation map의 밀도를 제어할 수 있는 방법을 설명한다. 두 매개변수 설정에서 다음을 관찰할 수 있다.</p>
+<ul>
+<li>왜곡된 버전의 constellation map는 원본 버전과 일부 피크를 공유한다.</li>
+<li>왜곡된 버전의 피크는 때때로 원래 버전의 피크와 비교하여 시간 및/또는 주파수가 약간 이동한다.</li>
+</ul></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:00.273322Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:27:59.736758Z&quot;}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_constellation_maps_Beatles(dist_freq <span class="op">=</span> <span class="dv">11</span>, dist_time <span class="op">=</span> <span class="dv">3</span>, wav_dict<span class="op">=</span>wav_dict):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    fn_wav <span class="op">=</span> wav_dict[<span class="st">'Original'</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> compute_spectrogram(path_data<span class="op">+</span>fn_wav)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    Cmap <span class="op">=</span> compute_constellation_map(Y, dist_freq, dist_time)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    fn_wav <span class="op">=</span> wav_dict[<span class="st">'Noise'</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    Y_noise <span class="op">=</span> compute_spectrogram(path_data<span class="op">+</span>fn_wav)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    Cmap_noise <span class="op">=</span> compute_constellation_map(Y_noise, dist_freq, dist_time)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    fn_wav <span class="op">=</span> wav_dict[<span class="st">'Talking'</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    Y_noise <span class="op">=</span> compute_spectrogram(path_data<span class="op">+</span>fn_wav)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    Cmap_talking <span class="op">=</span> compute_constellation_map(Y_noise, dist_freq, dist_time)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    fn_wav <span class="op">=</span> wav_dict[<span class="st">'Coding'</span>]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    Y_coding <span class="op">=</span> compute_spectrogram(path_data<span class="op">+</span>fn_wav)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    Cmap_coding <span class="op">=</span> compute_constellation_map(Y_coding, dist_freq, dist_time)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="vs">r'Constellation maps using $\kappa=</span><span class="sc">%d</span><span class="vs">$, $\tau=</span><span class="sc">%d</span><span class="vs">$'</span> <span class="op">%</span> (dist_freq, dist_time)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_constellation_map(Cmap, color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">50</span>,title<span class="op">=</span>title)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_noise <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'cyan'</span>, s<span class="op">=</span><span class="dv">20</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_talking <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'blue'</span>, s<span class="op">=</span><span class="dv">40</span>, marker<span class="op">=</span><span class="st">'+'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_coding <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'k'</span>, s<span class="op">=</span><span class="dv">30</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    plt.legend([<span class="st">'Original'</span>, <span class="st">'Noise'</span>, <span class="st">'Talking'</span>, <span class="st">'Coding'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Cmap, Cmap_noise, Cmap_talking, Cmap_coding</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps_Beatles(dist_freq <span class="op">=</span> <span class="dv">11</span>, dist_time <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps_Beatles(dist_freq <span class="op">=</span> <span class="dv">17</span>, dist_time <span class="op">=</span> <span class="dv">5</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="피크-매칭의-평가-지표" class="level2">
+<h2 class="anchored" data-anchor-id="피크-매칭의-평가-지표">피크 매칭의 평가 지표</h2>
+<ul>
+<li><p>실제로는 왜곡이 있는 경우에도 (시간 및 주파수 방향에 약간의 허용 오차를 허용하면서)일치하는 작은 비율의 피크가 녹음을 성공적으로 식별하는 데 충분하다는 것이 밝혀졌다.</p></li>
+<li><p>이 관찰은 아래에서 설명할 매칭 절차의 기초이다. 이제 두 constellation map 간의 일치를 나타내는 몇 가지 <strong>평가 측정</strong>을 소개한다.</p></li>
+<li><p>첫 번째 constellation map은 <strong>레퍼런스</strong>(<strong>맞는 것으로 간주되는 피크</strong>)로 해석하고 두 번째 constellation map는 <strong>추정</strong>(<strong>추정되는 것으로 간주되는 피크</strong>)으로 해석한다. 이를 통해 <strong>true positives</strong>(TP), <strong>false positives</strong>(FP) 및 <strong>false negatives</strong>(FN)과 같은 용어를 사용할 수 있다.</p></li>
+<li><p>다음 코드 셀에서는 허용 오차(<strong>tolerance</strong>)를 어느 정도 허용하면서 TP, FP, FN 값을 측정하는 기능을 구현한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:00.288281Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:00.275317Z&quot;}" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> match_binary_matrices_tol(C_ref, C_est, tol_freq<span class="op">=</span><span class="dv">0</span>, tol_time<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""| Compare binary matrices with tolerance</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    | Note: The tolerance parameters should be smaller than the minimum distance of</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">      peaks (1-entries in C_ref ad C_est) to obtain meaningful TP, FN, FP values</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">        C_ref (np.ndarray): Binary matrix used as reference</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">        C_est (np.ndarray): Binary matrix used as estimation</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        tol_freq (int): Tolerance in frequency direction (vertical) (Default value = 0)</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">        tol_time (int): Tolerance in time direction (horizontal) (Default value = 0)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        TP (int): True positives</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">        FN (int): False negatives</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">        FP (int): False positives</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">        C_AND (np.ndarray): Boolean mask of AND of C_ref and C_est (with tolerance)</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> C_ref.shape <span class="op">==</span> C_est.shape, <span class="st">"Dimensions need to agree"</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> np.<span class="bu">sum</span>(C_ref)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.<span class="bu">sum</span>(C_est)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Expand C_est with 2D-max-filter using the tolerance parameters</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    C_est_max <span class="op">=</span> ndimage.maximum_filter(C_est, size<span class="op">=</span>(<span class="dv">2</span><span class="op">*</span>tol_freq<span class="op">+</span><span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span>tol_time<span class="op">+</span><span class="dv">1</span>),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>                                       mode<span class="op">=</span><span class="st">'constant'</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    C_AND <span class="op">=</span> np.logical_and(C_est_max, C_ref)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    TP <span class="op">=</span> np.<span class="bu">sum</span>(C_AND)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    FN <span class="op">=</span> N <span class="op">-</span> TP</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    FP <span class="op">=</span> M <span class="op">-</span> TP</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> TP, FN, FP, C_AND</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_constellation_maps(fn_wav_D, fn_wav_Q, dist_freq <span class="op">=</span> <span class="dv">11</span>, dist_time <span class="op">=</span> <span class="dv">5</span>, </span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                               tol_freq <span class="op">=</span> <span class="dv">1</span>, tol_time <span class="op">=</span> <span class="dv">1</span>):</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    Y_D <span class="op">=</span> compute_spectrogram(fn_wav_D)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    Cmap_D <span class="op">=</span> compute_constellation_map(Y_D, dist_freq, dist_time)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    Y_Q <span class="op">=</span> compute_spectrogram(fn_wav_Q)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    Cmap_Q <span class="op">=</span> compute_constellation_map(Y_Q, dist_freq, dist_time)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    TP, FN, FP, Cmap_AND <span class="op">=</span> match_binary_matrices_tol(Cmap_D, Cmap_Q, </span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>                                                     tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="vs">r'Matching result (tol_freq=</span><span class="sc">%d</span><span class="vs"> and tol_time=</span><span class="sc">%d</span><span class="vs">): TP=</span><span class="sc">%d</span><span class="vs">, FN=</span><span class="sc">%d</span><span class="vs">, FP=</span><span class="sc">%d</span><span class="vs">'</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        (tol_freq,tol_time, TP, FN, FP)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_constellation_map(Cmap_AND, color<span class="op">=</span><span class="st">'green'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'+'</span>, title<span class="op">=</span>title)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_D <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_Q <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'cyan'</span>, s<span class="op">=</span><span class="dv">20</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    plt.legend([<span class="st">'Matches (TP)'</span>, <span class="st">'Reference'</span>, <span class="st">'Estimation'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:01.126041Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:00.291275Z&quot;}" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fn_wav_D <span class="op">=</span> path_data <span class="op">+</span> wav_dict[<span class="st">'Original'</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data <span class="op">+</span> wav_dict[<span class="st">'Noise'</span>]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tol_freq <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>tol_time <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'====== Reference: Original; Estimation: Noise ======'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps(fn_wav_D, fn_wav_Q, tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>tol_freq <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>tol_time <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'====== Reference: Original; Estimation: Noise ======'</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps(fn_wav_D, fn_wav_Q, tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Coding'</span>]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>tol_freq <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>tol_time <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'====== Reference: Original; Estimation: Coding ======'</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps(fn_wav_D, fn_wav_Q, tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Talking'</span>]</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>tol_freq <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>tol_time <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'====== Reference: Original; Estimation: Talking ======'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>compare_constellation_maps(fn_wav_D, fn_wav_Q, tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Reference: Original; Estimation: Noise ======</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Reference: Original; Estimation: Noise ======</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-11-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Reference: Original; Estimation: Coding ======</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-11-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>====== Reference: Original; Estimation: Talking ======</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-11-output-8.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="매칭-함수-matching-function" class="level2">
+<h2 class="anchored" data-anchor-id="매칭-함수-matching-function">매칭 함수 (Matching Function)</h2>
+<ul>
+<li><p><span class="math inline">\(\mathcal{Q}\)</span>라는 짧은 쿼리 오디오 조각과 <span class="math inline">\(\mathcal{D}\)</span>라는 데이터베이스 녹음을 고려해 생각해보자. 또한, <span class="math inline">\(\mathcal{C}(\mathcal{Q})\)</span> 및 <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span>는 <span class="math inline">\(\mathcal{Q}\)</span> 및 <span class="math inline">\(\mathcal{D}\)</span> 각각의 constellation map를 나타낸다.</p></li>
+<li><p>쿼리 <span class="math inline">\(\mathcal{Q}\)</span>가 녹음 <span class="math inline">\(\mathcal{D}\)</span>에 포함되어 있는 경우 constellation map <span class="math inline">\(\mathcal{C}(\mathcal{Q})\)</span>는 constellation map <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span> 내의 해당 섹션과 어느 정도 일치해야 한다. 직관적으로 오디오 식별의 기본 아이디어는 스트립 차트에 <span class="math inline">\(\mathcal{D}\)</span>의 map을 놓고 투명한 플라스틱 조각 위에 <span class="math inline">\(\mathcal{Q}\)</span>의 map를 배치하는 것이다.</p></li>
+<li><p>일치하는 포인트의 수가 많은 경우 쿼리가 문서에 포함된 것으로 간주된다. <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span> 내에서 일치하는 위치의 적절한 시간 오프셋은 이동(shift)으로 주어진다.</p></li>
+<li><p>이제 대략적인 매칭 절차를 공식화하자. 피크 위치는 타임스탬프 <span class="math inline">\(n\in\mathbb{Z}\)</span>와 주파수스탬프 <span class="math inline">\(k\in[0:K]\)</span>로 구성된 좌표 <span class="math inline">\((n,k)\)</span>로 지정된다. constellation map은 그러한 좌표의 유한 집합이다. 이전과 마찬가지로 <span class="math inline">\(\mathcal{C}(\mathcal{Q})\subset \mathbb{Z}\times[0:K]\)</span> 및 <span class="math inline">\(\mathcal{C}(\mathcal{D})\subset \mathbb {Z}\times[0:K]\)</span>는 각각 쿼리 <span class="math inline">\(\mathcal{Q}\)</span> 및 문서 <span class="math inline">\(\mathcal{D}\)</span>의 constellation map이다.</p></li>
+<li><p>쿼리를 <span class="math inline">\(m\in\mathbb{Z}\)</span> 위치만큼 이동하면 다음에 의해 정의된 constellation map <span class="math inline">\(m+\mathcal{C}(\mathcal{Q})\)</span>가 생성된다. <span class="math display">\[m+\mathcal{C}(\mathcal{Q}) := \left\{(m+n,k) \mid (n,k)\in \mathcal{C}(\mathcal{Q}) \right\}\]</span></p></li>
+<li><p>이동된 쿼리와 데이터베이스 문서 간에 일치하는 피크 좌표를 계산하려면 해당 constellation map을 교차하고 결과 집합의 크기를 결정하기만 하면 된다. 이는 다음에 의해 정의된 매칭 함수(matching function) <span class="math inline">\(\Delta_\mathcal{C}:\mathbb{Z}\to\mathbb{N}_0\)</span>를 생성한다. <span class="math display">\[\Delta_\mathcal{C}(m):= \big| (m+\mathcal{C}(\mathcal{Q}))\cap  \mathcal{C}(\mathcal{D}) \big|\]</span> for <span class="math inline">\(m\in\mathbb{Z}\)</span>.</p></li>
+<li><p>일반적으로 쿼리와 데이터베이스 문서가 관련이 없을 때 (동시에) 일치하는 피크 위치의 수 <span class="math inline">\(\Delta_\mathcal{C}(m)\)</span>는 <span class="math inline">\(|\mathcal{C}(\mathcal{Q})|\)</span>에 비해 일반적으로 작다.</p></li>
+<li><p>쿼리가 데이터베이스 문서에 포함된 경우에만 매칭 함수가 일부 이동 인덱스 <span class="math inline">\(m\in\mathbb{Z}\)</span>에 대해 큰 값 <span class="math inline">\(\Delta_\mathcal{C}(m)\)</span>를 갖는다. 이 인덱스는 쿼리 <span class="math inline">\(\mathcal{Q}\)</span>와 <span class="math inline">\(\mathcal{D}\)</span>의 일치 섹션 사이의 시간 오프셋을 나타낸다.</p></li>
+<li><p>다음 코드 셀에서는 작은 편차(허용 오차 매개변수 <code>tol_freq</code> 및 <code>tol_time</code>으로 지정됨)도 허용하는 일반화된 매칭 함수 <span class="math inline">\(\Delta_\mathcal{C}\)</span>에 대한 구현을 확인한다.</p>
+<ul>
+<li><span class="math inline">\(\Delta_\mathcal{C}(m)\)</span>를 계산할 때 이동된 쿼리 <span class="math inline">\(m+\mathcal{C}(\mathcal{Q})\)</span>는 <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span>와 비교된다. 이는 <span class="math inline">\(m\)</span> 위치에서 쿼리와 길이가 같은 <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span> 섹션을 잘라내고, 이 섹션을 <span class="math inline">\(\mathcal{C}(\mathcal{Q})\)</span>와 비교하는 것과 같다.</li>
+<li><span class="math inline">\(\mathcal{Q}\)</span>와 <span class="math inline">\(\mathcal{D}\)</span>의 constellation map를 비교할 때 일치하는 피크의 수를 봐야 한다. 이는 <span class="math inline">\(\mathcal{D}\)</span>를 참조로, <span class="math inline">\(\mathcal{Q}\)</span>를 추정으로 볼 때 true positive(TP)의 수에 해당한다.</li>
+<li>비교에서는 두 개의 허용 오차 매개변수인 <code>tol_freq</code> 및 <code>tol_time</code>이 있는 <code>match_binary_matrices_tol</code> 함수를 사용한다. 이러한 매개변수를 <span class="math inline">\(0\)</span> 값으로 설정하면 위에서 소개한 대로 <span class="math inline">\(\Delta_\mathcal{C}\)</span> 매칭 함수가 생성된다.</li>
+</ul></li>
+<li><p><span class="math inline">\(\mathcal{D}\)</span>로 <code>Original</code>을 사용하고 <span class="math inline">\(\mathcal{Q}\)</span>로 <code>Noise</code>의 세그먼트 <span class="math inline">\([100:149]\)</span>(샘플에서 제공됨)를 사용하는 Beatles 예제를 보자. 다음 그림은 다양한 허용오차 매개변수에 대한 매칭 함수를 보여준다. 이러한 함수는 이동 위치 <span class="math inline">\(m=100\)</span>에서 최대값을 가정한다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:01.141001Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:01.127039Z&quot;}" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_matching_function(C_D, C_Q, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Computes matching function for constellation maps</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">        C_D (np.ndarray): Binary matrix used as dababase document</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">        C_Q (np.ndarray): Binary matrix used as query document</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">        tol_freq (int): Tolerance in frequency direction (vertical) (Default value = 1)</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">        tol_time (int): Tolerance in time direction (horizontal) (Default value = 1)</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Delta (np.ndarray): Matching function</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">        shift_max (int): Optimal shift position maximizing Delta</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> C_D.shape[<span class="dv">1</span>]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> C_Q.shape[<span class="dv">1</span>]</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> L <span class="op">-</span> N</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> M <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="st">"Query must be shorter than document"</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    Delta <span class="op">=</span> np.zeros(L)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        C_D_crop <span class="op">=</span> C_D[:, m:m<span class="op">+</span>N]</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        TP, FN, FP, C_AND <span class="op">=</span> match_binary_matrices_tol(C_D_crop, C_Q,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                                                      tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        Delta[m] <span class="op">=</span> TP</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    shift_max <span class="op">=</span> np.argmax(Delta)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Delta, shift_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:01.365401Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:01.141998Z&quot;}" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dist_freq <span class="op">=</span> <span class="dv">11</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dist_time <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fn_wav_D <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Original'</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>Y_D <span class="op">=</span> compute_spectrogram(fn_wav_D)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Cmap_D <span class="op">=</span> compute_constellation_map(Y_D, dist_freq, dist_time)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Noise'</span>]</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>Y_Q <span class="op">=</span> compute_spectrogram(fn_wav_Q)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Y_Q <span class="op">=</span> Y_Q[:, <span class="dv">100</span>:<span class="dv">150</span>]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Cmap_Q <span class="op">=</span> compute_constellation_map(Y_Q, dist_freq, dist_time)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>Delta_0, shift_max_0 <span class="op">=</span> compute_matching_function(Cmap_D, Cmap_Q, tol_freq<span class="op">=</span><span class="dv">0</span>, tol_time<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>Delta_1, shift_max_1 <span class="op">=</span> compute_matching_function(Cmap_D, Cmap_Q, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>Delta_2, shift_max_2 <span class="op">=</span> compute_matching_function(Cmap_D, Cmap_Q, tol_freq<span class="op">=</span><span class="dv">3</span>, tol_time<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>y_max <span class="op">=</span> Delta_2[shift_max_2] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>fig, ax, line <span class="op">=</span> plot_signal(Delta_0, ylim<span class="op">=</span>[<span class="dv">0</span>, y_max], color<span class="op">=</span><span class="st">'g'</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>                                     xlabel<span class="op">=</span><span class="st">'Shift (samples)'</span>, ylabel<span class="op">=</span><span class="st">'Number of matching peaks'</span>, </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>                                     figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">3</span>))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matching functions for different tolerance parameters'</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_1, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_2, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'tol_freq=0, tol_time=0'</span>, <span class="st">'tol_freq=1, tol_time=1'</span>, </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>            <span class="st">'tol_freq=3, tol_time=2'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>다음 코드 셀에서는 서로다른 이동 인덱스 <span class="math inline">\(m\)</span>에 대해 이동된 쿼리 <span class="math inline">\(m+\mathcal{C}(\mathcal{Q})\)</span>와 <span class="math inline">\(\mathcal{C}(\mathcal{D})\)</span> 간의 로컬 일치 결과를 보여준다. <span class="math inline">\(m=0\)</span>에 대해 일치하는 피크가 거의 없는 반면, 최적 이동 지수 <span class="math inline">\(m=99\)</span>에 대해 일치하는 피크는 많다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:01.724443Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:01.367397Z&quot;}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_shifted_Cmap(Cmap_D, Cmap_Q, shift<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    Cmap_Q_extend <span class="op">=</span> np.zeros(Cmap_D.shape) </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    Cmap_Q_extend[:, shift:shift<span class="op">+</span>Cmap_Q.shape[<span class="dv">1</span>]] <span class="op">=</span> Cmap_Q</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    TP, FN, FP, Cmap_AND <span class="op">=</span> match_binary_matrices_tol(Cmap_D, Cmap_Q_extend, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                                                     tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="vs">r'Matching result for shift index m=</span><span class="sc">%d</span><span class="vs"> (TP=</span><span class="sc">%d</span><span class="vs">)'</span> <span class="op">%</span> (shift, TP)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    fig, ax, im <span class="op">=</span> plot_constellation_map(Cmap_AND, color<span class="op">=</span><span class="st">'green'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'+'</span>, title<span class="op">=</span>title)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_D <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">50</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> np.argwhere(Cmap_Q_extend <span class="op">==</span> <span class="dv">1</span>).T</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    ax.scatter(k, n, color<span class="op">=</span><span class="st">'cyan'</span>, s<span class="op">=</span><span class="dv">20</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    plt.legend([<span class="st">'Matches (TP)'</span>, <span class="st">'Reference'</span>, <span class="st">'Estimated'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plot_shifted_Cmap(Cmap_D, Cmap_Q, shift<span class="op">=</span><span class="dv">0</span>)    </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>plot_shifted_Cmap(Cmap_D, Cmap_Q, shift<span class="op">=</span>shift_max_1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>이제 서로 다른 버전의 Beatles 예에서 얻은 매칭 함수를 살펴보자. 이전과 마찬가지로 <code>Original</code>을 <span class="math inline">\(\mathcal{D}\)</span>로 사용하고 다른 버전의 세그먼트 <span class="math inline">\([100:149]\)</span>(샘플에서 제공)를 <span class="math inline">\(\mathcal{Q}\)</span>로 사용한다. 다음 그림은 <code>Original</code>, <code>Noise</code>, <code>Coding</code> 및 <code>Talking</code> 쿼리에 대한 매칭 함수를 보여준다. 처음 세 개의 쿼리에 대해 예상되는 매칭 위치에서 매칭 함수에서 뚜렷한 최대값을 관찰할 수 있지만 <code>Talking</code> 쿼리는 식별하기가 훨씬 더 어렵다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:02.008680Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:01.727432Z&quot;}" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_Delta(fn_wav_D, fn_wav_Q, seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">150</span>, dist_freq<span class="op">=</span><span class="dv">11</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  dist_time<span class="op">=</span><span class="dv">5</span>, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    Y_D <span class="op">=</span> compute_spectrogram(fn_wav_D)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    Cmap_D <span class="op">=</span> compute_constellation_map(Y_D, dist_freq<span class="op">=</span>dist_freq, dist_time<span class="op">=</span>dist_time)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    Y_Q <span class="op">=</span> compute_spectrogram(fn_wav_Q)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    Y_Q <span class="op">=</span> Y_Q[:, seg_start:seg_end]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    Cmap_Q <span class="op">=</span> compute_constellation_map(Y_Q, dist_freq<span class="op">=</span>dist_freq, dist_time<span class="op">=</span>dist_time)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    Delta, shift_max <span class="op">=</span> compute_matching_function(Cmap_D, Cmap_Q, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                                 tol_freq<span class="op">=</span>tol_freq, tol_time<span class="op">=</span>tol_time)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Delta, shift_max</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Original'</span>]   </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>Delta_0, shift_max_0 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Noise'</span>]</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>Delta_1, shift_max_1 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Coding'</span>]</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>Delta_2, shift_max_2 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Talking'</span>]</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>Delta_3, shift_max_3 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>y_max <span class="op">=</span> Delta_0[shift_max_0] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>fig, ax, line <span class="op">=</span> plot_signal(Delta_0, ylim<span class="op">=</span>[<span class="dv">0</span>, y_max], color<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>                                     xlabel<span class="op">=</span><span class="st">'Shift (samples)'</span>, </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                                     ylabel<span class="op">=</span><span class="st">'Number of matching peaks'</span>, </span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                                     figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_1, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_2, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_3, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="st">'2'</span>)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Orignal'</span>, <span class="st">'Noise'</span>, <span class="st">'Coding'</span>, <span class="st">'Talking'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>위의 예에서 <code>Talking</code> 버전의 <span class="math inline">\([100:149]\)</span> 세그먼트(샘플에서 제공)를 사용할 때 <code>Original</code> Beatles 노래의 올바른 세그먼트를 거의 식별할 수 없는 것을 확인했다. 쿼리 배열 맵의 <strong>판별력</strong>(discriminative power)을 높이는 한 가지 방법은 지속 시간을 늘리는 것이다. 이를 시연하기 위해 다음 그림에서 길이가 다른 쿼리에 대한 매칭 함수를 보여준다.</p>
+<ul>
+<li>Segment <span class="math inline">\([100:149]\)</span> (corresponding to 2.32 seconds)</li>
+<li>Segment <span class="math inline">\([100:174]\)</span> (corresponding to 3.48 seconds)</li>
+<li>Segment <span class="math inline">\([100:199]\)</span> (corresponding to 4.64 seconds)</li>
+</ul></li>
+<li><p>가장 긴 쿼리의 경우 심하게 왜곡된 <code>Talking</code> 버전의 경우에도 피크 구조가 더 두드러진다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:02.233080Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:02.009678Z&quot;}" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Talking'</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Delta_0, shift_max_0 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Delta_1, shift_max_1 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">175</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Delta_2, shift_max_2 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>y_max <span class="op">=</span> Delta_2[shift_max_2] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>fig, ax, line <span class="op">=</span> plot_signal(Delta_0, ylim<span class="op">=</span>[<span class="dv">0</span>, y_max], color<span class="op">=</span><span class="st">'k'</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                                     xlabel<span class="op">=</span><span class="st">'Shift (samples)'</span>, </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                                     ylabel<span class="op">=</span><span class="st">'Number of matching peaks'</span>, </span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>                                     figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>), linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_1, color<span class="op">=</span><span class="st">'c'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_2, color<span class="op">=</span><span class="st">'r'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'[100:149]'</span>, <span class="st">'[100:174]'</span>, <span class="st">'[100:199]'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><code>Faster</code>(타임스케일 수정 버전이 약 10% 더 빠르게 재생됨)와 <code>Higher</code>(피치 이동 버전)의 두 가지 버전을 고려해보자.</li>
+<li>다시 <code>Original</code>을 <span class="math inline">\(\mathcal{D}\)</span>로 사용하고 다른 버전의 세그먼트 <span class="math inline">\([100:174]\)</span>를 <span class="math inline">\(\mathcal{Q}\)</span>로 사용하면 다음 그림에서 결과 매칭 함수를 보여준다. 위에서 정의한 대로 매칭 함수는 다소 엄격한 의미에서 constellation map을 비교한다. 즉, 주파수의 체계적 이동과 전역적 시간 확장은 고려되지 않는다.</li>
+<li>결과적으로 지금까지 논의된 기술로는 <code>Faster</code> 또는 <code>Higher</code>와 같은 버전을 식별할 수 없다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:02.487400Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:02.234078Z&quot;}" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Original'</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Delta_0, shift_max_0 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                                     seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">175</span>, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Faster'</span>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>Delta_1, shift_max_1 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                                     seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">175</span>, tol_freq<span class="op">=</span><span class="dv">0</span>, tol_time<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>Delta_2, shift_max_1 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                                     seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">175</span>, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>fn_wav_Q <span class="op">=</span> path_data<span class="op">+</span>wav_dict[<span class="st">'Higher'</span>]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>Delta_3, shift_max_2 <span class="op">=</span> compute_Delta(fn_wav_D, fn_wav_Q, </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                                     seg_start<span class="op">=</span><span class="dv">100</span>, seg_end<span class="op">=</span><span class="dv">175</span>, tol_freq<span class="op">=</span><span class="dv">1</span>, tol_time<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>y_max <span class="op">=</span> Delta_0[shift_max_0] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>fig, ax, line <span class="op">=</span> plot_signal(Delta_0, ylim<span class="op">=</span>[<span class="dv">0</span>, y_max], color<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>                                     xlabel<span class="op">=</span><span class="st">'Shift (samples)'</span>, </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                                     ylabel<span class="op">=</span><span class="st">'Number of matching peaks'</span>, </span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>                                     figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_1, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_2, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>ax.plot(Delta_3, color<span class="op">=</span><span class="st">'k'</span>, linewidth<span class="op">=</span><span class="st">'2'</span>)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="vs">r'Orignal (tol_freq=1, tol_time=1)'</span>, <span class="vs">r'Faster (tol_freq=0, tol_time=0)'</span>, </span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>            <span class="vs">r'Faster (tol_freq=1, tol_time=1)'</span>, <span class="vs">r'Higher (tol_freq=1, tol_time=1)'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="인덱싱indexing" class="level2">
+<h2 class="anchored" data-anchor-id="인덱싱indexing">인덱싱(Indexing)</h2>
+<ul>
+<li><p>지금까지 설명한 매칭 과정에서 쿼리는 데이터베이스에 포함된 모든 문서의 모든 섹션(쿼리와 동일한 기간을 가짐)에 대해 비교되어야 한다.</p></li>
+<li><p>실행 시간이 문서의 수와 크기에 선형적으로 의존하는 이러한 철저한 검색 전략은 수백만 개의 녹음이 포함된 대규모 데이터베이스에는 적합하지 않다. 확장성 측면에서 검색 결과의 정확성을 희생하지 않으면서 빠른 정보 접근을 용이하게 하는 검색 전략이 필요하다.</p></li>
+<li><p>이러한 검색 전략은 일반적으로 적절한 조회 작업을 통해 검색 공간을 줄여 속도와 성능을 최적화하는 <strong>인덱싱</strong> 기술을 사용한다. <strong>인덱스</strong>는 알파벳순으로 정렬된 <strong>키워드</strong>(일반적으로 <strong>해시</strong>(hash)라고 함) 모음으로 구성된 전통적인 책 색인과 유사하게 구성된다. 각 키워드에 대해 차례로 책에서 주어진 키워드의 발생을 나타내는 증가하는 페이지 번호 목록이 있다.</p></li>
+<li><p>오디오 지문의 맥락에서 키워드(또는 해시)는 피크(또는 그 조합)의 주파수 값(적절하게 양자화됨)인 반면, 페이지 번호는 시간 위치 및 문서 식별자에 해당한다.</p></li>
+</ul>
+</section>
+<section id="피크-쌍-peak-pairs" class="level2">
+<h2 class="anchored" data-anchor-id="피크-쌍-peak-pairs">피크 쌍 (Peak Pairs)</h2>
+<ul>
+<li><p>노이즈와 왜곡에 견고하더라도, 개별 스펙트럼 피크는 고립된 방식으로 고려될 때 그다지 특징적이지 않다는 점에서 특이성(specificity)이 낮다. 결과적으로 개별 스펙트럼 피크와 주파수 스탬프를 해시 값으로 사용하면 결과 해시 목록(“페이지 번호 목록”)이 길어지고 인덱싱이 느려지는 것으로 나타난다.</p></li>
+<li><p>따라서 Wang이 도입한 지문 시스템의 한 가지 중요한 단계는 지문의 견고성을 희생하지 않고 해시의 특이성과 수를 증가시키는 것이다(따라서 결과 해시 목록의 길이를 줄임). 주요 아이디어는 개별 피크가 아닌 피크 쌍을 고려하여 지문 해시를 형성하는 것이다. 이를 위해 <span class="math inline">\((n_0,k_0)\in\mathcal{C}(\mathcal{D})\)</span> 포인트를 고정하는데 이는 그와 관련된 <strong>앵커(anchor) 포인트</strong> 및 <strong>타겟 영역(target zone)</strong> <span class="math inline">\(T_{(n_0,k_0)}\subset\mathbb{Z}\times[0:K]\)</span>이라고 볼 수 있다.</p></li>
+<li><p>타겟 영역은 앵커 포인트에 가까운 시간-주파수 평면의 작은 직사각형 영역으로 생각되어야 한다. 그런 다음, 앵커 포인트 <span class="math inline">\((n_0,k_0)\)</span> 및 일부 타겟 포인트 <span class="math inline">\((n_1,k_1)\in T_{(n_0,k_0)}\cap\mathcal{C}(\mathcal{D})\)</span>로 구성되는 포인트 쌍 <span class="math inline">\(\big((n_0,k_0),(n_1,k_1)\big)\)</span>을 고려한다.</p></li>
+<li><p>각 쌍은 두 개의 주파수 스탬프와 두 개의 타임 스탬프의 차이로 구성된 트리플 <span class="math inline">\((k_0,k_1,n_1-n_0)\)</span>을 산출한다. 단일 주파수 스탬프 대신 이러한 트리플을 해시로 사용하는 것이다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-02T06:28:02.502360Z&quot;,&quot;start_time&quot;:&quot;2023-02-02T06:28:02.489395Z&quot;}" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Image(path_img<span class="op">+</span><span class="st">"FMP_C7_F07.png"</span>, width<span class="op">=</span><span class="dv">700</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<p><img src="8.2.Audio_Identification_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>매칭 단계에서 이제 일치하는 주파수 스탬프만 고려하는 대신 이동된 쿼리와 데이터베이스 문서 간의 일치하는 트리플을 계산한다.</p></li>
+<li><p>인덱싱할 데이터 항목의 수가 증가하더라도(단일 주파수 스탬프 대신 트리플을 고려하여) 트리플의 훨씬 더 높은 특이성 덕분에 검색 프로세스에서 엄청난 가속을 얻는다는 것을 보여줄 수 있다.</p></li>
+</ul>
+</section>
+</section>
+<section id="결론" class="level1">
+<h1>결론</h1>
+<ul>
+<li><p>최근에는 다양한 지문 및 인덱싱 기술이 제안되어 현재 상용 제품에 사용되고 있다. 원래 Shazam 오디오 식별 시스템용으로 개발된 이러한 기술 중 하나를 자세히 살펴보았다. 시스템의 기본 아이디어에 대해 논의했지만 견고성, 특이성, 확장성 및 소형화를 포함한 다양한 요구 사항 사이에서 적절한 절충점을 찾기 위해 조정해야 하는 많은 매개변수가 있다.</p></li>
+<li><p>중요한 측면은 다음과 같다.</p>
+<ul>
+<li>시간 및 스펙트럼 해상도를 결정하는 STFT 매개변수(윈도우 길이, 홉 크기)</li>
+<li>피크 선택 전략(이웃 매개변수 포함)</li>
+<li>타겟 영역의 크기(triplet을 정의하는 데 사용됨)</li>
+<li>해싱(hashing)에 적합한 데이터 구조</li>
+</ul></li>
+<li><p>많은 종류의 신호 왜곡에 견고하지만 논의된 지문 접근 방식은 시간적 변형을 처리하도록 설계되지 않았다. constellation map의 매칭과 피크 쌍의 타임스탬프 차이는 둘 다 쿼리와 데이터베이스 문서 간의 상대적인 템포 차이에 민감하다. 따라서 시간 스케일의 수정에 불변이 되기 위해서는 다른 기술이 필요하다.</p></li>
+<li><p>스펙트럼 피크를 사용하는 지문은 특정 버전의 음악에 매우 민감하도록 설계되었다. 예를 들어, 동일한 아티스트의 노래에 대한 다양한 연주가 주어지면 지문 시스템은 인간의 귀로 거의 구별할 수 없는 경우에도 올바른 것을 선택할 가능성이 높다. 일반적으로 오디오 식별 시스템은 데이터베이스에 이미 존재하는 녹음의 식별을 목표로 설계되었다. 따라서 이러한 기술은 일반적으로 데이터베이스의 일부가 아닌 라이브 녹음이나 공연으로까지 일반화되지 않는다.</p></li>
+</ul>
+<hr>
+<p>출처:</p>
+<ul>
+<li>https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html</li>
+</ul>
+<hr>
+<p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/8.%20Content-Based%20Audio%20Retrieval/8.2.Audio_Identification.ipynb">구글 Colab 링크</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jo-cho/MIRBlog" data-repo-id="R_kgDOI83zeg" data-category="General" data-category-id="DIC_kwDOI83zes4CUQJ2" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

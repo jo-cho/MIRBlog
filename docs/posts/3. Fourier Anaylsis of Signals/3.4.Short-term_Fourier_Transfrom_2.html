@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -199,7 +199,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#주파수-그리드-밀도-frequency-grid-density" id="toc-주파수-그리드-밀도-frequency-grid-density" class="nav-link active" data-scroll-target="#주파수-그리드-밀도-frequency-grid-density">주파수 그리드 밀도 (Frequency Grid Density)</a>
+  <ul class="collapse">
+  <li><a href="#dft-주파수-그리드" id="toc-dft-주파수-그리드" class="nav-link" data-scroll-target="#dft-주파수-그리드">DFT 주파수 그리드</a></li>
+  <li><a href="#주파수-그리드-해상도가-증가된-stft" id="toc-주파수-그리드-해상도가-증가된-stft" class="nav-link" data-scroll-target="#주파수-그리드-해상도가-증가된-stft">주파수 그리드 해상도가 증가된 STFT</a></li>
+  </ul></li>
+  <li><a href="#주파수-그리드-보간법-frequency-grid-interpolation" id="toc-주파수-그리드-보간법-frequency-grid-interpolation" class="nav-link" data-scroll-target="#주파수-그리드-보간법-frequency-grid-interpolation">주파수 그리드 보간법 (Frequency Grid Interpolation)</a>
+  <ul class="collapse">
+  <li><a href="#보간법-interpolation" id="toc-보간법-interpolation" class="nav-link" data-scroll-target="#보간법-interpolation">보간법 (Interpolation)</a></li>
+  <li><a href="#주파수-보간법" id="toc-주파수-보간법" class="nav-link" data-scroll-target="#주파수-보간법">주파수 보간법</a></li>
+  <li><a href="#stft를-위한-보간법" id="toc-stft를-위한-보간법" class="nav-link" data-scroll-target="#stft를-위한-보간법">STFT를 위한 보간법</a></li>
+  <li><a href="#로그-주파수-stft" id="toc-로그-주파수-stft" class="nav-link" data-scroll-target="#로그-주파수-stft">로그-주파수 STFT</a></li>
+  </ul></li>
+  <li><a href="#stft-conventions-and-implementations" id="toc-stft-conventions-and-implementations" class="nav-link" data-scroll-target="#stft-conventions-and-implementations">STFT: Conventions and Implementations</a>
+  <ul class="collapse">
+  <li><a href="#샘플-신호에-대한-시간-축" id="toc-샘플-신호에-대한-시간-축" class="nav-link" data-scroll-target="#샘플-신호에-대한-시간-축">샘플 신호에 대한 시간 축</a></li>
+  <li><a href="#중심-윈도우잉과-시간-변환-centered-windowing-and-time-conversion" id="toc-중심-윈도우잉과-시간-변환-centered-windowing-and-time-conversion" class="nav-link" data-scroll-target="#중심-윈도우잉과-시간-변환-centered-windowing-and-time-conversion">중심 윈도우잉과 시간 변환 (Centered Windowing and Time Conversion)</a></li>
+  <li><a href="#주파수-변환-frequency-conversion" id="toc-주파수-변환-frequency-conversion" class="nav-link" data-scroll-target="#주파수-변환-frequency-conversion">주파수 변환 (Frequency Conversion)</a></li>
+  <li><a href="#스펙트로그램-시각화" id="toc-스펙트로그램-시각화" class="nav-link" data-scroll-target="#스펙트로그램-시각화">스펙트로그램 시각화</a></li>
+  </ul></li>
+  <li><a href="#역-푸리에-변형-inverse-fourier-transform" id="toc-역-푸리에-변형-inverse-fourier-transform" class="nav-link" data-scroll-target="#역-푸리에-변형-inverse-fourier-transform">역 푸리에 변형 (Inverse Fourier Transform)</a>
+  <ul class="collapse">
+  <li><a href="#역inverse-dft" id="toc-역inverse-dft" class="nav-link" data-scroll-target="#역inverse-dft">역(Inverse) DFT</a></li>
+  <li><a href="#역inverse-stft" id="toc-역inverse-stft" class="nav-link" data-scroll-target="#역inverse-stft">역(Inverse) STFT</a></li>
+  <li><a href="#단위-분할-partition-of-unity" id="toc-단위-분할-partition-of-unity" class="nav-link" data-scroll-target="#단위-분할-partition-of-unity">단위 분할 (Partition of Unity)</a></li>
+  <li><a href="#구현" id="toc-구현" class="nav-link" data-scroll-target="#구현">구현</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 

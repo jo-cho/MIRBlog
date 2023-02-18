@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -199,7 +199,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#디지털-신호-샘플링-sampling" id="toc-디지털-신호-샘플링-sampling" class="nav-link active" data-scroll-target="#디지털-신호-샘플링-sampling">디지털 신호 샘플링 (Sampling)</a>
+  <ul class="collapse">
+  <li><a href="#샘플링sampling" id="toc-샘플링sampling" class="nav-link" data-scroll-target="#샘플링sampling">샘플링(Sampling)</a></li>
+  <li><a href="#에일리어싱-aliasing" id="toc-에일리어싱-aliasing" class="nav-link" data-scroll-target="#에일리어싱-aliasing">에일리어싱 (Aliasing)</a></li>
+  <li><a href="#샘플링-정리-sampling-theorem" id="toc-샘플링-정리-sampling-theorem" class="nav-link" data-scroll-target="#샘플링-정리-sampling-theorem">샘플링 정리 (Sampling Theorem)</a></li>
+  </ul></li>
+  <li><a href="#디지털-신호-양자화-quantization" id="toc-디지털-신호-양자화-quantization" class="nav-link" data-scroll-target="#디지털-신호-양자화-quantization">디지털 신호 양자화 (Quantization)</a>
+  <ul class="collapse">
+  <li><a href="#이산화-discretization" id="toc-이산화-discretization" class="nav-link" data-scroll-target="#이산화-discretization">이산화 (Discretization)</a></li>
+  <li><a href="#균일uniform-양자화" id="toc-균일uniform-양자화" class="nav-link" data-scroll-target="#균일uniform-양자화">균일(Uniform) 양자화</a>
+  <ul class="collapse">
+  <li><a href="#양자화-오류-quantization-error" id="toc-양자화-오류-quantization-error" class="nav-link" data-scroll-target="#양자화-오류-quantization-error">양자화 오류 (Quantization Error)</a></li>
+  <li><a href="#균일-양자화-구현" id="toc-균일-양자화-구현" class="nav-link" data-scroll-target="#균일-양자화-구현">균일 양자화 구현</a></li>
+  </ul></li>
+  <li><a href="#비균일nonuniform-양자화" id="toc-비균일nonuniform-양자화" class="nav-link" data-scroll-target="#비균일nonuniform-양자화">비균일(Nonuniform) 양자화</a>
+  <ul class="collapse">
+  <li><a href="#비균일-양자화-구현" id="toc-비균일-양자화-구현" class="nav-link" data-scroll-target="#비균일-양자화-구현">비균일 양자화 구현</a></li>
+  </ul></li>
+  <li><a href="#양자화-잡음-quantization-noise" id="toc-양자화-잡음-quantization-noise" class="nav-link" data-scroll-target="#양자화-잡음-quantization-noise">양자화 잡음 (Quantization Noise)</a>
+  <ul class="collapse">
+  <li><a href="#균일-및-비균일-양자화에-대한-양자화-노이즈" id="toc-균일-및-비균일-양자화에-대한-양자화-노이즈" class="nav-link" data-scroll-target="#균일-및-비균일-양자화에-대한-양자화-노이즈">균일 및 비균일 양자화에 대한 양자화 노이즈</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#간섭-및-비팅-interference-and-beating" id="toc-간섭-및-비팅-interference-and-beating" class="nav-link" data-scroll-target="#간섭-및-비팅-interference-and-beating">간섭 및 비팅 (Interference and Beating)</a>
+  <ul class="collapse">
+  <li><a href="#간섭interference" id="toc-간섭interference" class="nav-link" data-scroll-target="#간섭interference">간섭(Interference)</a></li>
+  <li><a href="#비팅beating" id="toc-비팅beating" class="nav-link" data-scroll-target="#비팅beating">비팅(Beating)</a>
+  <ul class="collapse">
+  <li><a href="#처프chirp-실험" id="toc-처프chirp-실험" class="nav-link" data-scroll-target="#처프chirp-실험">처프(Chirp) 실험</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 

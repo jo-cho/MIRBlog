@@ -23,7 +23,11 @@
       "/posts/6. Chord Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.html",
       "/posts/7. Tempo and Beat Tracking/7.1.Onset_Detection.html",
       "/posts/7. Tempo and Beat Tracking/7.2.Tempo_Analysis.html",
-      "/posts/7. Tempo and Beat Tracking/7.3.Beat_and_Pulse_Tracking.html"
+      "/posts/7. Tempo and Beat Tracking/7.3.Beat_and_Pulse_Tracking.html",
+      "/posts/8. Content-Based Audio Retrieval/8.1.Introduction.html",
+      "/posts/8. Content-Based Audio Retrieval/8.2.Audio_Identification.html",
+      "/posts/8. Content-Based Audio Retrieval/8.3.Audio_Matching.html",
+      "/posts/8. Content-Based Audio Retrieval/8.4.Version_Identification.html"
     ]
   }
 ]

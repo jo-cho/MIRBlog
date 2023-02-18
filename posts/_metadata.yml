@@ -11,3 +11,7 @@ title-block-banner: true
 comments: 
   giscus: 
     repo:  jo-cho/MIRBlog
+
+format:
+  html:
+    toc: true

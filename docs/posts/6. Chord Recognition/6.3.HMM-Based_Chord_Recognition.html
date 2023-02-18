@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -199,7 +199,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hidden-markov-model-hmm" id="toc-hidden-markov-model-hmm" class="nav-link active" data-scroll-target="#hidden-markov-model-hmm">Hidden Markov Model (HMM)</a>
+  <ul class="collapse">
+  <li><a href="#markov-chains" id="toc-markov-chains" class="nav-link" data-scroll-target="#markov-chains">Markov Chains</a></li>
+  <li><a href="#hidden-markov-models" id="toc-hidden-markov-models" class="nav-link" data-scroll-target="#hidden-markov-models">Hidden Markov Models</a></li>
+  <li><a href="#hmm-기반-시퀀스-생성" id="toc-hmm-기반-시퀀스-생성" class="nav-link" data-scroll-target="#hmm-기반-시퀀스-생성">HMM 기반 시퀀스 생성</a></li>
+  <li><a href="#hmm의-세-가지-문제" id="toc-hmm의-세-가지-문제" class="nav-link" data-scroll-target="#hmm의-세-가지-문제">HMM의 세 가지 문제</a>
+  <ul class="collapse">
+  <li><a href="#평가-문제-evaluation-problem" id="toc-평가-문제-evaluation-problem" class="nav-link" data-scroll-target="#평가-문제-evaluation-problem">평가 문제 (Evaluation Problem)</a></li>
+  <li><a href="#uncovering-문제" id="toc-uncovering-문제" class="nav-link" data-scroll-target="#uncovering-문제">Uncovering 문제</a></li>
+  <li><a href="#추정-estimation-문제" id="toc-추정-estimation-문제" class="nav-link" data-scroll-target="#추정-estimation-문제">추정 (Estimation) 문제</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#viterbi-알고리즘" id="toc-viterbi-알고리즘" class="nav-link" data-scroll-target="#viterbi-알고리즘">Viterbi 알고리즘</a>
+  <ul class="collapse">
+  <li><a href="#uncovering-문제와-viterbi-알고리즘" id="toc-uncovering-문제와-viterbi-알고리즘" class="nav-link" data-scroll-target="#uncovering-문제와-viterbi-알고리즘">Uncovering 문제와 Viterbi 알고리즘</a></li>
+  <li><a href="#viterbi-알고리즘-실행" id="toc-viterbi-알고리즘-실행" class="nav-link" data-scroll-target="#viterbi-알고리즘-실행">Viterbi 알고리즘 실행</a></li>
+  <li><a href="#viterbi-algorithm의-log-domain-실행" id="toc-viterbi-algorithm의-log-domain-실행" class="nav-link" data-scroll-target="#viterbi-algorithm의-log-domain-실행">Viterbi Algorithm의 log-domain 실행</a></li>
+  </ul></li>
+  <li><a href="#hmm-기반-화음-인식chord-recognition" id="toc-hmm-기반-화음-인식chord-recognition" class="nav-link" data-scroll-target="#hmm-기반-화음-인식chord-recognition">HMM 기반 화음 인식(Chord Recognition)</a>
+  <ul class="collapse">
+  <li><a href="#방출-우도의-구체화-specification-of-emission-likelihoods" id="toc-방출-우도의-구체화-specification-of-emission-likelihoods" class="nav-link" data-scroll-target="#방출-우도의-구체화-specification-of-emission-likelihoods">방출 우도의 구체화 (Specification of Emission Likelihoods)</a></li>
+  <li><a href="#전이-확률의-구체화-specification-of-transition-probabilities" id="toc-전이-확률의-구체화-specification-of-transition-probabilities" class="nav-link" data-scroll-target="#전이-확률의-구체화-specification-of-transition-probabilities">전이 확률의 구체화 (Specification of Transition Probabilities)</a></li>
+  <li><a href="#hmm-기반-화음-인식-hmm-based-chord-recognition" id="toc-hmm-기반-화음-인식-hmm-based-chord-recognition" class="nav-link" data-scroll-target="#hmm-기반-화음-인식-hmm-based-chord-recognition">HMM 기반 화음 인식 (HMM-Based Chord Recognition)</a></li>
+  <li><a href="#사전-필터링-vs.-사후-필터링-prefiltering-vs.-postfiltering" id="toc-사전-필터링-vs.-사후-필터링-prefiltering-vs.-postfiltering" class="nav-link" data-scroll-target="#사전-필터링-vs.-사후-필터링-prefiltering-vs.-postfiltering">사전 필터링 vs.&nbsp;사후 필터링 (Prefiltering vs.&nbsp;Postfiltering)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
