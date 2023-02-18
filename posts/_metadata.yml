@@ -10,8 +10,11 @@ title-block-banner: true
 # blog-comments
 comments: 
   giscus: 
-    repo:  jo-cho/MIRBlog
+    repo: jo-cho/MIRBlog
 
 format:
   html:
     toc: true
+    toc-title: "목차"
+    smooth-scroll: true
+    page-navigation: true

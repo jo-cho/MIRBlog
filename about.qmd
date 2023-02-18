@@ -1,5 +1,6 @@
 ---
-title: "About"
+title: "About Me"
+subtitle: "Cheonghyo Cho | 조정효"
 image: profile.jpg
 about:
   template: jolla

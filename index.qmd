@@ -1,11 +1,11 @@
 ---
-title: "Music Information Retrieval Posts"
+title: "블로그 글"
 subtitle: ""
 listing:
   contents: posts
   sort: "title"
-  type: default
-  categories: true
+  type: grid
+  categories: cloud
   sort-ui: true
   filter-ui: true
   feed: false
