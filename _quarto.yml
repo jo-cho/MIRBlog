@@ -5,6 +5,7 @@ project:
 website:
   #page-navigation: true
   title: "음악정보검색 입문"
+  favicon: logo_mir.png
   site-url: https://jo-cho.github.io/MIRBlog/
   repo-url: https://github.com/jo-cho/MIRBlog
   repo-actions: [issue]
@@ -19,16 +20,17 @@ website:
         - text: Report a Bug
           href: https://github.com/jo-cho/MIRBlog/discussions/4 
   sidebar:
-    pinned: false
-    header: "내비게이션"
-    alignment: center
+    pinned: true
+    # header: "내비게이션"
+    # background: primary
+    style: docked
     contents:
       - href: index.qmd
-        text: 홈
+        text: "블로그 가이드"
       - section: "음악정보검색 입문"
         contents:
           - section: "1. 들어가며"
-            contents: 
+            contents:
               - href: posts/1.%20Introduction/1.1.Introduction.ipynb
                 text: "1.1. MIR은 무엇인가"
           - section: "2. 음악 표현"
