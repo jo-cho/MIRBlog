@@ -21,87 +21,90 @@ website:
   sidebar:
     pinned: false
     header: "내비게이션"
-    collapse-level: 2
     alignment: center
     contents:
       - href: index.qmd
         text: 홈
       - section: "음악정보검색 입문"
         contents:
+          - section: "1. 들어가며"
+            contents: 
+              - href: posts/1.%20Introduction/1.1.Introduction.ipynb
+                text: "1.1. MIR은 무엇인가"
           - section: "2. 음악 표현"
             contents:
               - href: posts/2.%20Music%20Representation/2.1.Sheet_Music.html
-                text: "악보 표현"
+                text: "2.1. 악보 표현"
               - href: posts/2.%20Music%20Representation/2.2.Symbolic_Representation.html
-                text: "기호 표현"
+                text: "2.2. 기호 표현"
               - href: posts/2.%20Music%20Representation/2.3.Audio_Representation.html
-                text: "오디오 표현"
+                text: "2.3. 오디오 표현"
           - section: "3. 푸리에 변환"
             contents:
               - href: posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.1.Math_Review.html
-                text: "복소수와 지수함수"
+                text: "3.1. 복소수와 지수함수"
               - href: posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.2.Discrete_Fourier_Transform.html
-                text: "이산 & 고속 푸리에 변환"
+                text: "3.2. 이산 & 고속 푸리에 변환"
               - href: posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.3.Short-term_Fourier_Transform_1.html
-                text: "단기 푸리에 변환 (1)"
+                text: "3.3. 단기 푸리에 변환 (1)"
               - href: posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.4.Short-term_Fourier_Transfrom_2.html
-                text: "단기 푸리에 변환 (2)"
+                text: "3.4. 단기 푸리에 변환 (2)"
               - href: posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.5.Digital_Signals.html
-                text: "디지털 신호"
+                text: "3.5. 디지털 신호"
           - section: "4. 음악 동기화"
             contents:
               - href: posts/4.%20Music%20Synchronization/4.1.Audio_Synchronization_Features.html
-                text: "오디오 동기화 피쳐"
+                text: "4.1. 오디오 동기화 피쳐"
               - href: posts/4.%20Music%20Synchronization/4.2.Dynamic_Time_Warping.html
-                text: "동적 시간 워핑 (DTW)"
+                text: "4.2. 동적 시간 워핑 (DTW)"
           - section: "5. 음악 구조 분석"
             contents:
               - href: posts/5.%20Music%20Structure%20Analysis/5.1.Music_Structure_and_Segmentation.html
-                text: "음악 구조와 분할"
+                text: "5.1. 음악 구조와 분할"
               - href: posts/5.%20Music%20Structure%20Analysis/5.2.Self_Similarity_Matrix.html
-                text: "자기 유사성 행렬 (SSM)"
+                text: "5.2. 자기 유사성 행렬 (SSM)"
               - href: posts/5.%20Music%20Structure%20Analysis/5.3.Audio_Thumbnail.html
-                text: "오디오 썸네일"
+                text: "5.3. 오디오 썸네일"
               - href: posts/5.%20Music%20Structure%20Analysis/5.4.Novelty-Based_Segmentation.html
-                text: "노벨티 기반 분할"
+                text: "5.4. 노벨티 기반 분할"
               - href: posts/5.%20Music%20Structure%20Analysis/5.5.Evaluation.html
-                text: "음악 처리의 평가 방법"
+                text: "5.5. 음악 처리의 평가 방법"
           - section: "6. 화음 인식"
             contents:
               - href: posts/6.%20Chord%20Recognition/6.1.Basic_Theory_of_Harmony.ipynb
-                text: "화성의 기본 이론"
+                text: "6.1. 화성의 기본 이론"
               - href: posts/6.%20Chord%20Recognition/6.2.Template-Based_Chord_Recognition.ipynb
-                text: "템플릿 기반 화음 인식"
+                text: "6.2. 템플릿 기반 화음 인식"
               - href: posts/6.%20Chord%20Recognition/6.3.HMM-Based_Chord_Recognition.ipynb
-                text: "HMM 기반 화음 인식"
+                text: "6.3. HMM 기반 화음 인식"
               - href: posts/6.%20Chord%20Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.ipynb
-                text: "화음 인식 예시: 비틀즈"
+                text: "6.4. 화음 인식 예시: 비틀즈"
           - section: "7. 템포와 비트"
             contents:
               - href: posts/7.%20Tempo%20and%20Beat%20Tracking/7.1.Onset_Detection.ipynb
-                text: "온셋 감지"
+                text: "7.1. 온셋 감지"
               - href: posts/7.%20Tempo%20and%20Beat%20Tracking/7.2.Tempo_Analysis.ipynb
-                text: "템포 분석"
+                text: "7.2. 템포 분석"
               - href: posts/7.%20Tempo%20and%20Beat%20Tracking/7.3.Beat_and_Pulse_Tracking.ipynb
-                text: "비트와 펄스 추적"
+                text: "7.3. 비트와 펄스 추적"
           - section: "8. 내용 기반 음악 검색"
             contents:
               - href: posts/8.%20Content-Based%20Audio%20Retrieval/8.1.Introduction.ipynb
-                text: "내용 기반 오디오 검색: 개요"
+                text: "8.1. 내용 기반 오디오 검색: 개요"
               - href: posts/8.%20Content-Based%20Audio%20Retrieval/8.2.Audio_Identification.ipynb
-                text: "오디오 식별"
+                text: "8.2. 오디오 식별"
               - href: posts/8.%20Content-Based%20Audio%20Retrieval/8.3.Audio_Matching.ipynb
-                text: "오디오 매칭"
+                text: "8.3. 오디오 매칭"
               - href: posts/8.%20Content-Based%20Audio%20Retrieval/8.4.Version_Identification.ipynb
-                text: "버전 식별"
+                text: "8.4. 버전 식별"
           - section: "9. 오디오 분해"
             contents:
               - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.1.Harmonic–Percussive_Separation.ipynb
-                text: "화성-타악 분리"
+                text: "9.1. 화성-타악 분리"
               - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.2.Melody_Extraction.ipynb
-                text: "멜로디 추출"
+                text: "9.2. 멜로디 추출"
               - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.3.NMF-Based_Audio_Decomposition.ipynb
-                text: "NMF 기반 오디오 분해"
+                text: "9.3. NMF 기반 오디오 분해"
             
       
 format:
