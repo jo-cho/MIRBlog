@@ -1,0 +1,14 @@
+---
+title: ""
+subtitle: "블로그 글"
+listing:
+  contents: posts
+  sort: "title"
+  type: grid
+  categories: cloud
+  sort-ui: true
+  filter-ui: true
+  feed: false
+page-layout: full
+title-block-banner: false
+---
