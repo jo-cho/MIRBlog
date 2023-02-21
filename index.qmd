@@ -6,7 +6,7 @@
 
 이 블로그에는 "음악정보검색 입문"이라는 [카테고리](listing.html) 하에 음악정보검색에 대해 정리한 내용과 이를 구현한 파이썬 코드로 구성된 글이 포스팅되어 있습니다. **대부분의 내용은 책 ["Fundamentals of Music Processing: Using Python and Jupyter Notebooks", Müller, Meinard.](https://books.google.co.kr/books/about/Fundamentals_of_Music_Processing.html?id=fYsoEAAAQBAJ)의 목차와 내용을 기반으로 합니다.** 이 내용을 토대로 한 데이터 분석 실험 및 응용 프로그램 등은 향후 포스트할 예정입니다.
 
-> <b><span style="background-color:ivory; font-size:130%">**[바로 블로그 글로 넘어가기](listing.html)**</span></b>
+> <b><span style="background-color:ivory; font-size:130%">**[ 블로그 글로 바로 넘어가기](listing.html)**</span></b>
 
 ---
 
