@@ -925,8 +925,7 @@ Processing:  Penny Lane
 <section id="사전-필터링prefiltering-실험" class="level2">
 <h2 class="anchored" data-anchor-id="사전-필터링prefiltering-실험">사전 필터링(Prefiltering) 실험</h2>
 <ul>
-<li><p>위에서 특징(feature)유형이 화음 인식 결과에 큰 영향을 미치는 것을 볼 수 있었다.</p></li>
-<li><p>마찬가지로 STFT 창 크기를 확대하면 화음 인식의 동작에 상당한 영향을 미칠 수 있다. 각 크로마 차원에 대해 시간 경과에 따른 일종의 local 평균을 계산하는 <strong>temporal smoothing</strong>를 적용할 때 유사한 효과를 얻을 수 있다.</p></li>
+<li><p>위에서 특징(feature)유형이 화음 인식 결과에 큰 영향을 미치는 것을 볼 수 있었다. 마찬가지로 STFT 윈도우 크기를 확대하면 화음 인식의 동작에 상당한 영향을 미칠 수 있다. 각 크로마 차원에 대해 시간 경과에 따른 일종의 local 평균을 계산하는 <strong>temporal smoothing</strong>를 적용할 때 유사한 효과를 얻을 수 있다.</p></li>
 <li><p>이제 <span class="math inline">\(21.5~\mathrm{Hz}\)</span>의 feature rate를 갖는 세 가지 크로마그램 표현(<code>STFT</code>, <code>CQT</code>, <code>IIR</code>)으로 시작하여 화음 인식 정확도에 대한 temporal smoothing의 효과를 확인해본다.</p></li>
 <li><p><span class="math inline">\(L\in\mathbb{N}\)</span>를 스무딩 필터의 길이(프레임 단위로 측정)라고 하자. 스무딩을 위해 각각 <strong>평균</strong> 또는 <strong>중앙값</strong>을 사용하는 두 함수 중 하나를 적용하여 중심(centered) 방식으로 평균을 계산한다.</p></li>
 <li><p>다운샘플링을 적용하지 않으므로 원래 feature rate를 <span class="math inline">\(21.5~\mathrm{Hz}\)</span>로 유지한다.</p></li>
@@ -1224,14 +1223,14 @@ Processing: Penny Lane
 <li>HMM 기반 화음 인식 접근 방식은 각 프레임 <span class="math inline">\(n\in[1:N]\)</span>에 대한 추정 <span class="math inline">\(\lambda_{n}\in\Lambda\)</span>를 생성하므로, 쌍 <span class="math inline">\((n,\lambda_{n})\)</span>는 참조 주석의 프레임이 <span class="math inline">\(\lambda^\mathrm{Ref}_{n}=\mathbf{N}\)</span>인 경우 <strong>false positive</strong>으로 계산된다.</li>
 </ol>
 <ul>
-<li>이를 염두에 두고 다음 그림에 표시된 화음 인식 결과를 살펴보자.
+<li><p>이를 염두에 두고 다음 그림에 표시된 화음 인식 결과를 살펴보자.</p>
 <ul>
 <li><strong>3화음 축소</strong>에 기반한 참조 주석을 사용하여 precision <span class="math inline">\(\mathrm{P}=0.704\)</span>, recall <span class="math inline">\(\mathrm{R}=0.726\)</span> 및 F-측정값 <span class="math inline">\(\mathrm{F}=0.715\)</span>를 얻는다.</li>
 <li><strong>비화음 축소</strong>에 기반한 참조 주석을 사용하여 <span class="math inline">\(\mathrm{P}=0.485\)</span>, <span class="math inline">\(\mathrm{R}=0.925\)</span> 및 <span class="math inline">\(\mathrm{F}=0.636\)</span>를 얻는다.</li>
 </ul></li>
-<li><strong>recall의 증가</strong>는 <strong>축소된 화음 라벨에 대해 화음 인식 오류가 종종 발생</strong>한다는 가설을 정확히 뒷받침한다.</li>
-<li><strong>precision 감소</strong>는 화음 인식기가 모든 프레임 <span class="math inline">\(n\in[1:N]\)</span>에 대해 화음 라벨 <span class="math inline">\(\lambda_n\in\Lambda\)</span>를 출력하기 때문이다.</li>
-<li>이 결과는 예를 들어 모든 <span class="math inline">\(24\)</span> 화음 라벨의 출력 확률이 특정 임계값 아래로 떨어지는 경우, 화음 인식기가 비화음의 라벨도 출력하도록 허용함으로써 개선될 수 있다.</li>
+<li><p><strong>recall의 증가</strong>는 <strong>축소된 화음 라벨에 대해 화음 인식 오류가 종종 발생</strong>한다는 가설을 정확히 뒷받침한다.</p></li>
+<li><p><strong>precision 감소</strong>는 화음 인식기가 모든 프레임 <span class="math inline">\(n\in[1:N]\)</span>에 대해 화음 라벨 <span class="math inline">\(\lambda_n\in\Lambda\)</span>를 출력하기 때문이다.</p></li>
+<li><p>이 결과는 예를 들어 모든 <span class="math inline">\(24\)</span> 화음 라벨의 출력 확률이 특정 임계값 아래로 떨어지는 경우, 화음 인식기가 비화음의 라벨도 출력하도록 허용함으로써 개선될 수 있다.</p></li>
 </ul>
 <div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-01-16T13:33:13.700883Z&quot;,&quot;start_time&quot;:&quot;2023-01-16T13:33:11.409988Z&quot;}" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>song_selected <span class="op">=</span> [<span class="dv">3</span>] </span>
@@ -1264,7 +1263,7 @@ Processing: Penny Lane
 <h1>결론</h1>
 <ul>
 <li><p>요약하면, 시간적 피쳐 스무딩(temporal feature smoothing)은 순전히 프레임 별로 작동하는 화음 인식기의 전체 평가 측정을 개선하는 쉬운 방법이라고 말할 수 있다. 그러나 “최적” 스무딩 길이는 화음 지속 시간 분포에 따라 크게 달라진다.</p></li>
-<li><p>고정 길이의 평균화 필터를 사용하는 대신, 음악적으로 정보를 얻은 적응형 세분화 기술(adaptive segmentation techniques)을 사용하는 것이 대안이다. 예를 들어 화음 변경은 종종 비트(beat) 위치와 함께 진행된다. 따라서 <strong>beat-synchronous</strong> 방식으로 필터링을 수행할 수 있다. 여기서 각 분석 창은 두 개의 연속 비트 위치에 의해 결정된다. 그러나 자동화된 방법으로 비트 위치를 찾는 것은 그 자체로 어려운 작업이기도 하다.</p></li>
+<li><p>고정 길이의 평균화 필터를 사용하는 대신, 음악적으로 정보를 얻은 적응형 분할 기술(adaptive segmentation techniques)을 사용하는 것이 대안이다. 예를 들어 화음 변경은 종종 비트(beat) 위치와 함께 진행된다. 따라서 <strong>beat-synchronous</strong> 방식으로 필터링을 수행할 수 있다. 여기서 각 분석 윈도우는 두 개의 연속 비트 위치에 의해 결정된다. 그러나 자동화된 방법으로 비트 위치를 찾는 것은 그 자체로 어려운 작업이기도 하다.</p></li>
 <li><p>분류 단계 이전에 특징을 수정하는 대신 또 다른 일반적인 접근 방식은 HMM 기반 접근 방식과 정확히 일치하는 패턴 매칭 단계 내에서 일종의 필터링을 수행하는 것이다. <strong>사후 필터링</strong>(HMM 사용)과 <strong>사전 필터링</strong>(피처 스무딩 사용)의 조합이 전체 인식 결과를 크게 개선하지 않는다는 것을 확인했다.</p></li>
 <li><p>비틀즈 컬렉션에는 중심 주파수가 <span class="math inline">\(440~\mathrm{Hz}\)</span>인 예상 참고 피치 <span class="math inline">\(\mathrm{A4}\)</span>에서 벗어난 곡들이 다수 있다. 이러한 편차는 화음 인식기에 대한 입력 역할을 하는 크로마그램의 품질에 치명적인 결과를 초래할 수 있다. 따라서 화음 인식 시스템에서 중요한 단계 중 하나는 튜닝 추정(tuning estimation)을 수행하여 튜닝 효과를 보상한 다음, 주파수 축의 피치 기반 로그 분할에 사용되는 중심 주파수를 조정하는 것이다.</p></li>
 <li><p>비틀즈 컬렉션은 단 하나의 록 밴드로 제한되지만, 이 데이터 세트를 실험하는 것은 화음 인식 시스템을 개발하고 비교할 때 매우 유익할 수 있다. 특히 데이터 기반 기술(예: 최근 딥 러닝 기술)을 사용하는 경우 데이터 세트를 <strong>훈련(training) 세트</strong>, <strong>검증(validation) 세트</strong> 및 <strong>테스트(test) 세트</strong>라는 분리된 하위 집합으로 분할하는 것이 중요하다. 훈련 세트를 사용하여 화음 템플릿을 조정하거나 특정 HMM 매개변수를 학습할 수 있다. 검증 세트는 예를 들어 HMM 아키텍처를 결정하는 하이퍼파라미터를 조정하는 데 사용될 수 있다. 마지막으로 테스트 세트는 최종 시스템을 테스트하고 평가하는 데 사용한다.</p></li>
@@ -1277,6 +1276,11 @@ Processing: Penny Lane
 </ul>
 <hr>
 <p><a href="https://colab.research.google.com/github/jo-cho/mir_kr/blob/main/Notebooks/6.%20Chord%20Recognition/6.4.Further_Readings.ipynb">구글 Colab 링크</a></p>
+<hr>
+<a href="https://jo-cho.github.io/MIRBlog/posts/6.%20Chord%20Recognition/6.3.HMM-Based_Chord_Recognition.html"> <span class="math inline">\(\leftarrow\)</span> 6.3. HMM 기반 화음 인식
+</a><div style="text-align: right"><a href="https://jo-cho.github.io/MIRBlog/posts/6.%20Chord%20Recognition/6.3.HMM-Based_Chord_Recognition.html">
+</a><a href="https://jo-cho.github.io/MIRBlog/posts/7.%20Tempo%20and%20Beat%20Tracking/7.1.Onset_Detection.html"> 7.1. 온셋 감지 <span class="math inline">\(\rightarrow\)</span> </a>
+</div>
 
 
 </section>
