@@ -109,9 +109,15 @@ website:
                 text: "9.3. NMF 기반 오디오 분해"
       - section: "음악정보검색 실험"
         contents:
-          - section: "장르 분류"
-            contents: "GTZAN 데이터를 이용한 장르 분류"
+          - href: posts/Experiments/MIR_dataset.ipynb
+            text: "MIR 데이터세트 모음"
+          - section: "음악 분류"
+            #contents: "GTZAN 데이터를 이용한 장르 분류"
+            #contents: "FMA 데이터를 이용한 장르 분류"
+            #contents: "Librosa를 이용한 오디오 피쳐 추출"
           - section: "소스 분리"
+          - section: "음악 추천"
+            #contents: "오디오 유사도 기반 추천"
       
 format:
   html:
