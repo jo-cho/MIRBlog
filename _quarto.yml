@@ -107,10 +107,14 @@ website:
                 text: "9.2. 멜로디 추출"
               - href: posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.3.NMF-Based_Audio_Decomposition.ipynb
                 text: "9.3. NMF 기반 오디오 분해"
-      - section: "음악정보검색 실험"
+      - section: "음악정보검색 조사"
         contents:
           - href: posts/Experiments/MIR_dataset.ipynb
-            text: "MIR 데이터세트 모음"
+            text: "데이터 세트 모음"
+          - href: posts/Experiments/Literatures_SS.ipynb
+            text: "선행연구 조사 - 소스분리"
+      - section: "음악정보검색 실험"
+        contents:
           - section: "음악 분류"
             #contents: "GTZAN 데이터를 이용한 장르 분류"
             #contents: "FMA 데이터를 이용한 장르 분류"
