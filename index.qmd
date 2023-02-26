@@ -1,20 +1,25 @@
 # 블로그 가이드
 
+<img src="logo_mir.png" width='200'>
+
 블로그 주인의 환영 글
 
 > **이 블로그는 음악정보검색(Music Information Retrieval, MIR)의 입문자를 위해 만든 블로그입니다.** 음악정보검색 분야는 컴퓨터 기술과 인공지능 연구의 발달과 함께 유망한 연구 분야로 관심 받고 있습니다. 블로그 주인이 음악정보검색이라는 분야에 관심이 가지게 되며 혼자 공부한 내용을 스스로 정리해보고 이를 모두에게 공유하고자 블로그를 개설하였습니다. 방문해주셔서 감사합니다.
 
-이 블로그에는 "음악정보검색 입문"이라는 [카테고리](listing.html) 하에 음악정보검색에 대해 정리한 내용과 이를 구현한 파이썬 코드로 구성된 글이 포스팅되어 있습니다. **대부분의 내용은 책 ["Fundamentals of Music Processing: Using Python and Jupyter Notebooks", Müller, Meinard.](https://books.google.co.kr/books/about/Fundamentals_of_Music_Processing.html?id=fYsoEAAAQBAJ)의 목차와 내용을 기반으로 합니다.** 이 내용을 토대로 한 데이터 분석 실험 및 응용 프로그램 등은 향후 포스트할 예정입니다.
-
-> <b><span style="background-color:ivory; font-size:130%">**[ 블로그 글로 바로 넘어가기](listing.html)**</span></b>
+> <b><span style="background-color:ivory; font-size:130%">**[모든 블로그 글 보기](listing.html)**</span></b>
 
 ---
 
+## 음악정보검색 입문
+
+이 블로그에는 "음악정보검색 입문"이라는 [카테고리](listing.html) 하에 음악정보검색에 대해 정리한 내용과 이를 구현한 파이썬 코드로 구성된 글이 포스팅되어 있습니다. **대부분의 내용은 책 ["Fundamentals of Music Processing: Using Python and Jupyter Notebooks", Müller, Meinard.](https://books.google.co.kr/books/about/Fundamentals_of_Music_Processing.html?id=fYsoEAAAQBAJ)의 목차와 내용을 기반으로 합니다.**
+
+
 블로그의 글은 목차 순서대로 읽는 것을 추천드립니다. 뒤쪽의 글들 중 앞의 내용을 알고 있다고 가정하고 서술한 내용이 많이 있습니다.
 
-글의 목차는 다음과 같습니다. 목차를 클릭하면 해당 글로 이동합니다. 또한 왼쪽의 사이드바를 이용해 해당 목차로 넘어갈 수 있습니다.
+**목차**
 
-## 음악정보검색 입문: 목차
+글의 목차는 다음과 같습니다. 목차를 클릭하면 해당 글로 이동합니다. 또한 왼쪽의 사이드바를 이용해 해당 목차로 넘어갈 수 있습니다.
 
 ### 1. 들어가며
 음악정보검색(MIR)의 개념을 소개합니다.
@@ -111,22 +116,32 @@
 
 [9.3. NMF 기반 오디오 분해](https://jo-cho.github.io/MIRBlog/posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.3.NMF-Based_Audio_Decomposition.html)
 
-
----
-
-이 블로그의 모든 글은 오직 교육용 목적입니다.
-
-## 출처
+### 참고문헌 및 데이터 출처
 - Müller, Meinard. Fundamentals of Music Processing: Using Python and Jupyter Notebooks. Springer Nature, 2021.
-    - 블로그 글의 많은 부분이 이 책의 내용을 기반으로 합니다.
     - <img src="posts/1.%20Introduction/FMP_Teaser_Cover.png" width='400'>
     
 - https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html
-    - 이 사이트의 파이썬 노트북을 많은 부분 참고하고 있습니다. 사용된 오디오, 이미지, CSV 자료 등을 구할 수 있습니다. 
     - <img src="posts/1.%20Introduction/Logo_AudioLabs_Long.png" width='400'>
 
 - https://musicinformationretrieval.com/
     
 - https://github.com/meinardmueller/libfmp
+
+---
+
+## 음악정보검색 조사
+
+현재 연구된 음악정보검색 분야의 동향을 파악하고 선행연구와 사용된 데이터, 변수, 머신러닝/딥러닝 모형, 성과지표 등을 조사했습니다.
+
+[데이터 세트 모음](https://jo-cho.github.io/MIRBlog/posts/Experiments/MIR_dataset.html): 음악정보검색 관련 데이터 세트를 다운받거나 조회할 수 있는 링크를 유형별로 모아두었습니다.
+
+[선행연구 조사 - 소스분리](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_SS.html): 음악 소스 분리(music source separation)에 관한 선행연구를 조사합니다.
+
+
+[선행연구 조사 - 음악추천](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MR.html): 내용 기반의 음악 추천(content-based music recommendation)에 관한 선행연구를 조사합니다.
+
+---
+
+이 블로그의 모든 글은 오직 교육용 목적입니다.
 
 **[About Me](https://jo-cho.github.io/MIRBlog/about.html)**

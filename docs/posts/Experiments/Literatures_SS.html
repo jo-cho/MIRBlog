@@ -31,6 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../posts/Experiments/Literatures_MR.html" rel="next">
 <link href="../../posts/Experiments/MIR_dataset.html" rel="prev">
 <link href="../../logo_mir.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -399,6 +400,11 @@ ul.task-list li input[type="checkbox"] {
   <a href="../../posts/Experiments/Literatures_SS.html" class="sidebar-item-text sidebar-link active">선행연구 조사 - 소스분리</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/Literatures_MR.html" class="sidebar-item-text sidebar-link">선행연구 조사 - 음악추천</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -429,9 +435,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#선행연구-조사" id="toc-선행연구-조사" class="nav-link active" data-scroll-target="#선행연구-조사">선행연구 조사</a>
+  <li><a href="#선행연구-조사" id="toc-선행연구-조사" class="nav-link active" data-scroll-target="#선행연구-조사">선행연구 조사</a></li>
+  <li><a href="#추가-설명" id="toc-추가-설명" class="nav-link" data-scroll-target="#추가-설명">추가 설명</a>
   <ul class="collapse">
-  <li><a href="#추가-설명" id="toc-추가-설명" class="nav-link" data-scroll-target="#추가-설명">추가 설명</a></li>
+  <li><a href="#피쳐" id="toc-피쳐" class="nav-link" data-scroll-target="#피쳐">피쳐,</a></li>
+  <li><a href="#전처리-후처리" id="toc-전처리-후처리" class="nav-link" data-scroll-target="#전처리-후처리">전처리, 후처리</a></li>
+  <li><a href="#모형" id="toc-모형" class="nav-link" data-scroll-target="#모형">모형</a></li>
+  <li><a href="#데이터" id="toc-데이터" class="nav-link" data-scroll-target="#데이터">데이터</a></li>
+  <li><a href="#기타-사항" id="toc-기타-사항" class="nav-link" data-scroll-target="#기타-사항">기타 사항</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jo-cho/MIRBlog/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -475,17 +486,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p><strong>MIR Literatures - Music Source Separation</strong></p>
-<blockquote class="blockquote">
 <p>이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 언어음(speech) 보다는 음악이 포함된 소스 분리 위주의 연구로 조사하였다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다.</p>
-</blockquote>
 <p>논문 제목을 클릭하면 해당 논문의 DOI 주소로 이동한다.</p>
-<p><em>새롭게 찾은 연구는 수시로 추가할 예정이다. 현재 2020년까지 업데이트 됐다.</em></p>
+<p><em>새롭게 찾은 연구는 수시로 추가할 예정이다.</em></p>
 <section id="선행연구-조사" class="level1">
 <h1>선행연구 조사</h1>
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: right;">논문</th>
+<th style="text-align: center;">논문</th>
 <th style="text-align: center;">데이터</th>
 <th style="text-align: center;">피쳐/인풋</th>
 <th style="text-align: center;">모형</th>
@@ -494,245 +503,245 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://www.ient.rwth-aachen.de/cms/dafx09/">M. Spiertz and V. Gnann (2009)</a></td>
+<td style="text-align: center;"><a href="https://www.ient.rwth-aachen.de/cms/dafx09/">M. Spiertz and V. Gnann (2009)</a></td>
 <td style="text-align: center;">EBU speech, <a href="https://link.springer.com/book/10.1007/978-0-387-21603-4">Instruments Data</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">MFCC K-means, NMF</td>
 <td style="text-align: center;">SAR, SDR, SIR, SER</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://link.springer.com/chapter/10.1007/978-3-642-15995-4_18">G. Mysore, P. Smaragdis, and B. Raj (2010)</a></td>
+<td style="text-align: center;"><a href="https://link.springer.com/chapter/10.1007/978-3-642-15995-4_18">G. Mysore, P. Smaragdis, and B. Raj (2010)</a></td>
 <td style="text-align: center;"><a href="https://catalog.ldc.upenn.edu/LDC93s1">TIMIT speech</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Non-negative Factorial HMM</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/5946386">R. Jaiswal, <em>et, al.</em> (2011)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/5946386">R. Jaiswal, <em>et, al.</em> (2011)</a></td>
 <td style="text-align: center;"><a href="https://www.worldcat.org/ko/title/peter-siedlaczeks-advanced-orchestra-upgrade-97/oclc/43566640">Orchestral Instruments</a></td>
 <td style="text-align: center;">Magnitude Spectrogram</td>
 <td style="text-align: center;">Shifted-NMF</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/6854299">E. Grais, M.U. Sen, and H. Erdogan (2014)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/6854299">E. Grais, M.U. Sen, and H. Erdogan (2014)</a></td>
 <td style="text-align: center;"><a href="https://catalog.ldc.upenn.edu/LDC93s1">TIMIT speech</a>, Piano data</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">DNN, Energy Minimization</td>
 <td style="text-align: center;">SNR, SDR, SIR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/7178348">S. Uhlich, F. Giron, and Y. Mitsufuji (2015)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7178348">S. Uhlich, F. Giron, and Y. Mitsufuji (2015)</a></td>
 <td style="text-align: center;"><a href="https://zenodo.org/record/6797837#.Y_h6ZnZByUk">TRIOS</a> (“Brahms”,“Lussier”)</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">DNN</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a></td>
 <td style="text-align: center;">SISEC 2015 dataset</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">DNN + Wiener filter</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://openaccess.city.ac.uk/id/eprint/19289/">A. Jansson, <em>et al.</em> (2017)</a></td>
+<td style="text-align: center;"><a href="https://openaccess.city.ac.uk/id/eprint/19289/">A. Jansson, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;">Train: Large (original, instrumental) songs , Test:iKala, MedleyDB</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">U-Net</td>
 <td style="text-align: center;">SAR, NSDR, SIR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://link.springer.com/chapter/10.1007/978-3-319-53547-0_25">P. Chandna, <em>et al.</em> (2017)</a></td>
+<td style="text-align: center;"><a href="https://link.springer.com/chapter/10.1007/978-3-319-53547-0_25">P. Chandna, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>DeepConvSep</em> (CNN-based)</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/7952118">Y. Luo, <em>et al.</em> (2017)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7952118">Y. Luo, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100-remix</a>, iKala</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Chimera</em>(Deep clustering, Bi-LSTM)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>BLEND</em>(FNN(feed-forward) + Bi-LSTM)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/8169987">N. Takahashi and Y. Mitsufuji (2017)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8169987">N. Takahashi and Y. Mitsufuji (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">MM(Multiscale Multiband) DenseNet</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/1806.03185">D. Stoller, S. Ewert, and S. Dixon (2018)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/1806.03185">D. Stoller, S. Ewert, and S. Dixon (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Wave-U-Net</em></td>
 <td style="text-align: center;">SDR statistics</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/1805.08559">S. Park, T. Kim, K. Lee, and N. Kwak (2018)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/1805.08559">S. Park, T. Kim, K. Lee, and N. Kwak (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Stacked Hourglass Network(CNN-based)</td>
 <td style="text-align: center;">Median SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/8614148">J.Y. Liu and Y.H. Yang (2018)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8614148">J.Y. Liu and Y.H. Yang (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, <a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">ARC(Auto-encoder with Recurrent skip Connections) aka <em>Spect U-Net</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/8521383">N. Takahashi, N. Goswami, and Y. Mitsufuji (2018)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8521383">N. Takahashi, N. Goswami, and Y. Mitsufuji (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, <a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>MMDenseLSTM</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/1810.12187">F. Lluís, J. Pons, and X. Serra (2018)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/1810.12187">F. Lluís, J. Pons, and X. Serra (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Wave-Net</em></td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/1906.01203">J.Y. Liu and Y.H. Yang (2019)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/1906.01203">J.Y. Liu and Y.H. Yang (2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Dilated GRU</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://hal.inria.fr/hal-02293689/">F. Stöter, S. Uhlich, A. Liutkus, and Y. Mitsufuji (2019)</a></td>
+<td style="text-align: center;"><a href="https://hal.inria.fr/hal-02293689/">F. Stöter, S. Uhlich, A. Liutkus, and Y. Mitsufuji (2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, MUSDB18-HQ</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Open-Unmix</em> (based on <a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a>)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a></td>
 <td style="text-align: center;"><em>Bean</em> + <a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">U-Net</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/8707065">Y. Luo and N. Mesgarani (2019)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8707065">Y. Luo and N. Mesgarani (2019)</a></td>
 <td style="text-align: center;">WSJ0-2MIX (speech)</td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;">Conv-TasNet</td>
 <td style="text-align: center;">SI-SNR, SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/1911.13254">A. Défossez, <em>et al.</em>(2019)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/1911.13254">A. Défossez, <em>et al.</em>(2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Demucs</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://joss.theoj.org/papers/10.21105/joss.02154">R. Hennequin, <em>et al.</em> (2020)</a></td>
+<td style="text-align: center;"><a href="https://joss.theoj.org/papers/10.21105/joss.02154">R. Hennequin, <em>et al.</em> (2020)</a></td>
 <td style="text-align: center;">Train: <em>Bean</em> + Extra , Test: <a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Spleeter</em> (based on <a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a>)</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="http://proceedings.mlr.press/v119/nachmani20a.html">E. Nachmani, Y. Adi, and L. Wolf (2020)</a></td>
+<td style="text-align: center;"><a href="http://proceedings.mlr.press/v119/nachmani20a.html">E. Nachmani, Y. Adi, and L. Wolf (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, WSJ0-2MIX (speech)</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">DP(Dual-Path)RNN</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/9053513">D. Samuel and A. Ganeshan (2020)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9053513">D. Samuel and A. Ganeshan (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>Meta-TasNet</em> (meta-learning of ConvTasNet)</td>
 <td style="text-align: center;">SI-SNR, SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2010.01733">N. Takahashi and Y. Mitsufuji (2020)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2010.01733">N. Takahashi and Y. Mitsufuji (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>D3Net</em> (multidilated convolution)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://hal.science/hal-02986241/">E. Lancaster, and N. Souviraà-Labastie (2020)</a></td>
+<td style="text-align: center;"><a href="https://hal.science/hal-02986241/">E. Lancaster, and N. Souviraà-Labastie (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>+ Extra 30</td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;">TasNet</td>
 <td style="text-align: center;">SI-SNR, SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2010.11631">W. Choi, <em>et al.</em> (2020)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2010.11631">W. Choi, <em>et al.</em> (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18-HQ</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>LaSAFT-GPoCM</em> (Latent Source Attentive Frequency Transformation Gated Point-wise Convolutional Modulation)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/9362081">T. Li, <em>et al.</em> (2021)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9362081">T. Li, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Sams-Net</em> (Sliced Attention-based Neural Network)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2109.05418">Q. Kong, <em>et al.</em> (2021)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2109.05418">Q. Kong, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>ResUNet</em> (Residual UNet)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/9414044">R. Sawata, <em>et al.</em> (2021)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9414044">R. Sawata, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>CrossNet-UnMiX (X-UMX)</em> (multi-domain loss, combination loss)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2112.04685">H. Liu, Q. Kong, and J. Liu (2021)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2112.04685">H. Liu, Q. Kong, and J. Liu (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18-HQ</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>CWS-PResUNet</em> (channel-wise subband phase-aware ResUNet), <em>ByteMSS</em> (CWS-PResUNet+DeMucs)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2111.03600">A. Défossez (2021)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2111.03600">A. Défossez (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18-HQ</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;">Hybrid <em>Demucs</em></td>
 <td style="text-align: center;">nSDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2111.12203">M. Kim, <em>et al.</em> (2021)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2111.12203">M. Kim, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>KUIELab-MDX-Net</em> (two-stream neural network)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="https://arxiv.org/abs/2209.15174">Y. Luo and J. Yu (2022)</a></td>
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2209.15174">Y. Luo and J. Yu (2022)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18, MUSDB18-HQ</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Band-Split RNN</td>
 <td style="text-align: center;">uSDR, cSDR</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="https://ieeexplore.ieee.org/abstract/document/9812509">Y. Hu, <em>et al.</em> (2022)</a></td>
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9812509">Y. Hu, <em>et al.</em> (2022)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>CDE-HTCN</em> (cross-domain encoder hierarchic temporal convolutional network)</td>
@@ -740,16 +749,33 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="추가-설명" class="level2">
-<h2 class="anchored" data-anchor-id="추가-설명">추가 설명</h2>
+</section>
+<section id="추가-설명" class="level1">
+<h1>추가 설명</h1>
+<section id="피쳐" class="level2">
+<h2 class="anchored" data-anchor-id="피쳐">피쳐,</h2>
 <ul>
-<li>피쳐, 전처리, 후처리 등 설명
+<li>Magnitude Spectrogram
 <ul>
-<li>Magnitude Spectrogram: STFT로 계산 (주로 Hanning window, window size = 2048, hop size = 512) 후 mel-filterbank, masking 등 작업</li>
-<li>Wiener filtering: <em>MMDenseLSTM, D3Net, Spleeter, Open Unmix, Demucs</em> 등의 모형에서 마지막 후처리 작업으로 <strong>Multi-Channel Wiener filtering</strong>을 사용했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a> 이후)</li>
-<li>Data Augmentation: 작은 데이터세트를 다룰 때는 Spectrogram의 <strong>Data Augmentation</strong>로 input을 강화했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a> 이후)</li>
+<li>STFT로 계산 (주로 Hanning window, window size = 2048, hop size = 512) 후 mel-filterbank, masking 등 작업</li>
 </ul></li>
-<li>모형 세부 설명
+</ul>
+</section>
+<section id="전처리-후처리" class="level2">
+<h2 class="anchored" data-anchor-id="전처리-후처리">전처리, 후처리</h2>
+<ul>
+<li>Wiener filtering
+<ul>
+<li><em>MMDenseLSTM, D3Net, Spleeter, Open Unmix, Demucs</em> 등의 모형에서 마지막 후처리 작업으로 <strong>Multi-Channel Wiener filtering</strong>을 사용했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a> 이후)</li>
+</ul></li>
+<li>Data Augmentation
+<ul>
+<li>작은 데이터세트를 다룰 때는 Spectrogram의 <strong>Data Augmentation</strong>로 input을 강화했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a> 이후)</li>
+</ul></li>
+</ul>
+</section>
+<section id="모형" class="level2">
+<h2 class="anchored" data-anchor-id="모형">모형</h2>
 <ul>
 <li>DenseNet</li>
 <li>UNet:</li>
@@ -757,12 +783,14 @@ ul.task-list li input[type="checkbox"] {
 <li><em>Spleeter</em></li>
 <li><em>TasNet</em>: “Time-domain Audio Separation NETwork”</li>
 <li><em>Demucs</em>: “encoder/decoder” 구조로 convolutional encoder, bidirectional LSTM, convolutional decoder로 구성되며 encoder와 decoder는 skip U-Net connections으로 연결</li>
-</ul></li>
-<li>주요 데이터 설명
-<ul>
-<li>MUSDB18: 여러 장르가 섞인 음악 데이터 세트. 각 트랙은 보컬, 드럼, 베이스, 기타로 분류되어 주석이 달림.</li>
-</ul></li>
 </ul>
+</section>
+<section id="데이터" class="level2">
+<h2 class="anchored" data-anchor-id="데이터">데이터</h2>
+<pre><code>- MUSDB18: 여러 장르가 섞인 음악 데이터 세트. 각 트랙은 보컬, 드럼, 베이스, 기타로 분류되어 주석이 달림.</code></pre>
+</section>
+<section id="기타-사항" class="level2">
+<h2 class="anchored" data-anchor-id="기타-사항">기타 사항</h2>
 <p>++ 추가로 논문 저자들을 보면 어느 회사의 연구원들을 위주로 모형을 발달시켜가는 경우를 볼 수 있다. 유명한 오픈소스 모형인 <em>Open-Unmix</em>의 경우 Sony, <em>Demucs</em>는 Facebook, <em>Spleeter</em>는 Deezer의 연구원들이 참여하였다.</p>
 
 
@@ -912,6 +940,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../posts/Experiments/Literatures_MR.html" class="pagination-link">
+        <span class="nav-page-text">선행연구 조사 - 음악추천</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
