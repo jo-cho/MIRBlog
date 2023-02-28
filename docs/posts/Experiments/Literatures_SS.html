@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -436,14 +499,36 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#선행연구-조사" id="toc-선행연구-조사" class="nav-link active" data-scroll-target="#선행연구-조사">선행연구 조사</a></li>
-  <li><a href="#추가-설명" id="toc-추가-설명" class="nav-link" data-scroll-target="#추가-설명">추가 설명</a>
+  <li><a href="#피쳐" id="toc-피쳐" class="nav-link" data-scroll-target="#피쳐">피쳐</a>
   <ul class="collapse">
-  <li><a href="#피쳐" id="toc-피쳐" class="nav-link" data-scroll-target="#피쳐">피쳐,</a></li>
-  <li><a href="#전처리-후처리" id="toc-전처리-후처리" class="nav-link" data-scroll-target="#전처리-후처리">전처리, 후처리</a></li>
-  <li><a href="#모형" id="toc-모형" class="nav-link" data-scroll-target="#모형">모형</a></li>
+  <li><a href="#spectrogram" id="toc-spectrogram" class="nav-link" data-scroll-target="#spectrogram">Spectrogram</a></li>
+  <li><a href="#waveform" id="toc-waveform" class="nav-link" data-scroll-target="#waveform">Waveform</a></li>
+  </ul></li>
+  <li><a href="#모형" id="toc-모형" class="nav-link" data-scroll-target="#모형">모형</a>
+  <ul class="collapse">
+  <li><a href="#nmf-non-negative-matrix-factorization" id="toc-nmf-non-negative-matrix-factorization" class="nav-link" data-scroll-target="#nmf-non-negative-matrix-factorization">NMF (non-negative matrix factorization)</a></li>
+  <li><a href="#dnn" id="toc-dnn" class="nav-link" data-scroll-target="#dnn">DNN</a>
+  <ul class="collapse">
+  <li><a href="#fnn-feed-forward-networks" id="toc-fnn-feed-forward-networks" class="nav-link" data-scroll-target="#fnn-feed-forward-networks">FNN (Feed-forward networks)</a></li>
+  <li><a href="#bilstm-bidirectional-lstm-networks" id="toc-bilstm-bidirectional-lstm-networks" class="nav-link" data-scroll-target="#bilstm-bidirectional-lstm-networks">BiLSTM (Bidirectional LSTM networks)</a></li>
+  <li><a href="#u-net-wave-u-net" id="toc-u-net-wave-u-net" class="nav-link" data-scroll-target="#u-net-wave-u-net">U-Net &amp; Wave-U-Net</a></li>
+  <li><a href="#deepconvsep-2017" id="toc-deepconvsep-2017" class="nav-link" data-scroll-target="#deepconvsep-2017"><em>DeepConvSep</em> (2017)</a></li>
+  <li><a href="#mmdensenet-2017-mmdenselstm-2018" id="toc-mmdensenet-2017-mmdenselstm-2018" class="nav-link" data-scroll-target="#mmdensenet-2017-mmdenselstm-2018"><em>MMDenseNet</em> (2017) &amp; <em>MMDenseLSTM</em> (2018)</a></li>
+  <li><a href="#arc-2018-dilated-gru-2019" id="toc-arc-2018-dilated-gru-2019" class="nav-link" data-scroll-target="#arc-2018-dilated-gru-2019"><em>ARC</em> (2018) &amp; Dilated GRU (2019)</a></li>
+  <li><a href="#stacked-hourglass-networks-2018" id="toc-stacked-hourglass-networks-2018" class="nav-link" data-scroll-target="#stacked-hourglass-networks-2018">Stacked-Hourglass-Networks (2018)</a></li>
+  <li><a href="#convtasnet-2019-metatasnet-2020" id="toc-convtasnet-2019-metatasnet-2020" class="nav-link" data-scroll-target="#convtasnet-2019-metatasnet-2020"><em>ConvTasNet</em> (2019) &amp; <em>MetaTasNet</em> (2020)</a></li>
+  <li><a href="#demucs-2019-hybrid-demucs-2021" id="toc-demucs-2019-hybrid-demucs-2021" class="nav-link" data-scroll-target="#demucs-2019-hybrid-demucs-2021"><em>Demucs</em> (2019) &amp; Hybrid <em>Demucs</em> (2021)</a></li>
+  <li><a href="#d3net-2020" id="toc-d3net-2020" class="nav-link" data-scroll-target="#d3net-2020"><em>D3Net</em> (2020)</a></li>
+  <li><a href="#lasaft-gpocm-2020" id="toc-lasaft-gpocm-2020" class="nav-link" data-scroll-target="#lasaft-gpocm-2020"><em>LaSAFT GPoCM</em> (2020)</a></li>
+  <li><a href="#sams-net-2021" id="toc-sams-net-2021" class="nav-link" data-scroll-target="#sams-net-2021"><em>Sams-Net</em> (2021)</a></li>
+  <li><a href="#x-unmix-2021" id="toc-x-unmix-2021" class="nav-link" data-scroll-target="#x-unmix-2021"><em>X-UnMix</em> (2021)</a></li>
+  <li><a href="#resunet-2021-cws-presunet-2021" id="toc-resunet-2021-cws-presunet-2021" class="nav-link" data-scroll-target="#resunet-2021-cws-presunet-2021"><em>ResUNet</em> (2021) &amp; <em>CWS-PResUNet</em> (2021)</a></li>
+  <li><a href="#cde-htcn-2022" id="toc-cde-htcn-2022" class="nav-link" data-scroll-target="#cde-htcn-2022"><em>CDE-HTCN</em> (2022)</a></li>
+  </ul></li>
+  <li><a href="#모형-성능" id="toc-모형-성능" class="nav-link" data-scroll-target="#모형-성능">모형 성능</a></li>
+  </ul></li>
   <li><a href="#데이터" id="toc-데이터" class="nav-link" data-scroll-target="#데이터">데이터</a></li>
   <li><a href="#기타-사항" id="toc-기타-사항" class="nav-link" data-scroll-target="#기타-사항">기타 사항</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jo-cho/MIRBlog/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -486,11 +571,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p><strong>MIR Literatures - Music Source Separation</strong></p>
-<p>이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 언어음(speech) 보다는 음악이 포함된 소스 분리 위주의 연구로 조사하였다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다.</p>
-<p>논문 제목을 클릭하면 해당 논문의 DOI 주소로 이동한다.</p>
-<p><em>새롭게 찾은 연구는 수시로 추가할 예정이다.</em></p>
+<p>이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 또한 음성(speech) 보다는 음악이 포함된 소스 분리 위주의 연구로 조사하였다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다. 논문(저자,연도)을 클릭하면 해당 논문의 제목이 나와있는 DOI 주소로 이동한다.</p>
 <section id="선행연구-조사" class="level1">
 <h1>선행연구 조사</h1>
+<p>2022년까지</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -505,7 +589,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: center;"><a href="https://www.ient.rwth-aachen.de/cms/dafx09/">M. Spiertz and V. Gnann (2009)</a></td>
 <td style="text-align: center;">EBU speech, <a href="https://link.springer.com/book/10.1007/978-0-387-21603-4">Instruments Data</a></td>
-<td style="text-align: center;">Spectrogram</td>
+<td style="text-align: center;">Spectrogram, MFCC</td>
 <td style="text-align: center;">MFCC K-means, NMF</td>
 <td style="text-align: center;">SAR, SDR, SIR, SER</td>
 </tr>
@@ -519,7 +603,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/5946386">R. Jaiswal, <em>et, al.</em> (2011)</a></td>
 <td style="text-align: center;"><a href="https://www.worldcat.org/ko/title/peter-siedlaczeks-advanced-orchestra-upgrade-97/oclc/43566640">Orchestral Instruments</a></td>
-<td style="text-align: center;">Magnitude Spectrogram</td>
+<td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Shifted-NMF</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
@@ -531,136 +615,150 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">SNR, SDR, SIR</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7177933">J. Le Roux, <em>et al.</em> (2015)</a></td>
+<td style="text-align: center;">WSJ-0(speech)</td>
+<td style="text-align: center;">Spectrogram</td>
+<td style="text-align: center;">DeepNMF</td>
+<td style="text-align: center;">SDR, SNR</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7178348">S. Uhlich, F. Giron, and Y. Mitsufuji (2015)</a></td>
 <td style="text-align: center;"><a href="https://zenodo.org/record/6797837#.Y_h6ZnZByUk">TRIOS</a> (“Brahms”,“Lussier”)</td>
 <td style="text-align: center;">Spectrogram</td>
-<td style="text-align: center;">DNN</td>
+<td style="text-align: center;">DNN(FNN)</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a></td>
 <td style="text-align: center;">SISEC 2015 dataset</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">DNN + Wiener filter</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://openaccess.city.ac.uk/id/eprint/19289/">A. Jansson, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;">Train: Large (original, instrumental) songs , Test:iKala, MedleyDB</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">U-Net</td>
 <td style="text-align: center;">SAR, NSDR, SIR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://link.springer.com/chapter/10.1007/978-3-319-53547-0_25">P. Chandna, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>DeepConvSep</em> (CNN-based)</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7952118">Y. Luo, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100-remix</a>, iKala</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Chimera</em>(Deep clustering, Bi-LSTM)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>BLEND</em>(FNN(feed-forward) + Bi-LSTM)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8169987">N. Takahashi and Y. Mitsufuji (2017)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
-<td style="text-align: center;">MM(Multiscale Multiband) DenseNet</td>
+<td style="text-align: center;"><em>MM(Multiscale Multiband)DenseNet</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/1806.03185">D. Stoller, S. Ewert, and S. Dixon (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Wave-U-Net</em></td>
 <td style="text-align: center;">SDR statistics</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/1805.08559">S. Park, T. Kim, K. Lee, and N. Kwak (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Stacked Hourglass Network(CNN-based)</td>
 <td style="text-align: center;">Median SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8614148">J.Y. Liu and Y.H. Yang (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, <a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">ARC(Auto-encoder with Recurrent skip Connections) aka <em>Spect U-Net</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8521383">N. Takahashi, N. Goswami, and Y. Mitsufuji (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, <a href="https://sigsep.github.io/datasets/dsd100.html">DSD100</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>MMDenseLSTM</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/1810.12187">F. Lluís, J. Pons, and X. Serra (2018)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Wave-Net</em></td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/1906.01203">J.Y. Liu and Y.H. Yang (2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Dilated GRU</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://hal.inria.fr/hal-02293689/">F. Stöter, S. Uhlich, A. Liutkus, and Y. Mitsufuji (2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, MUSDB18-HQ</td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>Open-Unmix</em> (based on <a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a>)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a></td>
 <td style="text-align: center;"><em>Bean</em> + <a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">U-Net</td>
 <td style="text-align: center;">SAR, SDR, SIR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/8707065">Y. Luo and N. Mesgarani (2019)</a></td>
 <td style="text-align: center;">WSJ0-2MIX (speech)</td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;">Conv-TasNet</td>
 <td style="text-align: center;">SI-SNR, SDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/1911.13254">A. Défossez, <em>et al.</em>(2019)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform</td>
 <td style="text-align: center;"><em>Demucs</em></td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://joss.theoj.org/papers/10.21105/joss.02154">R. Hennequin, <em>et al.</em> (2020)</a></td>
 <td style="text-align: center;">Train: <em>Bean</em> + Extra , Test: <a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
-<td style="text-align: center;"><em>Spleeter</em> (based on <a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a>)</td>
+<td style="text-align: center;"><em>Spleeter</em> (based on U-Net, <a href="https://ieeexplore.ieee.org/abstract/document/8683555">L. Prétet, <em>et al.</em> (2019)</a>)</td>
 <td style="text-align: center;">SAR, SDR, SIR, ISR</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9054266">Y. Luo, <em>et al.</em> (2020)</a></td>
+<td style="text-align: center;">WSJ0-2MIX (speech)</td>
+<td style="text-align: center;">Spectrogram</td>
+<td style="text-align: center;">DP(Dual-Path)RNN</td>
+<td style="text-align: center;">SI-SNR, SDR</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><a href="http://proceedings.mlr.press/v119/nachmani20a.html">E. Nachmani, Y. Adi, and L. Wolf (2020)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a>, WSJ0-2MIX (speech)</td>
 <td style="text-align: center;">Spectrogram</td>
-<td style="text-align: center;">DP(Dual-Path)RNN</td>
+<td style="text-align: center;">DPRNN-based</td>
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="even">
@@ -699,48 +797,55 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">SDR</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;"><a href="https://arxiv.org/abs/2102.09966">X. Song, <em>et al.</em> (2021)</a></td>
+<td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
+<td style="text-align: center;">Waveform + Spectrogram</td>
+<td style="text-align: center;"><em>CatNet</em></td>
+<td style="text-align: center;">SDR</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/2109.05418">Q. Kong, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>ResUNet</em> (Residual UNet)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9414044">R. Sawata, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>CrossNet-UnMiX (X-UMX)</em> (multi-domain loss, combination loss)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/2112.04685">H. Liu, Q. Kong, and J. Liu (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18-HQ</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;"><em>CWS-PResUNet</em> (channel-wise subband phase-aware ResUNet), <em>ByteMSS</em> (CWS-PResUNet+DeMucs)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/2111.03600">A. Défossez (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18-HQ</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;">Hybrid <em>Demucs</em></td>
 <td style="text-align: center;">nSDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/2111.12203">M. Kim, <em>et al.</em> (2021)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
 <td style="text-align: center;"><em>KUIELab-MDX-Net</em> (two-stream neural network)</td>
 <td style="text-align: center;">SDR</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://arxiv.org/abs/2209.15174">Y. Luo and J. Yu (2022)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18, MUSDB18-HQ</a></td>
 <td style="text-align: center;">Spectrogram</td>
 <td style="text-align: center;">Band-Split RNN</td>
 <td style="text-align: center;">uSDR, cSDR</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/9812509">Y. Hu, <em>et al.</em> (2022)</a></td>
 <td style="text-align: center;"><a href="https://sigsep.github.io/datasets/musdb.html">MUSDB18</a></td>
 <td style="text-align: center;">Waveform + Spectrogram</td>
@@ -750,51 +855,407 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="추가-설명" class="level1">
-<h1>추가 설명</h1>
-<section id="피쳐" class="level2">
-<h2 class="anchored" data-anchor-id="피쳐">피쳐,</h2>
+<section id="피쳐" class="level1">
+<h1>피쳐</h1>
+<p>MSS(music source separation) 방법은 사용하는 인풋(input)에 따라 크게 두가지 유형으로 나눌 수 있다. <strong>스펙트로그램(spectrogram) 도메인</strong> 그리고 <strong>시간(time) 도메인(혹은 파형(waveform) 도메인)</strong> 이다. 최근에는 두가지를 합친 모형이 많이 사용된다.</p>
+<section id="spectrogram" class="level2">
+<h2 class="anchored" data-anchor-id="spectrogram">Spectrogram</h2>
 <ul>
-<li>Magnitude Spectrogram
+<li><p><a href="https://jo-cho.github.io/MIRBlog/posts/3.%20Fourier%20Anaylsis%20of%20Signals/3.3.Short-term_Fourier_Transform_1.html#%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%A1%9C%EA%B7%B8%EB%9E%A8-spectrogram">자세한 설명</a></p></li>
+<li><p>Spectrogram은 STFT(short-time Fourier transform)로 계산한 time-frequency 표현이다. 인풋으로는 주로 소스가 믹스된 spectrogram magnitude가 사용된다. 다음 각 소스에 마스킹을 통해 spectrogram magnitude를 추정, I(inverse)STFT를 통해 재건하는 방식을 취하는 것이 일반적이다. STFT의 파라미터는 윈도우 유형, 윈도우 크기, 홉 크기 등이 있다. 연구들에서 윈도우는 주로 “Hann”, “Hamming”을, 윈도우 크기와 홉 크기의 조합은 주로 (1024, 256), (2048, 441), (2048, 512)등이 사용되었다.</p></li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.227889Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.211932Z&quot;}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> ipd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2017_Uhlich_et_al_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<p><img src="Literatures_SS_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>간단한 DNN 구조에 사용되는 STFT 예시 (<em>Uhlich, et al.&nbsp;(2017) Figure 1</em>)</p>
+<p><strong>후처리(post-processing)</strong></p>
 <ul>
-<li>STFT로 계산 (주로 Hanning window, window size = 2048, hop size = 512) 후 mel-filterbank, masking 등 작업</li>
+<li><strong>다운샘플링(downsampling)</strong> (<a href="https://jo-cho.github.io/MIRBlog/posts/4.%20Music%20Synchronization/4.1.Audio_Synchronization_Features.html#%ED%85%9C%ED%8F%AC-%EC%8A%A4%EB%AC%B4%EB%94%A9%EA%B3%BC-%EB%8B%A4%EC%9A%B4%EC%83%98%ED%94%8C%EB%A7%81-temporal-smoothing-and-downsampling">자세한 설명</a>)
+<ul>
+<li>피쳐를 다운샘플하여 사용한다. 이는 spectrogram 지속시간을 늘리고 계산 비용을 낮출 수 있기에 많은 연구에서 후처리로 사용한다.</li>
+</ul></li>
+<li><strong>Data Augmentation</strong>
+<ul>
+<li>훈련할 데이터세트의 지속시간이 한정적이기 때문에는 훈련과정에 Spectrogram의 <strong>Data Augmentation</strong>로 input을 강화한다. <a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a> 이후에 대부분의 연구에서 이를 활용하며 성능이 개선됨을 볼 수 있다. Data Augmentation에는 “adding filters”, “remixing audio recordings”, “swapping left and right channels”, “shifting pitches”, “scaling”, “stretching audio recordings”, “randomly mix audio” 등의 방법이 있다.</li>
+</ul></li>
+<li><strong>Wiener filtering</strong>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a> 이후로 <em>MMDenseLSTM, D3Net, Spleeter, Open Unmix, Demucs</em> 등의 모형에서 마지막 후처리 작업으로 <strong>Multi-Channel Wiener filtering</strong>을 사용했다. Wiener filtering은 영상처리에서 주로 쓰인 노이즈 감소 기법으로 원본과의 제곱 오차를 최소화하는 필터링이다. 이는 추정 스펙트로그램의 부산물(artifacts)를 제거하는데 유용하다.</li>
 </ul></li>
 </ul>
 </section>
-<section id="전처리-후처리" class="level2">
-<h2 class="anchored" data-anchor-id="전처리-후처리">전처리, 후처리</h2>
+<section id="waveform" class="level2">
+<h2 class="anchored" data-anchor-id="waveform">Waveform</h2>
 <ul>
-<li>Wiener filtering
-<ul>
-<li><em>MMDenseLSTM, D3Net, Spleeter, Open Unmix, Demucs</em> 등의 모형에서 마지막 후처리 작업으로 <strong>Multi-Channel Wiener filtering</strong>을 사용했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7760548">A.A. Nugraha, A. Liutkus, and E. Vincent (2016)</a> 이후)</li>
-</ul></li>
-<li>Data Augmentation
-<ul>
-<li>작은 데이터세트를 다룰 때는 Spectrogram의 <strong>Data Augmentation</strong>로 input을 강화했다. (<a href="https://ieeexplore.ieee.org/abstract/document/7952158">S. Uhlich, <em>et al.</em> (2017)</a> 이후)</li>
-</ul></li>
+<li>오디오 데이터를 스펙트로그램으로 변환하지 않고, 그 자체의 시간영역(time-domain)인 waveform을 인풋으로 한다. 처음에는 성능이 낮고 계산 비용도 높았으나, 최근 모형의 발전과 함께 개선되고 있다. <em>WaveU-Net</em>을 시작으로 더 개선된 모형들이 소개되었으며 최근에는 스펙트로그램과 함께 사용된다. 특히 보컬 및 화성악기의 경우 스펙트로그램을 인풋으로 하는 것에 비해 성능이 안 좋다.</li>
 </ul>
 </section>
-<section id="모형" class="level2">
-<h2 class="anchored" data-anchor-id="모형">모형</h2>
+</section>
+<section id="모형" class="level1">
+<h1>모형</h1>
+<section id="nmf-non-negative-matrix-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="nmf-non-negative-matrix-factorization">NMF (non-negative matrix factorization)</h2>
 <ul>
-<li>DenseNet</li>
-<li>UNet:</li>
-<li><em>Open-Unmix</em></li>
-<li><em>Spleeter</em></li>
-<li><em>TasNet</em>: “Time-domain Audio Separation NETwork”</li>
-<li><em>Demucs</em>: “encoder/decoder” 구조로 convolutional encoder, bidirectional LSTM, convolutional decoder로 구성되며 encoder와 decoder는 skip U-Net connections으로 연결</li>
+<li><p>MSS에 딥러닝이 본격적으로 사용되기 전에 주로 사용되던 방법이다. 특히 음악 소스 분리 이전 음성 분리에 많이 사용되었다. <a href="https://jo-cho.github.io/MIRBlog/posts/9.%20Musically%20Informed%20Audio%20Decomposition/9.3.NMF-Based_Audio_Decomposition.html">자세한 설명</a></p></li>
+<li><p>NMF 기반의 모형 중 Shifted-NMF, Sparse NMF(sparsity factor 추가), Descriminative NMF(discriminative cost function 추가), 혹은 DNN을 혼합한 DeepNMF 같은 모형이 사용되었다.</p></li>
 </ul>
 </section>
-<section id="데이터" class="level2">
-<h2 class="anchored" data-anchor-id="데이터">데이터</h2>
-<pre><code>- MUSDB18: 여러 장르가 섞인 음악 데이터 세트. 각 트랙은 보컬, 드럼, 베이스, 기타로 분류되어 주석이 달림.</code></pre>
+<section id="dnn" class="level2">
+<h2 class="anchored" data-anchor-id="dnn">DNN</h2>
+<p>딥러닝(deep learning)의 발달로 기존의 비지도(unsupervised) 학습 방법에서 지도(supervised) 학습 방법의 MSS가 추세가 되었다.</p>
+<section id="fnn-feed-forward-networks" class="level3">
+<h3 class="anchored" data-anchor-id="fnn-feed-forward-networks">FNN (Feed-forward networks)</h3>
+<ul>
+<li>K개의 hidden ReLU layers와 L-BFGS optimizer를 사용한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:11:39.485195Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:11:39.476219Z&quot;}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2017_Uhlich_et_al_Fig2a.PNG"</span>, width<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<p><img src="Literatures_SS_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>FNN 예시 (<em>Uhlich, et al.&nbsp;(2017) Figure 2(a)</em>)</p>
 </section>
-<section id="기타-사항" class="level2">
-<h2 class="anchored" data-anchor-id="기타-사항">기타 사항</h2>
-<p>++ 추가로 논문 저자들을 보면 어느 회사의 연구원들을 위주로 모형을 발달시켜가는 경우를 볼 수 있다. 유명한 오픈소스 모형인 <em>Open-Unmix</em>의 경우 Sony, <em>Demucs</em>는 Facebook, <em>Spleeter</em>는 Deezer의 연구원들이 참여하였다.</p>
+<section id="bilstm-bidirectional-lstm-networks" class="level3">
+<h3 class="anchored" data-anchor-id="bilstm-bidirectional-lstm-networks">BiLSTM (Bidirectional LSTM networks)</h3>
+<ul>
+<li>왼쪽채널과 오른쪽채널을 달리하여 LSTM을 활용한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:11:40.772192Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:11:40.755240Z&quot;}" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2017_Uhlich_et_al_Fig2b.PNG"</span>, width<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<p><img src="Literatures_SS_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>BiLSTM 예시 (<em>Uhlich, et al.&nbsp;(2017) Figure 2(b)</em>)</p>
+<ul>
+<li>위의 FNN, BiLSTM을 같이 활용한 <em>BLEND</em> 모형이 있으며, <em>Open-UnMix</em> 모형의 기초가 된다.</li>
+</ul>
+</section>
+<section id="u-net-wave-u-net" class="level3">
+<h3 class="anchored" data-anchor-id="u-net-wave-u-net">U-Net &amp; Wave-U-Net</h3>
+<ul>
+<li>U-Net은 메디컬 이미지 처리에 처음 사용된 모형으로 컨볼루션 layer stack으로 이미지를 작고 deep한 표현으로 인코딩하고 해당 인코딩은 업샘플링 layer stack에 의해 이미지의 원래 크기로 디코딩된다. 다음 그림과 같다.</li>
+<li><em>Spleeter</em> 모형의 기초가 된다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.287729Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.259804Z&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2017_Jansson_fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<p><img src="Literatures_SS_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>U-Net 구조 (<em>Jansson, et al.&nbsp;(2017) Figure 1</em>)</p>
+<ul>
+<li>U-Net 구조를 활용하여 스펙트로그램 대신 시간도메인의 waveform을 그대로 인풋으로 사용한 Wav-U-Net이 있다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.302690Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.289725Z&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2018_Stoller_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<p><img src="Literatures_SS_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Wave-U-Net 구조 <em>(Stoller et al (2018) Figure 1)</em></p>
+</section>
+<section id="deepconvsep-2017" class="level3">
+<h3 class="anchored" data-anchor-id="deepconvsep-2017"><em>DeepConvSep</em> (2017)</h3>
+<ul>
+<li><strong>CNN</strong>(convolutional neural networks)에 기반한 모형으로 encoding, decoding 단계로 나뉜다. Encoding stage에서는 지역적(local) 음색 등의 feature를 캡쳐하는 Vertical Convolution Layer와 이를 시간적으로 발전시키는 Horizontal Covolutional Layer, 그리고 Fully-connected ReLU Layer로 이를 차원축소시킨다. Decoding stage에서는 이를 반대로 deconvolution 한다. AdaDelta 알고리즘을 사용해 파라미터를 최적화 한다.</li>
+<li>CNN 기반 모형은 기존의 fully-connected 방식보다 적은 파라미터를 가지며 빠르고 효율적이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.317649Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.304684Z&quot;}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ipd.Image(<span class="st">"img/2017_Chandna_et_al_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<p><img src="Literatures_SS_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>DeepConvSep</em> 구조 (<em>Chandna, et al.&nbsp;(2017) Figure 2</em>)</p>
+</section>
+<section id="mmdensenet-2017-mmdenselstm-2018" class="level3">
+<h3 class="anchored" data-anchor-id="mmdensenet-2017-mmdenselstm-2018"><em>MMDenseNet</em> (2017) &amp; <em>MMDenseLSTM</em> (2018)</h3>
+<ul>
+<li>multiscale multiband densely connected convolutional networks의 줄임말이다. CNN의 변형이다.</li>
+<li><strong>DenseNet</strong>은 이미지 처리에서 주로 활용되었으며, 이전 레이어의 아웃풋 feature map을 후속 레이어에 대한 인풋으로 연결하는 CNN이다. 반복 연결을 통해 레이어 간 상호 작용을 학습하고 이전 레이어에서 계산된 피쳐를 재사용한다. 이 속성은 오디오 소스 분리의 목표가 간섭음에 묻힌 악기 스펙트로그램을 추정하는 것이기에 추정된 개별 소스의 스펙트로그램이 혼합 또는 이전의 레이어 아웃풋을 참조할 수 있어 유용하다.</li>
+<li>하지만 계산 비용이 크기에 Multi-scale로 다운샘플-업샘플 과정을 만들어 이를 방지한다. 또한 multi-band로 주파수 밴드를 나누어 특정 분포에 커널이 집중할 수 있게 한다. 이를 Multi-scale Multiband DenseNet이라고 한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.347569Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.319644Z&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2017_Takahashi_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2017_Takahashi_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2017_Takahashi_Fig3.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-8-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 DenseNet의 dense block, Multi-scale DenseNet, Multi-band MDenseNet (<em>Takahashi and Mitsufuji (2017) Figure 1,2,3</em>)</p>
+<ul>
+<li>위의 <em>MMDenseNet</em>에 LSTM을 혼합한 모형으로 <em>MMDenseLSTM</em>이 있다. DenseNet의 dense block과 LSTM block을 같이 사용하는 방법이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.377491Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.349565Z&quot;}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2018_Takahashi_etal_fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2018_Takahashi_etal_fig3.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 DenseLSTM의 dense&amp;LSTM block, MMDenseLSTM <em>(Takahashi et al (2018) Figure 2,3)</em></p>
+</section>
+<section id="arc-2018-dilated-gru-2019" class="level3">
+<h3 class="anchored" data-anchor-id="arc-2018-dilated-gru-2019"><em>ARC</em> (2018) &amp; Dilated GRU (2019)</h3>
+<ul>
+<li>ARC는 Auto-encoder with Recurrent skip Connections의 줄임말이다. encoder-decoder구조의 skip connection은 gated recurrent unit (GRU) layers로 처리한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.392449Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.378486Z&quot;}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2018_Liu_Yang_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>ARC 구조 <em>(Liu and Yang (2018) Figure 1)</em></p>
+<ul>
+<li>GRU는 길이가 긴 오디오 시퀀스에 비효율적일 수 있다. 따라서 <strong>Dilated GRU</strong>를 사용한다. Dilated GRU는 이전 단계가 아닌 고정된 k-단계 이전에서 정보를 받는다. 이를 통해 GRU 장치는 반복 단계가 적고 부분적으로 병렬로 실행할 수 있으므로 더 빠르게 실행될 수 있다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.408044Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.395054Z&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Liu_Yang_Fig2a.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Liu_Yang_Fig4.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 D2 Block(Dilated GRU convolution block), 제안 모형 <em>(Liu and Yang (2019) Figure 2b,4)</em></p>
+</section>
+<section id="stacked-hourglass-networks-2018" class="level3">
+<h3 class="anchored" data-anchor-id="stacked-hourglass-networks-2018">Stacked-Hourglass-Networks (2018)</h3>
+<ul>
+<li>추정된 소스 스펙트로그램 마스크를 stacked hourglass 모듈을 걸쳐 refine한다. hourglass 모듈은 저해상도 피쳐 맵의 전체적인 피쳐과 고해상도 피쳐 맵의 세부 정보를 모두 캡처한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:11:21.855083Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:11:21.843114Z&quot;}" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2018_Park_fig1.PNG"</span>, width<span class="op">=</span><span class="dv">250</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2018_Park_fig2.PNG"</span>, width<span class="op">=</span><span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 hourglass 모듈, Stacked-Hourglass-Networks <em>(Park et al (2018) Figure 1,2)</em></p>
+</section>
+<section id="convtasnet-2019-metatasnet-2020" class="level3">
+<h3 class="anchored" data-anchor-id="convtasnet-2019-metatasnet-2020"><em>ConvTasNet</em> (2019) &amp; <em>MetaTasNet</em> (2020)</h3>
+<ul>
+<li>ConvTasNet은 fully-convolutional time-domain audio separation network의 줄임말이다. Waveform을 인풋으로 바로 사용하는 모형이다.</li>
+<li>encoder 모듈을 사용하여 mixed waveform의 짧은 세그먼트를 중간의 피쳐 공간에서 표현을 변환하고 이를 각 시간 단계에 각 소스에 대한 곱셈 함수(마스크)를 추정하는 데 사용된다. 그런 다음 각 소스 파형은 decoder 모듈을 사용하여 마스킹된 encoder 피쳐를 변환하여 재구성된다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:11:00.821294Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:11:00.804338Z&quot;}" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Luo_Fig1a.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Luo_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>ConvTasNet구조 <em>(Luo and Mesgarani (2019) Figure 1a, 2)</em></p>
+<ul>
+<li>ConvTasNet을 기반으로 하여 extractot parameter를 예측하는 generator로 악기의 정보를 추가한다. 이를 meta-learning이라고 한다. 또한 encoder단계에 time-domain의 1D convolution과 spectrogram-domian의 피쳐를 같이 사용한다. 이 모형은 <em>Meta-TasNet</em>이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:42.887114Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:42.876143Z&quot;}" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Samuel_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Samuel_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Meta-TasNet구조, endoder구조 <em>(Samuel and Ganeshan (2020) Figure 1, 2)</em></p>
+</section>
+<section id="demucs-2019-hybrid-demucs-2021" class="level3">
+<h3 class="anchored" data-anchor-id="demucs-2019-hybrid-demucs-2021"><em>Demucs</em> (2019) &amp; Hybrid <em>Demucs</em> (2021)</h3>
+<ul>
+<li><em>Demucs</em>는 <em>Conv-Tasnet</em>이 waveform을 input으로 사용하는 구조를 차용하는 대신 노래의 전체부분을 사용하고, 중간은 U-Net 구조를 따르며, Bi-LSTM을 활용한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.842010Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.828047Z&quot;}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Defossez_Fig2a.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2019_Defossez_Fig2b.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Demucs</em> 구조 <em>(Defossez et al.&nbsp;(2019) Figure 2</em>)</p>
+<ul>
+<li>2021년에 기존 <em>Demucs</em> 모형에 인풋으로 spectrogram을 추가하여 두가지 도메인(time, sprectrogram)을 혼합하는 Hybrid Demucs가 제시되었다. 더 나은 성능을 보인다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.856970Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.844006Z&quot;}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Defossez_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">400</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Hybrid-<em>Demucs</em> 구조 <em>(Defossez (2021) Figure 1)</em></p>
+</section>
+<section id="d3net-2020" class="level3">
+<h3 class="anchored" data-anchor-id="d3net-2020"><em>D3Net</em> (2020)</h3>
+<ul>
+<li>DenseNet에 기반한 모형으로 multi-dilated 컨볼루션을 사용하여 기존 dilated 컨볼루션을 사용할 때의 에일리어싱 문제를 완화한다. D3Net은 서로 다른 해상도를 동시에 모델링하기 위해 단일 레이어에 서로 다른 dilation 계수를 갖는 새로운 multi-dilated 컨볼루션을 포함한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:28.761912Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:28.746951Z&quot;}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Takahashi_Fig2b.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Multi-dilated convolution <em>(Takahashi and Mitsufugi (2020) Figure 2(b))</em></p>
+</section>
+<section id="lasaft-gpocm-2020" class="level3">
+<h3 class="anchored" data-anchor-id="lasaft-gpocm-2020"><em>LaSAFT GPoCM</em> (2020)</h3>
+<ul>
+<li>악기에 따른 주파수 패턴을 캡처하는 attetion 기반의 새로운 주파수 변환 블록인 “Latent Source Attentive Frequency Transformation” (LaSAFT)을 사용하며,</li>
+<li>Feature-wise Linear Modulation(FiLM)의 확장 버전인 Gated Point-wise Convolutional Modulation(GPoCM)을 사용해 조건부 소스 분리를 위한 내부 피쳐를 조정한다.</li>
+<li>기본 구조는 Conditioned U-Net을 따른다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.886890Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.873924Z&quot;}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Choi_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Choi_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2020_Choi_Fig3.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 Conditioned U-Net 구조, LaSAFT, GPoCM <em>(Choi et al.&nbsp;(2020) Figure 1, 2, 3</em>)</p>
+</section>
+<section id="sams-net-2021" class="level3">
+<h3 class="anchored" data-anchor-id="sams-net-2021"><em>Sams-Net</em> (2021)</h3>
+<ul>
+<li>Sliced Attention based neural network의 줄임말로, multi-head attention 메커니즘으로 spectral 피쳐의 상호 작용을 가능하게 하고, 더 쉬운 병렬 컴퓨팅을 달성하며 각각 LSTM 및 CNN에 비해 수용 필드가 더 크다. 또한 attention 적용전에 스펙트로그램의 slicing을 적용한다. slicing을 하는 이유는 노래의 한 부분이 같은 노래인데도 불구하고 관련 없을 수 있기에 동일한 음악 스타일의 작은 부분에 집중할 수 있는 메커니즘을 제공하기 위해서이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.901592Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.888884Z&quot;}" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Li_FIg1.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Li_FIg3.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Sams-Net</em> 구조와 sliced attention (<em>Li et al.&nbsp;(2021) Figure 2, 3</em>)</p>
+</section>
+<section id="x-unmix-2021" class="level3">
+<h3 class="anchored" data-anchor-id="x-unmix-2021"><em>X-UnMix</em> (2021)</h3>
+<ul>
+<li>기존의 <em>Open-UnMix</em>의 변형된 버전의 모형이다.</li>
+<li>MDL(multi-domain loss)을 사용하여 오디오 신호의 주파수 및 시간 영역 표현을 활용하며, <em>CrossNet</em> 구조를 도입하여 소스들 간의 관계를 공동으로 고려한다. 또한 새로운 combination loss(CL)를 사용하여 소스 추정의 조합을 고려한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.917277Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.903235Z&quot;}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Sawata_Fig3b.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>X-UMX 구조 (<em>Sawata et al.&nbsp;(2021) Figure 3(b)</em>)</p>
+</section>
+<section id="resunet-2021-cws-presunet-2021" class="level3">
+<h3 class="anchored" data-anchor-id="resunet-2021-cws-presunet-2021"><em>ResUNet</em> (2021) &amp; <em>CWS-PResUNet</em> (2021)</h3>
+<ul>
+<li>U-Net에 residual encoder blocks (REB)과 residual decoder blocks (RDB)을 추가하여 깊이를 증가시킨 모형이다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.932202Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.919238Z&quot;}" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Kong_Fig3.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Residual Blocks (<em>Kong et al.&nbsp;(2021) Figure 3</em>)</p>
+<ul>
+<li>Res-U-Net을 기반으로 한 CWS-PResUNet(channel-wise subband phase-aware ResUNet)이 있다. 신호를 subband로 분해하여 스펙트로그램에서 불필요한 전역 가중치를 제한하고 계산 비용을 줄인다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.948160Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.934197Z&quot;}" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2021_Liu_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">400</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>PResUNet (<em>Liu et al.&nbsp;(2021) Figure 2</em>)</p>
+</section>
+<section id="cde-htcn-2022" class="level3">
+<h3 class="anchored" data-anchor-id="cde-htcn-2022"><em>CDE-HTCN</em> (2022)</h3>
+<ul>
+<li><em>ConvTasNet</em>을 기반으로 spectrogram과 waveform domain을 모두 인풋으로 하여 상호 정보를 코딩할 수 있게 하는 CDE(cross-domain encoder)를 사용하며, HTCN(hierarchic temporal convolutional network)를 활용한다. HTCN을 사용하면 긴 시리즈의 종속성을 효과적으로 학습할 수 있다. 또한 HTCN에 적용할 FCU(Feature Calibration Unit)를 설계하고 훈련 단계에서 multi-stage의 훈련 전략을 채택한다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.963120Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.950156Z&quot;}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2022_Hu_Fig1.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2022_Hu_Fig2.PNG"</span>, width<span class="op">=</span><span class="dv">300</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/2022_Hu_Fig3b.PNG"</span>, width<span class="op">=</span><span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-23-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p>위에서부터 CDE-HTCN 구조, CDE 구조, HTCN(with FCU) 구조 (<em>Hu et al.&nbsp;(2022) Figure 1, 2, 3(b)</em>)</p>
+</section>
+</section>
+<section id="모형-성능" class="level2">
+<h2 class="anchored" data-anchor-id="모형-성능">모형 성능</h2>
+<ul>
+<li>선행연구 조사의 가장 최근 연구인 <em>CDE-HTCN</em> 모형의 성과를 다른 모형과 비교한 표가 아래에 있다. 이를 통해 2018년 이후 음악 소스 분리(MSS)에 가장 많이 사용되는 데이터세트인 MUSDB18에 대한 주요 실험 모형들의 성과를 확인하고 비교할 수 있다.</li>
+</ul>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-02-28T15:10:15.978081Z&quot;,&quot;start_time&quot;:&quot;2023-02-28T15:10:15.964117Z&quot;}" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ipd.display(ipd.Image(<span class="st">"img/SDRs_models.PNG"</span>, width<span class="op">=</span><span class="dv">600</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Literatures_SS_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Hu et al.&nbsp;(2022) Table II</em></p>
+</section>
+</section>
+<section id="데이터" class="level1">
+<h1>데이터</h1>
+<ul>
+<li><p><strong>DSD100</strong>: MUSDB18이 등장하기 전 2016년 <em>SiSEC Mus 2016</em> 컴피티션 이후 많이 사용된 음악 데이터 세트이다. 각 트랙은 보컬, 드럼, 베이스, 기타(others)로 분류되며 주석이 달려있다. 총 100곡으로 이루어져 있다.</p></li>
+<li><p><strong>MUSDB18</strong>: 2018년 <em>SiSEC Mus 2018</em> 컴피티션 이후 연구에서 가장 많이 사용되는 음악 데이터 세트이다. 각 트랙은 보컬, 드럼, 베이스, 기타(others)로 분류되며 주석이 달려있다. 총 100곡으로 이루어져 있으며, 제시된 훈련 세트는 86개, 검증 세트는 14개, 테스트 세트는 50개이다. 하지만 연구에 따라 다르게 설정하며, 훈련을 다른 데이터를 추가하는 등 사용하는 방법은 다 다르다.</p></li>
+</ul>
+</section>
+<section id="기타-사항" class="level1">
+<h1>기타 사항</h1>
+<ul>
+<li><p>인풋으로 스펙트로그램 위주로 사용하다가 시간도메인의 파형을 사용하는 모형이 생기며, 이를 혼합하여 사용하게 되는 흐름을 볼 수 있다.</p></li>
+<li><p>NMF 모형에서 시작하여 딥러닝의 발전으로 CNN기반, RNN기반의 모형이 생겨났으며, 이미지 등의 분야에서 쓰이던 U-Net, DenseNet, TasNet 등의 구조를 기반으로 응용된 모형들이 생겨났다. CNN과 함께 LSTM을 활용하고, Attention 기반의 모형을 활용하는 등의 발전 흐름도 볼 수 있다.</p></li>
+<li><p>추가로 논문 저자들을 보면 어느 회사의 연구원들을 위주로 모형을 발달시켜가는 경우를 볼 수 있다. 유명한 오픈소스 모형인 <em>Open-Unmix</em>의 경우 Sony, <em>Demucs</em>는 Facebook, <em>Spleeter</em>는 Deezer의 연구원들이 참여하였다.</p></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
