@@ -2,154 +2,158 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/about.html</loc>
-    <lastmod>2023-03-01T12:17:43.509Z</lastmod>
+    <lastmod>2023-03-01T12:30:15.231Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/index.html</loc>
-    <lastmod>2023-03-01T12:17:44.347Z</lastmod>
+    <lastmod>2023-03-01T12:30:16.127Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/listing.html</loc>
-    <lastmod>2023-03-01T12:17:45.801Z</lastmod>
+    <lastmod>2023-03-01T12:30:18.327Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/1. Introduction/1.1.Introduction.html</loc>
-    <lastmod>2023-03-01T12:17:47.406Z</lastmod>
+    <lastmod>2023-03-01T12:30:20.022Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/2. Music Representation/2.1.Sheet_Music.html</loc>
-    <lastmod>2023-03-01T12:17:49.863Z</lastmod>
+    <lastmod>2023-03-01T12:30:22.569Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/2. Music Representation/2.2.Symbolic_Representation.html</loc>
-    <lastmod>2023-03-01T12:17:51.531Z</lastmod>
+    <lastmod>2023-03-01T12:30:24.590Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/2. Music Representation/2.3.Audio_Representation.html</loc>
-    <lastmod>2023-03-01T12:17:54.770Z</lastmod>
+    <lastmod>2023-03-01T12:30:28.312Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/3. Fourier Anaylsis of Signals/3.1.Math_Review.html</loc>
-    <lastmod>2023-03-01T12:17:56.830Z</lastmod>
+    <lastmod>2023-03-01T12:30:30.099Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html</loc>
-    <lastmod>2023-03-01T12:17:58.630Z</lastmod>
+    <lastmod>2023-03-01T12:30:31.924Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html</loc>
-    <lastmod>2023-03-01T12:18:00.626Z</lastmod>
+    <lastmod>2023-03-01T12:30:34.125Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html</loc>
-    <lastmod>2023-03-01T12:18:02.735Z</lastmod>
+    <lastmod>2023-03-01T12:30:36.435Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html</loc>
-    <lastmod>2023-03-01T12:18:05.610Z</lastmod>
+    <lastmod>2023-03-01T12:30:39.246Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html</loc>
-    <lastmod>2023-03-01T12:18:09.267Z</lastmod>
+    <lastmod>2023-03-01T12:30:43.241Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html</loc>
-    <lastmod>2023-03-01T12:18:12.936Z</lastmod>
+    <lastmod>2023-03-01T12:30:47.226Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html</loc>
-    <lastmod>2023-03-01T12:18:17.067Z</lastmod>
+    <lastmod>2023-03-01T12:30:51.133Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html</loc>
-    <lastmod>2023-03-01T12:18:24.281Z</lastmod>
+    <lastmod>2023-03-01T12:30:57.918Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/5. Music Structure Analysis/5.3.Audio_Thumbnail.html</loc>
-    <lastmod>2023-03-01T12:18:26.254Z</lastmod>
+    <lastmod>2023-03-01T12:31:00.096Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/5. Music Structure Analysis/5.4.Novelty-Based_Segmentation.html</loc>
-    <lastmod>2023-03-01T12:18:30.414Z</lastmod>
+    <lastmod>2023-03-01T12:31:04.118Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/5. Music Structure Analysis/5.5.Evaluation.html</loc>
-    <lastmod>2023-03-01T12:18:32.149Z</lastmod>
+    <lastmod>2023-03-01T12:31:05.936Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/6. Chord Recognition/6.1.Basic_Theory_of_Harmony.html</loc>
-    <lastmod>2023-03-01T12:18:35.751Z</lastmod>
+    <lastmod>2023-03-01T12:31:09.289Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/6. Chord Recognition/6.2.Template-Based_Chord_Recognition.html</loc>
-    <lastmod>2023-03-01T12:18:38.273Z</lastmod>
+    <lastmod>2023-03-01T12:31:11.511Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/6. Chord Recognition/6.3.HMM-Based_Chord_Recognition.html</loc>
-    <lastmod>2023-03-01T12:18:40.728Z</lastmod>
+    <lastmod>2023-03-01T12:31:13.707Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/6. Chord Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.html</loc>
-    <lastmod>2023-03-01T12:18:42.964Z</lastmod>
+    <lastmod>2023-03-01T12:31:17.747Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/7. Tempo and Beat Tracking/7.1.Onset_Detection.html</loc>
-    <lastmod>2023-03-01T12:18:47.526Z</lastmod>
+    <lastmod>2023-03-01T12:31:22.546Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/7. Tempo and Beat Tracking/7.2.Tempo_Analysis.html</loc>
-    <lastmod>2023-03-01T12:18:53.986Z</lastmod>
+    <lastmod>2023-03-01T12:31:29.373Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/7. Tempo and Beat Tracking/7.3.Beat_and_Pulse_Tracking.html</loc>
-    <lastmod>2023-03-01T12:18:58.965Z</lastmod>
+    <lastmod>2023-03-01T12:31:34.880Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/8. Content-Based Audio Retrieval/8.1.Introduction.html</loc>
-    <lastmod>2023-03-01T12:19:00.501Z</lastmod>
+    <lastmod>2023-03-01T12:31:36.631Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/8. Content-Based Audio Retrieval/8.2.Audio_Identification.html</loc>
-    <lastmod>2023-03-01T12:19:02.386Z</lastmod>
+    <lastmod>2023-03-01T12:31:38.358Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/8. Content-Based Audio Retrieval/8.3.Audio_Matching.html</loc>
-    <lastmod>2023-03-01T12:19:06.178Z</lastmod>
+    <lastmod>2023-03-01T12:31:42.469Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/8. Content-Based Audio Retrieval/8.4.Version_Identification.html</loc>
-    <lastmod>2023-03-01T12:19:09.607Z</lastmod>
+    <lastmod>2023-03-01T12:31:46.084Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/9. Musically Informed Audio Decomposition/9.1.Harmonic–Percussive_Separation.html</loc>
-    <lastmod>2023-03-01T12:19:14.472Z</lastmod>
+    <lastmod>2023-03-01T12:31:51.456Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/9. Musically Informed Audio Decomposition/9.2.Melody_Extraction.html</loc>
-    <lastmod>2023-03-01T12:19:18.611Z</lastmod>
+    <lastmod>2023-03-01T12:31:55.825Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/9. Musically Informed Audio Decomposition/9.3.NMF-Based_Audio_Decomposition.html</loc>
-    <lastmod>2023-03-01T12:19:22.510Z</lastmod>
+    <lastmod>2023-03-01T12:31:59.907Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/genre_classification_fma.html</loc>
-    <lastmod>2023-03-01T12:19:24.266Z</lastmod>
+    <lastmod>2023-03-01T12:32:01.563Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MC.html</loc>
-    <lastmod>2023-03-01T12:19:25.573Z</lastmod>
+    <lastmod>2023-03-01T12:32:03.029Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MR.html</loc>
-    <lastmod>2023-03-01T12:19:27.020Z</lastmod>
+    <lastmod>2023-03-01T12:32:04.762Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_SS.html</loc>
-    <lastmod>2023-03-01T12:19:29.090Z</lastmod>
+    <lastmod>2023-03-01T12:32:07.068Z</lastmod>
   </url>
   <url>
     <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/MIR_dataset.html</loc>
-    <lastmod>2023-03-01T12:19:30.625Z</lastmod>
+    <lastmod>2023-03-01T12:32:08.560Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jo-cho.github.io/MIRBlog/posts/Experiments/song_similarity_gtzan.html</loc>
+    <lastmod>2023-03-01T12:32:16.663Z</lastmod>
   </url>
 </urlset>
