@@ -126,7 +126,7 @@ website:
           - section: "소스 분리"
           - section: "음악 추천"
             contents:
-              - href: docs/posts/Experiments/song_similarity_gtzan.html
+              - href: https://colab.research.google.com/github/jo-cho/genre_classification/blob/main/GTZAN/song_similarity_kr.ipynb
                 text: "[실험] (GTZAN) 노래 유사도 거리 측정"
       
 format:
@@ -134,7 +134,6 @@ format:
     theme: flatly
     css: styles.css
     fontsize: 1.1em
-
 
         
 editor: visual

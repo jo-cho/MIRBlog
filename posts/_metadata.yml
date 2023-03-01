@@ -25,4 +25,4 @@ format:
     fig-align: center
     fig-width: 100
     fontsize: 1.1em
-    
+    embed-resources: false
