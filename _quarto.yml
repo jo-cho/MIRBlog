@@ -26,8 +26,9 @@ website:
     contents:
       - href: index.qmd
         text: "블로그 가이드"
-      - section: listing.qmd
-        text: "음악정보검색 입문"
+      - href: listing.qmd
+        text: "모든 글 보기"
+      - section: "음악정보검색 입문"
         contents:
           - section: "1. 들어가며"
             contents:
@@ -118,12 +119,15 @@ website:
       - section: "음악정보검색 실험"
         contents:
           - section: "음악 분류"
-            #contents: "GTZAN 데이터를 이용한 장르 분류"
-            #contents: "FMA 데이터를 이용한 장르 분류"
+            contents:
+              - href: posts/Experiments/genre_classification_fma.ipynb
+                text: "[실험] (FMA) 장르 분류 with XGBoost"
             #contents: "Librosa를 이용한 오디오 피쳐 추출"
           - section: "소스 분리"
           - section: "음악 추천"
-            #contents: "오디오 유사도 기반 추천"
+            contents:
+              - href: docs/posts/Experiments/song_similarity_gtzan.html
+                text: "[실험] (GTZAN) 노래 유사도 거리 측정"
       
 format:
   html:

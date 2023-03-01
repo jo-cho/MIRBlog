@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheonghyo Cho">
+<meta name="dcterms.date" content="2023-03-01">
+
+<title>음악정보검색 입문 - [실험] (FMA) 장르 분류 - XGBoost</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../docs/posts/Experiments/song_similarity_gtzan.html" rel="next">
+<link href="../../posts/Experiments/Literatures_MR.html" rel="prev">
+<link href="../../logo_mir.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">음악정보검색 입문</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/jo-cho/MIRBlog/tree/main/docs">
+ <span class="dropdown-text">Source Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/jo-cho/MIRBlog/discussions/4">
+ <span class="dropdown-text">Report a Bug</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">[실험] (FMA) 장르 분류 - XGBoost</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p>MIR Blog</p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">블로그 가이드</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../listing.html" class="sidebar-item-text sidebar-link">모든 글 보기</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">음악정보검색 입문</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">1. 들어가며</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/1. Introduction/1.1.Introduction.html" class="sidebar-item-text sidebar-link">1.1. MIR은 무엇인가</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">2. 음악 표현</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2. Music Representation/2.1.Sheet_Music.html" class="sidebar-item-text sidebar-link">2.1. 악보 표현</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2. Music Representation/2.2.Symbolic_Representation.html" class="sidebar-item-text sidebar-link">2.2. 기호 표현</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2. Music Representation/2.3.Audio_Representation.html" class="sidebar-item-text sidebar-link">2.3. 오디오 표현</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">3. 푸리에 변환</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Fourier Anaylsis of Signals/3.1.Math_Review.html" class="sidebar-item-text sidebar-link">3.1. 복소수와 지수함수</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Fourier Anaylsis of Signals/3.2.Discrete_Fourier_Transform.html" class="sidebar-item-text sidebar-link">3.2. 이산 &amp; 고속 푸리에 변환</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Fourier Anaylsis of Signals/3.3.Short-term_Fourier_Transform_1.html" class="sidebar-item-text sidebar-link">3.3. 단기 푸리에 변환 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Fourier Anaylsis of Signals/3.4.Short-term_Fourier_Transfrom_2.html" class="sidebar-item-text sidebar-link">3.4. 단기 푸리에 변환 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Fourier Anaylsis of Signals/3.5.Digital_Signals.html" class="sidebar-item-text sidebar-link">3.5. 디지털 신호</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">4. 음악 동기화</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Music Synchronization/4.1.Audio_Synchronization_Features.html" class="sidebar-item-text sidebar-link">4.1. 오디오 동기화 피쳐</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Music Synchronization/4.2.Dynamic_Time_Warping.html" class="sidebar-item-text sidebar-link">4.2. 동적 시간 워핑 (DTW)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">5. 음악 구조 분석</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/5. Music Structure Analysis/5.1.Music_Structure_and_Segmentation.html" class="sidebar-item-text sidebar-link">5.1. 음악 구조와 분할</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/5. Music Structure Analysis/5.2.Self_Similarity_Matrix.html" class="sidebar-item-text sidebar-link">5.2. 자기 유사성 행렬 (SSM)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/5. Music Structure Analysis/5.3.Audio_Thumbnail.html" class="sidebar-item-text sidebar-link">5.3. 오디오 썸네일</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/5. Music Structure Analysis/5.4.Novelty-Based_Segmentation.html" class="sidebar-item-text sidebar-link">5.4. 노벨티 기반 분할</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/5. Music Structure Analysis/5.5.Evaluation.html" class="sidebar-item-text sidebar-link">5.5. 음악 처리의 평가 방법</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">6. 화음 인식</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/6. Chord Recognition/6.1.Basic_Theory_of_Harmony.html" class="sidebar-item-text sidebar-link">6.1. 화성의 기본 이론</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/6. Chord Recognition/6.2.Template-Based_Chord_Recognition.html" class="sidebar-item-text sidebar-link">6.2. 템플릿 기반 화음 인식</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/6. Chord Recognition/6.3.HMM-Based_Chord_Recognition.html" class="sidebar-item-text sidebar-link">6.3. HMM 기반 화음 인식</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/6. Chord Recognition/6.4.Chord_Recognition_with_the_Beatles_Example.html" class="sidebar-item-text sidebar-link">6.4. 화음 인식 예시: 비틀즈</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">7. 템포와 비트</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/7. Tempo and Beat Tracking/7.1.Onset_Detection.html" class="sidebar-item-text sidebar-link">7.1. 온셋 감지</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/7. Tempo and Beat Tracking/7.2.Tempo_Analysis.html" class="sidebar-item-text sidebar-link">7.2. 템포 분석</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/7. Tempo and Beat Tracking/7.3.Beat_and_Pulse_Tracking.html" class="sidebar-item-text sidebar-link">7.3. 비트와 펄스 추적</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">8. 내용 기반 음악 검색</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/8. Content-Based Audio Retrieval/8.1.Introduction.html" class="sidebar-item-text sidebar-link">8.1. 내용 기반 오디오 검색: 개요</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/8. Content-Based Audio Retrieval/8.2.Audio_Identification.html" class="sidebar-item-text sidebar-link">8.2. 오디오 식별</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/8. Content-Based Audio Retrieval/8.3.Audio_Matching.html" class="sidebar-item-text sidebar-link">8.3. 오디오 매칭</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/8. Content-Based Audio Retrieval/8.4.Version_Identification.html" class="sidebar-item-text sidebar-link">8.4. 버전 식별</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">9. 오디오 분해</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/9. Musically Informed Audio Decomposition/9.1.Harmonic–Percussive_Separation.html" class="sidebar-item-text sidebar-link">9.1. 화성-타악 분리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/9. Musically Informed Audio Decomposition/9.2.Melody_Extraction.html" class="sidebar-item-text sidebar-link">9.2. 멜로디 추출</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/9. Musically Informed Audio Decomposition/9.3.NMF-Based_Audio_Decomposition.html" class="sidebar-item-text sidebar-link">9.3. NMF 기반 오디오 분해</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">음악정보검색 조사</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/MIR_dataset.html" class="sidebar-item-text sidebar-link">데이터 세트 모음</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/Literatures_SS.html" class="sidebar-item-text sidebar-link">선행연구 조사 - 소스분리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/Literatures_MR.html" class="sidebar-item-text sidebar-link">선행연구 조사 - 음악추천</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">음악정보검색 실험</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">음악 분류</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/genre_classification_fma.html" class="sidebar-item-text sidebar-link active">[실험] (FMA) 장르 분류 with XGBoost</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">소스 분리</span>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">음악 추천</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/posts/Experiments/song_similarity_gtzan.html" class="sidebar-item-text sidebar-link">[실험] (GTZAN) 노래 유사도 거리 측정</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#데이터" id="toc-데이터" class="nav-link active" data-scroll-target="#데이터">데이터</a></li>
+  <li><a href="#레이블label" id="toc-레이블label" class="nav-link" data-scroll-target="#레이블label">레이블(Label)</a>
+  <ul class="collapse">
+  <li><a href="#장르-모호성과-레이블-불균형" id="toc-장르-모호성과-레이블-불균형" class="nav-link" data-scroll-target="#장르-모호성과-레이블-불균형">장르 모호성과 레이블 불균형</a></li>
+  </ul></li>
+  <li><a href="#데이터-스플릿" id="toc-데이터-스플릿" class="nav-link" data-scroll-target="#데이터-스플릿">데이터 스플릿</a></li>
+  <li><a href="#피쳐-feature" id="toc-피쳐-feature" class="nav-link" data-scroll-target="#피쳐-feature">피쳐 (feature)</a>
+  <ul class="collapse">
+  <li><a href="#차원-축소---pca" id="toc-차원-축소---pca" class="nav-link" data-scroll-target="#차원-축소---pca">차원 축소 - PCA</a></li>
+  </ul></li>
+  <li><a href="#모형-model" id="toc-모형-model" class="nav-link" data-scroll-target="#모형-model">모형 (Model)</a>
+  <ul class="collapse">
+  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost">XGBoost</a></li>
+  </ul></li>
+  <li><a href="#피쳐-중요도" id="toc-피쳐-중요도" class="nav-link" data-scroll-target="#피쳐-중요도">피쳐 중요도</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jo-cho/MIRBlog/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">[실험] (FMA) 장르 분류 - XGBoost</h1>
+<p class="subtitle lead">[Experiment] (FMA) Genre Classification with XGBoost</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">장르분류</div>
+    <div class="quarto-category">FMA</div>
+    <div class="quarto-category">XGBoost</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cheonghyo Cho </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>FMA 데이터를 사용해 지정된 장르를 XGBoost Classifier을 이용해 예측하는 간단한 실험이다. 피쳐(feature)로 스펙트럼 피쳐, 크로마그램 피쳐, MFCC, 제로-크로싱 레이트 등을 사용한다.</p>
+<p>::: {.cell ExecuteTime=‘{“end_time”:“2023-03-01T09:03:32.411966Z”,“start_time”:“2023-03-01T09:03:32.289020Z”}’ _cell_guid=‘b1076dfc-b9ad-4769-8c92-a6c4dae69d19’ _uuid=‘8f2839f25d086af736a60e9eeb907d3b93b6e0e5’ execution=‘{“iopub.execute_input”:“2023-02-21T12:54:25.012664Z”,“iopub.status.busy”:“2023-02-21T12:54:25.012142Z”,“iopub.status.idle”:“2023-02-21T12:54:26.075042Z”,“shell.execute_reply”:“2023-02-21T12:54:26.073712Z”}’ papermill=‘{“duration”:1.081864,“end_time”:“2023-02-21T12:54:26.078158”,“exception”:false,“start_time”:“2023-02-21T12:54:24.996294”,“status”:“completed”}’ tags=‘[]’ execution_count=35}</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt, seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, f1_score, roc_auc_score, confusion_matrix, <span class="op">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay, classification_report</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> ipd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<section id="데이터" class="level1">
+<h1>데이터</h1>
+<p>미리 생성된 데이터를 불러온다.</p>
+<p>데이터는 <a href="https://github.com/mdeff/fma">FMA</a>의 106574곡 중 장르가 지정되지 않은 곡을 제외하여 104343곡을 사용한다. 장르를 label로 하며 feature는 518개이다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:26.764602Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:17.648560Z&quot;}" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 불러오기</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'data/data_FMA_genre_clf.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:26.779562Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:26.766597Z&quot;}" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>Index(['genre_top', 'chroma_cens_01_kurtosis', 'chroma_cens_02_kurtosis',
+       'chroma_cens_03_kurtosis', 'chroma_cens_04_kurtosis',
+       'chroma_cens_05_kurtosis', 'chroma_cens_06_kurtosis',
+       'chroma_cens_07_kurtosis', 'chroma_cens_08_kurtosis',
+       'chroma_cens_09_kurtosis',
+       ...
+       'tonnetz_04_std', 'tonnetz_05_std', 'tonnetz_06_std', 'zcr_01_kurtosis',
+       'zcr_01_max', 'zcr_01_mean', 'zcr_01_median', 'zcr_01_min',
+       'zcr_01_skew', 'zcr_01_std'],
+      dtype='object', length=519)</code></pre>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:26.839404Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:26.781559Z&quot;}" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>genre_top</th>
+      <th>chroma_cens_01_kurtosis</th>
+      <th>chroma_cens_02_kurtosis</th>
+      <th>chroma_cens_03_kurtosis</th>
+      <th>chroma_cens_04_kurtosis</th>
+      <th>chroma_cens_05_kurtosis</th>
+      <th>chroma_cens_06_kurtosis</th>
+      <th>chroma_cens_07_kurtosis</th>
+      <th>chroma_cens_08_kurtosis</th>
+      <th>chroma_cens_09_kurtosis</th>
+      <th>...</th>
+      <th>tonnetz_04_std</th>
+      <th>tonnetz_05_std</th>
+      <th>tonnetz_06_std</th>
+      <th>zcr_01_kurtosis</th>
+      <th>zcr_01_max</th>
+      <th>zcr_01_mean</th>
+      <th>zcr_01_median</th>
+      <th>zcr_01_min</th>
+      <th>zcr_01_skew</th>
+      <th>zcr_01_std</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Hip-Hop</td>
+      <td>7.180653</td>
+      <td>5.230309</td>
+      <td>0.249321</td>
+      <td>1.347620</td>
+      <td>1.482478</td>
+      <td>0.531371</td>
+      <td>1.481593</td>
+      <td>2.691455</td>
+      <td>0.866868</td>
+      <td>...</td>
+      <td>0.054125</td>
+      <td>0.012226</td>
+      <td>0.012111</td>
+      <td>5.758890</td>
+      <td>0.459473</td>
+      <td>0.085629</td>
+      <td>0.071289</td>
+      <td>0.000000</td>
+      <td>2.089872</td>
+      <td>0.061448</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hip-Hop</td>
+      <td>1.888963</td>
+      <td>0.760539</td>
+      <td>0.345297</td>
+      <td>2.295201</td>
+      <td>1.654031</td>
+      <td>0.067592</td>
+      <td>1.366848</td>
+      <td>1.054094</td>
+      <td>0.108103</td>
+      <td>...</td>
+      <td>0.063831</td>
+      <td>0.014212</td>
+      <td>0.017740</td>
+      <td>2.824694</td>
+      <td>0.466309</td>
+      <td>0.084578</td>
+      <td>0.063965</td>
+      <td>0.000000</td>
+      <td>1.716724</td>
+      <td>0.069330</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Hip-Hop</td>
+      <td>0.527563</td>
+      <td>-0.077654</td>
+      <td>-0.279610</td>
+      <td>0.685883</td>
+      <td>1.937570</td>
+      <td>0.880839</td>
+      <td>-0.923192</td>
+      <td>-0.927232</td>
+      <td>0.666617</td>
+      <td>...</td>
+      <td>0.040730</td>
+      <td>0.012691</td>
+      <td>0.014759</td>
+      <td>6.808415</td>
+      <td>0.375000</td>
+      <td>0.053114</td>
+      <td>0.041504</td>
+      <td>0.000000</td>
+      <td>2.193303</td>
+      <td>0.044861</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Pop</td>
+      <td>3.702245</td>
+      <td>-0.291193</td>
+      <td>2.196742</td>
+      <td>-0.234449</td>
+      <td>1.367364</td>
+      <td>0.998411</td>
+      <td>1.770694</td>
+      <td>1.604566</td>
+      <td>0.521217</td>
+      <td>...</td>
+      <td>0.074358</td>
+      <td>0.017952</td>
+      <td>0.013921</td>
+      <td>21.434212</td>
+      <td>0.452148</td>
+      <td>0.077515</td>
+      <td>0.071777</td>
+      <td>0.000000</td>
+      <td>3.542325</td>
+      <td>0.040800</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Pop</td>
+      <td>-0.193837</td>
+      <td>-0.198527</td>
+      <td>0.201546</td>
+      <td>0.258556</td>
+      <td>0.775204</td>
+      <td>0.084794</td>
+      <td>-0.289294</td>
+      <td>-0.816410</td>
+      <td>0.043851</td>
+      <td>...</td>
+      <td>0.095003</td>
+      <td>0.022492</td>
+      <td>0.021355</td>
+      <td>16.669037</td>
+      <td>0.469727</td>
+      <td>0.047225</td>
+      <td>0.040039</td>
+      <td>0.000977</td>
+      <td>3.189831</td>
+      <td>0.030993</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>155316</th>
+      <td>Rock</td>
+      <td>-0.490129</td>
+      <td>0.463834</td>
+      <td>2.321970</td>
+      <td>-0.084352</td>
+      <td>1.662914</td>
+      <td>2.115189</td>
+      <td>-0.237794</td>
+      <td>5.695442</td>
+      <td>0.830353</td>
+      <td>...</td>
+      <td>0.128410</td>
+      <td>0.022547</td>
+      <td>0.019816</td>
+      <td>4.448255</td>
+      <td>0.172852</td>
+      <td>0.028773</td>
+      <td>0.028320</td>
+      <td>0.003906</td>
+      <td>0.955388</td>
+      <td>0.012385</td>
+    </tr>
+    <tr>
+      <th>155317</th>
+      <td>Rock</td>
+      <td>-0.461559</td>
+      <td>-0.229601</td>
+      <td>-0.496632</td>
+      <td>-0.422033</td>
+      <td>0.130612</td>
+      <td>-0.263825</td>
+      <td>-0.628103</td>
+      <td>-0.082687</td>
+      <td>-0.229483</td>
+      <td>...</td>
+      <td>0.132964</td>
+      <td>0.023548</td>
+      <td>0.026527</td>
+      <td>3.270612</td>
+      <td>0.196289</td>
+      <td>0.031116</td>
+      <td>0.027832</td>
+      <td>0.002441</td>
+      <td>1.283060</td>
+      <td>0.019059</td>
+    </tr>
+    <tr>
+      <th>155318</th>
+      <td>Rock</td>
+      <td>0.552473</td>
+      <td>-0.110498</td>
+      <td>-0.532014</td>
+      <td>0.263131</td>
+      <td>-0.224011</td>
+      <td>-0.530972</td>
+      <td>1.713526</td>
+      <td>1.418444</td>
+      <td>1.325197</td>
+      <td>...</td>
+      <td>0.108324</td>
+      <td>0.017540</td>
+      <td>0.020471</td>
+      <td>2.356727</td>
+      <td>0.212891</td>
+      <td>0.038450</td>
+      <td>0.037109</td>
+      <td>0.003418</td>
+      <td>0.828569</td>
+      <td>0.017904</td>
+    </tr>
+    <tr>
+      <th>155319</th>
+      <td>Rock</td>
+      <td>-0.176901</td>
+      <td>0.187208</td>
+      <td>-0.050664</td>
+      <td>0.368843</td>
+      <td>0.066005</td>
+      <td>-0.857354</td>
+      <td>-0.780860</td>
+      <td>0.626281</td>
+      <td>-0.630938</td>
+      <td>...</td>
+      <td>0.088311</td>
+      <td>0.018328</td>
+      <td>0.017936</td>
+      <td>6.188604</td>
+      <td>0.167480</td>
+      <td>0.041480</td>
+      <td>0.038086</td>
+      <td>0.004883</td>
+      <td>1.818740</td>
+      <td>0.020133</td>
+    </tr>
+    <tr>
+      <th>155320</th>
+      <td>Pop</td>
+      <td>0.489665</td>
+      <td>1.862421</td>
+      <td>0.854461</td>
+      <td>-0.103666</td>
+      <td>-0.249835</td>
+      <td>0.360283</td>
+      <td>-0.366701</td>
+      <td>0.033578</td>
+      <td>-0.834606</td>
+      <td>...</td>
+      <td>0.091421</td>
+      <td>0.020312</td>
+      <td>0.016794</td>
+      <td>21.756050</td>
+      <td>0.845215</td>
+      <td>0.075141</td>
+      <td>0.044434</td>
+      <td>0.004395</td>
+      <td>4.687204</td>
+      <td>0.137205</td>
+    </tr>
+  </tbody>
+</table>
+<p>104343 rows × 519 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:26.869322Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:26.842395Z&quot;}" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.genre_top.unique(), <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="st">'장르 수: '</span>, <span class="bu">len</span>(data.genre_top.unique()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hip-Hop' 'Pop' 'Rock' 'Experimental' 'Folk' 'Jazz' 'Electronic' 'Blues'
+ 'Spoken' 'International' 'Soul-RnB' 'Classical' 'Country'
+ 'Easy Listening' 'Old-Time / Historic' 'Instrumental'] 
+ 장르 수:  16</code></pre>
+</div>
+</div>
+</section>
+<section id="레이블label" class="level1">
+<h1>레이블(Label)</h1>
+<section id="장르-모호성과-레이블-불균형" class="level2">
+<h2 class="anchored" data-anchor-id="장르-모호성과-레이블-불균형">장르 모호성과 레이블 불균형</h2>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:26.884283Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:26.870322Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:19.746363Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:19.745726Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:19.760091Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:19.758999Z&quot;}" data-papermill="{&quot;duration&quot;:0.053971,&quot;end_time&quot;:&quot;2023-02-21T12:57:19.762263&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:19.708292&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_genres <span class="op">=</span> data.genre_top.value_counts()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>top_genres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<pre><code>Electronic             25046
+Experimental           22724
+Rock                   21282
+Pop                     8015
+Folk                    6083
+Hip-Hop                 4534
+Instrumental            4367
+International           2924
+Jazz                    2293
+Classical               2102
+Blues                   1676
+Soul-RnB                 920
+Spoken                   768
+Country                  726
+Old-Time / Historic      710
+Easy Listening           173
+Name: genre_top, dtype: int64</code></pre>
+</div>
+</div>
+<p>본 실험의 목적은 음악적 장르를 오디오 feature로 잘 분류할 수 있는가이다. 이 때 장르는 사람이 지정한 라벨이기 때문에 음악적 특성 외에도 사회문화적, 아티스트의 배경, 역사적 요소 등이 고려될 수 있다. 위의 장르를 보면, “International”같은 장르는 특히나 음악적 특성을 반영하기 보다는 영미권 음악 시장 위주의 배경으로부터 분류된 장르이기 때문에 이 실험의 레이블로서 특징이 모호하다. 따라서 그러한 장르를 임의로 제외하기로 한다. (instrumental, international, easy-listening)</p>
+<p>또한 실험을 나이브하지만 조금 더 간단히 하기 위해 레이블 불균형을 완화할 목적으로 레이블 수가 1000개 미만인 장르 또한 제외하기로 한다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:55.915444Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:55.577014Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:19.909022Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:19.908596Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:20.112125Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:20.110747Z&quot;}" data-papermill="{&quot;duration&quot;:0.243874,&quot;end_time&quot;:&quot;2023-02-21T12:57:20.114969&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:19.871095&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>international_ids <span class="op">=</span> data[data[<span class="st">'genre_top'</span>]<span class="op">==</span><span class="st">'International'</span>].index</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>instrumental_ids <span class="op">=</span> data[data[<span class="st">'genre_top'</span>]<span class="op">==</span><span class="st">'Instrumental'</span>].index</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(index<span class="op">=</span>international_ids)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(index<span class="op">=</span>instrumental_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:59.049104Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:58.103768Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:20.190747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:20.189540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:21.075109Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:21.073673Z&quot;}" data-papermill="{&quot;duration&quot;:0.925996,&quot;end_time&quot;:&quot;2023-02-21T12:57:21.078006&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:20.152010&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>small_genres <span class="op">=</span> top_genres[top_genres<span class="op">&lt;</span><span class="dv">1000</span>].index</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> small_genres:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ids <span class="op">=</span> data[data[<span class="st">'genre_top'</span>]<span class="op">==</span>x].index</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.drop(index<span class="op">=</span>ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:13:59.064064Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:13:59.051098Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:21.153145Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:21.152727Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:21.159704Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:21.158479Z&quot;}" data-papermill="{&quot;duration&quot;:0.047059,&quot;end_time&quot;:&quot;2023-02-21T12:57:21.162087&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:21.115028&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>93755</code></pre>
+</div>
+</div>
+<p>이제 93755개의 노래가 남는다. 실험하기에 그리 작은 양은 아니다.</p>
+</section>
+</section>
+<section id="데이터-스플릿" class="level1">
+<h1>데이터 스플릿</h1>
+<p>훈련, 테스트 데이터로 나눈다. 7:3 비율로 하며 무작위로 뽑는다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:14:04.872657Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:04.432862Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:21.306981Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:21.306571Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:21.684996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:21.683681Z&quot;}" data-papermill="{&quot;duration&quot;:0.418568,&quot;end_time&quot;:&quot;2023-02-21T12:57:21.687714&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:21.269146&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>raw_X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">'genre_top'</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> data.loc[:,<span class="st">'genre_top'</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>cat_y <span class="op">=</span> pd.Categorical(labels)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> pd.Series(cat_y.codes)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># train / test</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>raw_X_train, raw_X_test, y_train, y_test <span class="op">=</span> train_test_split(raw_X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:14:04.947971Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:04.936999Z&quot;}" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(y_train), <span class="bu">len</span>(y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>65628 28127</code></pre>
+</div>
+</div>
+</section>
+<section id="피쳐-feature" class="level1">
+<h1>피쳐 (feature)</h1>
+<p>데이터의 feature는 총 518개이다.</p>
+<p>각 feature는 time-domain의 시리즈로 형성되기 때문에 통계값을 구해 feature로 쓴다. mean, median, standard deviation, skewness, kurtosis, maximum, minium 총 7개씩 구한다.</p>
+<ul>
+<li>크로마그램: (크로마 피치 12개 x 방식 3개) + 토네츠 피치 6개
+<ul>
+<li>chroma cens 1~12</li>
+<li>chroma cqt 1~12</li>
+<li>chroma stft 1~12</li>
+<li>tonnetz 1~6</li>
+</ul></li>
+<li>MFCC 1~20 (20개)</li>
+<li>RMSE (root mean square of energy) (1개)</li>
+<li>ZCR (zero crossing rate) (1개)</li>
+<li>스펙트로그램 (10개)
+<ul>
+<li>bandwidth</li>
+<li>centroid</li>
+<li>rolloff</li>
+<li>Contrast Subbands 1~7</li>
+</ul></li>
+</ul>
+<p>총 74개의 feature x 7개 통계값: 518개</p>
+<p>이들 중 상관관계가 매우 높은 feature들이 있다. 크로마그램의 경우 STFT, CQT, CENS는 방식이 다를뿐 포함하는 정보의 의미 (피치클래스 크기)는 같다. 또한 스펙트로그램 feature의 bandwidth, centroid, rolloff 등도 비슷하다.</p>
+<p>따라서 PCA를 이용한 차원축소를 통해 선형적 상관관계가 있는 feature의 개수를 줄여준다.</p>
+<section id="차원-축소---pca" class="level2">
+<h2 class="anchored" data-anchor-id="차원-축소---pca">차원 축소 - PCA</h2>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:14:12.487979Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:06.545754Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:21.773772Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:21.773309Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:26.235258Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:26.233998Z&quot;}" data-papermill="{&quot;duration&quot;:4.506816,&quot;end_time&quot;:&quot;2023-02-21T12:57:26.238038&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:21.731222&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> StandardScaler()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>raw_X_scaled_train <span class="op">=</span> sc.fit_transform(raw_X_train)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>raw_X_scaled_test <span class="op">=</span> sc.transform(raw_X_test)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>ft_pca <span class="op">=</span> pca.fit_transform(raw_X_scaled_train)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>exp_var_pca <span class="op">=</span> pca.explained_variance_ratio_</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>cum_sum_eigenvalues <span class="op">=</span> np.cumsum(exp_var_pca)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">3</span>))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.bar(<span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(exp_var_pca)), exp_var_pca, alpha<span class="op">=</span><span class="fl">0.5</span>, align<span class="op">=</span><span class="st">'center'</span>, label<span class="op">=</span><span class="st">'Individual explained variance'</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.step(<span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(cum_sum_eigenvalues)), cum_sum_eigenvalues, where<span class="op">=</span><span class="st">'mid'</span>,label<span class="op">=</span><span class="st">'Cumulative explained variance'</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.75</span>, xmin<span class="op">=</span><span class="dv">0</span>, xmax<span class="op">=</span><span class="bu">len</span>(cum_sum_eigenvalues), color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">.6</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.9</span>, xmin<span class="op">=</span><span class="dv">0</span>, xmax<span class="op">=</span><span class="bu">len</span>(cum_sum_eigenvalues), color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">.6</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Explained variance ratio'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Principal component index'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'best'</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="genre_classification_fma_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>전체 feature의 explained variance를 0.75, 즉 분산의 75%를 설명할 수 있는 PC 개수를 정하기로 한다. 정확히 자르기보다는 대충 50개라고 하자.</p>
+<p>Standard Scaler와 PCA fitting 모두 훈련데이터에서만 한 후, 테스트데이터에 대해서는 변형(transform)만 한다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:14:32.289386Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:28.447938Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:26.314315Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:26.313509Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:28.598193Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:28.596547Z&quot;}" data-papermill="{&quot;duration&quot;:2.327637,&quot;end_time&quot;:&quot;2023-02-21T12:57:28.602750&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:26.275113&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>n_comps <span class="op">=</span> <span class="dv">50</span> <span class="co"># 0.75 explained variance for pca</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span>n_comps)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> pca.fit_transform(raw_X_scaled_train)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> pd.DataFrame(X_train, index<span class="op">=</span>raw_X_train.index, columns<span class="op">=</span>[<span class="ss">f'PCA_</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n_comps<span class="op">+</span><span class="dv">1</span>)])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> pca.transform(raw_X_scaled_test)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> pd.DataFrame(X_test, index<span class="op">=</span>raw_X_test.index, columns<span class="op">=</span>[<span class="ss">f'PCA_</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n_comps<span class="op">+</span><span class="dv">1</span>)])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>components <span class="op">=</span> pca.components_.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="모형-model" class="level1">
+<h1>모형 (Model)</h1>
+<section id="xgboost" class="level2">
+<h2 class="anchored" data-anchor-id="xgboost">XGBoost</h2>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:14:34.184225Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:34.176245Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:29.067928Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:29.067466Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T12:57:29.072650Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T12:57:29.071751Z&quot;}" data-papermill="{&quot;duration&quot;:0.046094,&quot;end_time&quot;:&quot;2023-02-21T12:57:29.075007&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:29.028913&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> XGBClassifier(n_estimators<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:15:21.929898Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:14:34.479117Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T12:57:29.150627Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T12:57:29.150241Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:19.155196Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:19.154298Z&quot;}" data-papermill="{&quot;duration&quot;:230.082812,&quot;end_time&quot;:&quot;2023-02-21T13:01:19.194733&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T12:57:29.111921&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>xgb.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+<style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=None, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=None, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              n_estimators=50, n_jobs=None, num_parallel_tree=None,
+              objective='multi:softprob', predictor=None, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">XGBClassifier</label><div class="sk-toggleable__content"><pre>XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=None, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=None, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              n_estimators=50, n_jobs=None, num_parallel_tree=None,
+              objective='multi:softprob', predictor=None, ...)</pre></div></div></div></div></div>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:20:20.248157Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:20:20.169608Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T13:01:19.272005Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T13:01:19.271000Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:19.452283Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:19.451268Z&quot;}" data-papermill="{&quot;duration&quot;:0.223316,&quot;end_time&quot;:&quot;2023-02-21T13:01:19.455027&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T13:01:19.231711&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> y_test.copy()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> xgb.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:20:21.391326Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:20:21.361407Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T13:01:19.535169Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T13:01:19.534771Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:19.557917Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:19.556598Z&quot;}" data-papermill="{&quot;duration&quot;:0.065862,&quot;end_time&quot;:&quot;2023-02-21T13:01:19.561019&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T13:01:19.495157&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'XGB Accuracy: '</span>, accuracy_score(y_true, y_pred))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'XGB F1: '</span>, f1_score(y_true, y_pred, average<span class="op">=</span><span class="st">'macro'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>XGB Accuracy:  0.5297045543428023
+XGB F1:  0.41522942538146473</code></pre>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:21:05.819250Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:21:03.593748Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T13:01:19.640036Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T13:01:19.639595Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:23.218192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:23.216920Z&quot;}" data-papermill="{&quot;duration&quot;:3.621928,&quot;end_time&quot;:&quot;2023-02-21T13:01:23.221927&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T13:01:19.599999&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">9</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">12</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'Confusion Matrix (XGBoost)'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">8</span>].set_xlabel(<span class="st">'Predicted labels'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">9</span>):    </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(confusion_matrix(y_true, y_pred)[i].reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'gray_r'</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>cat_y.categories, yticklabels<span class="op">=</span>[cat_y.categories[i]], ax<span class="op">=</span>axs[i])</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="genre_classification_fma_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:21:16.180051Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:21:16.135662Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T13:01:23.305084Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T13:01:23.304678Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:23.370887Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:23.369514Z&quot;}" data-papermill="{&quot;duration&quot;:0.111298,&quot;end_time&quot;:&quot;2023-02-21T13:01:23.374076&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T13:01:23.262778&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"XGB classification report:"</span>,<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_true, y_pred))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">dict</span>(<span class="bu">zip</span>(cat_y.categories, <span class="bu">range</span>(<span class="dv">10</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>XGB classification report: 
+
+              precision    recall  f1-score   support
+
+           0       0.81      0.22      0.34       501
+           1       0.61      0.43      0.50       616
+           2       0.53      0.67      0.59      7568
+           3       0.51      0.56      0.53      6729
+           4       0.45      0.36      0.40      1794
+           5       0.56      0.34      0.42      1392
+           6       0.50      0.09      0.15       682
+           7       0.36      0.12      0.18      2458
+           8       0.57      0.66      0.61      6387
+
+    accuracy                           0.53     28127
+   macro avg       0.54      0.38      0.42     28127
+weighted avg       0.52      0.53      0.51     28127
+
+{'Blues': 0, 'Classical': 1, 'Electronic': 2, 'Experimental': 3, 'Folk': 4, 'Hip-Hop': 5, 'Jazz': 6, 'Pop': 7, 'Rock': 8}</code></pre>
+</div>
+</div>
+<p>각 장르별 f1-score를 확인해보면, 클래식, 일렉트로닉, 익스페리멘털, 록 음악은 점수가 높고, 재즈와 팝 음악이 점수가 낮다.</p>
+<p>어떤 장르가 오분류되었는지 자세히 살펴보자. 다음은 잘못 분류한 장르 쌍 중 가장 많은 것이다.</p>
+<ul>
+<li><p>블루스를 록으로 오분류</p></li>
+<li><p>힙합을 일렉트로닉으로 오분류</p></li>
+<li><p>재즈를 익스페리멘털로 오분류</p></li>
+<li><p>팝을 일렉트로닉으로 오분류</p></li>
+<li><p>팝을 록으로 오분류</p></li>
+</ul>
+<p>해석</p>
+<ol type="1">
+<li><p>애초에 데이터의 레이블 중 일렉트로닉, 익스페리멘털, 록 음악이 가장 많다. 따라서 해당 장르로 오분류하는 횟수도 많을 수 밖에 없다.</p></li>
+<li><p>실제로 록과 블루스, 힙합과 일렉트로닉은 장르의 음악적 유사성은 상당 부분 가진다. 또한 팝 음악은 일렉트로닉 음악의 특성과 록 음악의 특성을 반영한 대중적인 음악인 경우가 많기 때문에, 오분류할 이유가 충분히 있다고 볼 수 있다.</p></li>
+<li><p>따라서 주어진 오디오 feature로 머신러닝 분류 모형을 사용했을 때 우리가 이해할만한 분류를 할 수 있음을 알 수 있다. 한 노래가 반드시 하나의 장르를 따른다고 정답을 내릴 수는 없기에 장르 분류는 모호함이 있다. 달성하고자 하는 목적에 따라 레이블을 달리하는 음악 분류를 시도해 볼 수 있을 것이다.</p></li>
+</ol>
+</section>
+</section>
+<section id="피쳐-중요도" class="level1">
+<h1>피쳐 중요도</h1>
+<p>마지막으로 XGBoost의 feature importance로 PCA 피쳐의 중요도와 중요한 PC가 어떤 기존 피쳐에 로딩을 많이 가지는 지를 살펴보면 실험을 마친다. 다만 PCA로 피쳐를 직접적으로 분석하기란 쉽지않다. 따라서 상관관계가 높은 피쳐들은 임의로 제거하여 적은 피쳐로 분석하는 것이 나을 수 있다. 또한 어느 피쳐에 따라 통계값은 의미가 크게 없을 수 있다. 이러한 피쳐 분석은 다음 과제로 남겨두기로 한다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:30:48.666302Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:30:48.202908Z&quot;}" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-02-21T13:01:23.455264Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-02-21T13:01:23.454854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-02-21T13:01:24.725389Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-02-21T13:01:24.724061Z&quot;}" data-papermill="{&quot;duration&quot;:1.314205,&quot;end_time&quot;:&quot;2023-02-21T13:01:24.728151&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-02-21T13:01:23.413946&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">12</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> plot_importance</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plot_importance(xgb, ax<span class="op">=</span>ax, title<span class="op">=</span><span class="st">'Feature Importance of XGBoost model'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="genre_classification_fma_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>PCA2, PCA1이 큰 점수를 가진다.</p>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:33:21.408997Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:33:21.393039Z&quot;}" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>imp_pc <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">8</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>unimp_pc <span class="op">=</span> [<span class="dv">47</span>,<span class="dv">34</span>,<span class="dv">45</span>,<span class="dv">46</span>,<span class="dv">37</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:40:27.968932Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:40:26.607835Z&quot;}" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">40</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(components[:,imp_pc], cmap<span class="op">=</span><span class="st">"RdBu_r"</span>, ax<span class="op">=</span>ax, center<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(labels<span class="op">=</span> raw_X_train.columns[::<span class="dv">3</span>], rotation<span class="op">=</span><span class="dv">0</span>, fontdict<span class="op">=</span>{<span class="st">'fontsize'</span>:<span class="dv">6</span>})</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(labels<span class="op">=</span> [<span class="ss">f'PC </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> imp_pc])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"PCA Loadings (Top PCs)"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="genre_classification_fma_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-03-01T09:40:38.122433Z&quot;,&quot;start_time&quot;:&quot;2023-03-01T09:40:36.752898Z&quot;}" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">40</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(components[:,unimp_pc], cmap<span class="op">=</span><span class="st">"RdBu_r"</span>, ax<span class="op">=</span>ax, center<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(labels<span class="op">=</span> raw_X_train.columns[::<span class="dv">3</span>], rotation<span class="op">=</span><span class="dv">0</span>, fontdict<span class="op">=</span>{<span class="st">'fontsize'</span>:<span class="dv">6</span>})</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(labels<span class="op">=</span> [<span class="ss">f'PC </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> unimp_pc])</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"PCA Loadings (Bottom PCs)"</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="genre_classification_fma_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jo-cho/MIRBlog" data-repo-id="R_kgDOI83zeg" data-category="General" data-category-id="DIC_kwDOI83zes4CUQJ2" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/Experiments/Literatures_MR.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">선행연구 조사 - 음악추천</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../docs/posts/Experiments/song_similarity_gtzan.html" class="pagination-link">
+        <span class="nav-page-text">[실험] (GTZAN) 노래 유사도 거리 측정</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
