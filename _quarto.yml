@@ -114,6 +114,8 @@ website:
             text: "데이터 세트 모음"
           - href: posts/Experiments/Literatures_SS.ipynb
             text: "선행연구 조사 - 소스분리"
+          - href: posts/Experiments/Literatures_MC.ipynb
+            text: "선행연구 조사 - 음악분류"
           - href: posts/Experiments/Literatures_MR.ipynb
             text: "선행연구 조사 - 음악추천"
       - section: "음악정보검색 실험"
@@ -123,7 +125,6 @@ website:
               - href: posts/Experiments/genre_classification_fma.ipynb
                 text: "[실험] (FMA) 장르 분류 with XGBoost"
             #contents: "Librosa를 이용한 오디오 피쳐 추출"
-          - section: "소스 분리"
           - section: "음악 추천"
             contents:
               - href: https://colab.research.google.com/github/jo-cho/genre_classification/blob/main/GTZAN/song_similarity_kr.ipynb

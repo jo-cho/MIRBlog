@@ -137,8 +137,9 @@
 
 [선행연구 조사 - 소스분리](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_SS.html): 음악 소스 분리(music source separation)에 관한 선행연구를 조사합니다.
 
+[선행연구 조사 - 음악분류](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MC.html): 음악 장르, 아티스트, 태그 등의 타겟을 분류, 식별하는 모형에 관한 선행연구를 조사합니다. (수정중)
 
-[선행연구 조사 - 음악추천](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MR.html): 내용 기반의 음악 추천(content-based music recommendation)에 관한 선행연구를 조사합니다.
+[선행연구 조사 - 음악추천](https://jo-cho.github.io/MIRBlog/posts/Experiments/Literatures_MR.html): 내용 기반의 음악 추천(content-based music recommendation)에 관한 선행연구를 조사합니다. (수정중)
 
 ---
 

@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../posts/Experiments/Literatures_MR.html" rel="next">
+<link href="../../posts/Experiments/Literatures_SS.html" rel="prev">
 <link href="../../logo_mir.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -405,6 +407,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Experiments/Literatures_MC.html" class="sidebar-item-text sidebar-link active">선행연구 조사 - 음악분류</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Experiments/Literatures_MR.html" class="sidebar-item-text sidebar-link">선행연구 조사 - 음악추천</a>
   </div>
 </li>
@@ -434,16 +441,13 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">소스 분리</span>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">음악 추천</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">음악 추천</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://colab.research.google.com/github/jo-cho/genre_classification/blob/main/GTZAN/song_similarity_kr.ipynb" class="sidebar-item-text sidebar-link">[실험] (GTZAN) 노래 유사도 거리 측정</a>
@@ -505,6 +509,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><em>(..작성 수정중..)</em></p>
 <p><strong>MIR Literatures - Music Classification</strong></p>
 <blockquote class="blockquote">
 <p>이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 음악 분류에는 분류(예측)하고자 하는 목표값(target or label)에 따라 장르, 아티스트, 가수 분류 등이 있다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다.</p>
@@ -526,11 +531,43 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/1021072">G. Tzanetakis and P. Cook (2002)</a></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">genre dataset</td>
+<td style="text-align: center;">spectral features, mfcc, ZC, low-energy, Beat histogram, pitch contents</td>
+<td style="text-align: center;">Genre</td>
+<td style="text-align: center;">GMM, KNN</td>
+<td style="text-align: center;">confusion matrix</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://academiccommons.columbia.edu/doi/10.7916/D8C255SD">D.P. Ellis (2007)</a></td>
+<td style="text-align: center;">uspop2002</td>
+<td style="text-align: center;">MFCC20, Beat-Chroma</td>
+<td style="text-align: center;">Artist</td>
+<td style="text-align: center;">SVM</td>
+<td style="text-align: center;">Accuracy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=048fcd60d2047734aab38e78ac033951236b818d">T. Langlois and G. Marques (2009)</a></td>
+<td style="text-align: center;">ISMIR 2004, artist20</td>
+<td style="text-align: center;">MFCCs</td>
+<td style="text-align: center;">Genre, Aritist</td>
+<td style="text-align: center;">GMM, K-means, NN</td>
+<td style="text-align: center;">Accuracy, precision, recall, confusion matrix</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7096332">M. Genussov and I. Cohen (2010)</a></td>
+<td style="text-align: center;">GTZAN</td>
+<td style="text-align: center;">spectral features, MFCC, ZC, low-energy</td>
+<td style="text-align: center;">Genre</td>
+<td style="text-align: center;">KNN</td>
+<td style="text-align: center;">confusion matrix</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://dblp.org/rec/conf/ismir/SuY13.html">L. Su and Y.H. Yang (2012)</a></td>
+<td style="text-align: center;">Train: uspop2002, MIR-1K, RWC, Test: artist20</td>
+<td style="text-align: center;">Sprectrogram, Group Delay</td>
+<td style="text-align: center;">Artist</td>
+<td style="text-align: center;">SVM</td>
+<td style="text-align: center;">Accuracy</td>
 </tr>
 </tbody>
 </table>
@@ -677,6 +714,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="jo-cho/MIRBlog" data-repo-id="R_kgDOI83zeg" data-category="General" data-category-id="DIC_kwDOI83zes4CUQJ2" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/Experiments/Literatures_SS.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">선행연구 조사 - 소스분리</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../posts/Experiments/Literatures_MR.html" class="pagination-link">
+        <span class="nav-page-text">선행연구 조사 - 음악추천</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
