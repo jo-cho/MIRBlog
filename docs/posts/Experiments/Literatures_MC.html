@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../posts/Experiments/Literatures_MR.html" rel="next">
+<link href="../../posts/Experiments/genre_classification_fma.html" rel="next">
 <link href="../../posts/Experiments/Literatures_SS.html" rel="prev">
 <link href="../../logo_mir.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">
- <span class="menu-text">About Me</span></a>
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -410,11 +410,6 @@ ul.task-list li input[type="checkbox"] {
   <a href="../../posts/Experiments/Literatures_MC.html" class="sidebar-item-text sidebar-link active">선행연구 조사 - 음악분류</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/Experiments/Literatures_MR.html" class="sidebar-item-text sidebar-link">선행연구 조사 - 음악추천</a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -532,36 +527,44 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/1021072">G. Tzanetakis and P. Cook (2002)</a></td>
 <td style="text-align: center;">genre dataset</td>
-<td style="text-align: center;">spectral features, mfcc, ZC, low-energy, Beat histogram, pitch contents</td>
+<td style="text-align: center;">Spectrogram features, MFCC, ZC, low-energy, Beat-histogram, pitch contents</td>
 <td style="text-align: center;">Genre</td>
 <td style="text-align: center;">GMM, KNN</td>
 <td style="text-align: center;">confusion matrix</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"><a href="https://academiccommons.columbia.edu/doi/10.7916/D8QV3WWQ">M. Mandel and D.P. Ellis (2005)</a></td>
+<td style="text-align: center;">uspop2002</td>
+<td style="text-align: center;">MFCC</td>
+<td style="text-align: center;">Artist</td>
+<td style="text-align: center;">SVM, KNN</td>
+<td style="text-align: center;">Accuracy</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;"><a href="https://academiccommons.columbia.edu/doi/10.7916/D8C255SD">D.P. Ellis (2007)</a></td>
 <td style="text-align: center;">uspop2002</td>
-<td style="text-align: center;">MFCC20, Beat-Chroma</td>
+<td style="text-align: center;">MFCC, Beat-Chroma</td>
 <td style="text-align: center;">Artist</td>
 <td style="text-align: center;">SVM</td>
 <td style="text-align: center;">Accuracy</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=048fcd60d2047734aab38e78ac033951236b818d">T. Langlois and G. Marques (2009)</a></td>
 <td style="text-align: center;">ISMIR 2004, artist20</td>
-<td style="text-align: center;">MFCCs</td>
+<td style="text-align: center;">MFCC</td>
 <td style="text-align: center;">Genre, Aritist</td>
 <td style="text-align: center;">GMM, K-means, NN</td>
 <td style="text-align: center;">Accuracy, precision, recall, confusion matrix</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><a href="https://ieeexplore.ieee.org/abstract/document/7096332">M. Genussov and I. Cohen (2010)</a></td>
 <td style="text-align: center;">GTZAN</td>
-<td style="text-align: center;">spectral features, MFCC, ZC, low-energy</td>
+<td style="text-align: center;">Spectrogram features, MFCC, ZC, low-energy</td>
 <td style="text-align: center;">Genre</td>
 <td style="text-align: center;">KNN</td>
 <td style="text-align: center;">confusion matrix</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><a href="https://dblp.org/rec/conf/ismir/SuY13.html">L. Su and Y.H. Yang (2012)</a></td>
 <td style="text-align: center;">Train: uspop2002, MIR-1K, RWC, Test: artist20</td>
 <td style="text-align: center;">Sprectrogram, Group Delay</td>
@@ -721,8 +724,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/Experiments/Literatures_MR.html" class="pagination-link">
-        <span class="nav-page-text">선행연구 조사 - 음악추천</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../posts/Experiments/genre_classification_fma.html" class="pagination-link">
+        <span class="nav-page-text">[실험] (FMA) 장르 분류 with XGBoost</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,10 +1,13 @@
 ---
-title: "About Me"
+title: "About"
 subtitle: "Cheonghyo Cho | 조정효"
 image: logo_mir.png
 about:
   template: jolla
   links:
+    - icon: quarto
+      text: About Me
+      href: https://jo-cho.github.io
     - icon: github
       text: My Github
       href: https://github.com/jo-cho
@@ -12,4 +15,4 @@ about:
 
 음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 블로그입니다. 음악정보검색을 독학하며 배운 내용을 기록 중입니다. 초보자의 입문기라고 생각해주세요.
 
-E-mail: jhcho1016\@naver.com
+Author: Cheonghyo Cho \| 조정효 (e-mail: jhcho1016\@naver.com)

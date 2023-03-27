@@ -116,8 +116,6 @@ website:
             text: "선행연구 조사 - 소스분리"
           - href: posts/Experiments/Literatures_MC.ipynb
             text: "선행연구 조사 - 음악분류"
-          - href: posts/Experiments/Literatures_MR.ipynb
-            text: "선행연구 조사 - 음악추천"
       - section: "음악정보검색 실험"
         contents:
           - section: "음악 분류"

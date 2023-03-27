@@ -2,9 +2,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About Me",
+    "title": "About",
     "section": "",
-    "text": "음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 블로그입니다. 음악정보검색을 독학하며 배운 내용을 기록 중입니다. 초보자의 입문기라고 생각해주세요.\nE-mail: jhcho1016@naver.com"
+    "text": "음악정보검색(Music Information Retrieval)에 대한 포스트를 올리는 블로그입니다. 음악정보검색을 독학하며 배운 내용을 기록 중입니다. 초보자의 입문기라고 생각해주세요.\nAuthor: Cheonghyo Cho | 조정효 (e-mail: jhcho1016@naver.com)"
   },
   {
     "objectID": "index.html",
@@ -2342,7 +2342,7 @@
     "href": "posts/Experiments/Literatures_MC.html",
     "title": "선행연구 조사 - 음악분류",
     "section": "",
-    "text": "(..작성 수정중..)\nMIR Literatures - Music Classification\n\n이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 음악 분류에는 분류(예측)하고자 하는 목표값(target or label)에 따라 장르, 아티스트, 가수 분류 등이 있다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다.\n\n논문 제목을 클릭하면 해당 논문의 DOI 주소로 이동한다.\n\n선행연구 조사\n\n\n\n논문\n데이터\n피쳐\n타겟\n모형\n성과지표\n\n\n\n\nG. Tzanetakis and P. Cook (2002)\ngenre dataset\nspectral features, mfcc, ZC, low-energy, Beat histogram, pitch contents\nGenre\nGMM, KNN\nconfusion matrix\n\n\nD.P. Ellis (2007)\nuspop2002\nMFCC20, Beat-Chroma\nArtist\nSVM\nAccuracy\n\n\nT. Langlois and G. Marques (2009)\nISMIR 2004, artist20\nMFCCs\nGenre, Aritist\nGMM, K-means, NN\nAccuracy, precision, recall, confusion matrix\n\n\nM. Genussov and I. Cohen (2010)\nGTZAN\nspectral features, MFCC, ZC, low-energy\nGenre\nKNN\nconfusion matrix\n\n\nL. Su and Y.H. Yang (2012)\nTrain: uspop2002, MIR-1K, RWC, Test: artist20\nSprectrogram, Group Delay\nArtist\nSVM\nAccuracy\n\n\n\n\n\n추가 설명"
+    "text": "(..작성 수정중..)\nMIR Literatures - Music Classification\n\n이론보다는 실증 연구를 바탕으로 선행연구들을 직접 조사하였다. 음악 분류에는 분류(예측)하고자 하는 목표값(target or label)에 따라 장르, 아티스트, 가수 분류 등이 있다. 논문은 연도 순으로 정리되어 있으며, 연구에서 쓰이는 데이터, 피쳐, 모형, 성과지표를 함께 게재하였다. 각각 항목에 따라 주로 사용되는 것과 시간에 따른 추세를 확인할 수 있다.\n\n논문 제목을 클릭하면 해당 논문의 DOI 주소로 이동한다.\n\n선행연구 조사\n\n\n\n논문\n데이터\n피쳐\n타겟\n모형\n성과지표\n\n\n\n\nG. Tzanetakis and P. Cook (2002)\ngenre dataset\nSpectrogram features, MFCC, ZC, low-energy, Beat-histogram, pitch contents\nGenre\nGMM, KNN\nconfusion matrix\n\n\nM. Mandel and D.P. Ellis (2005)\nuspop2002\nMFCC\nArtist\nSVM, KNN\nAccuracy\n\n\nD.P. Ellis (2007)\nuspop2002\nMFCC, Beat-Chroma\nArtist\nSVM\nAccuracy\n\n\nT. Langlois and G. Marques (2009)\nISMIR 2004, artist20\nMFCC\nGenre, Aritist\nGMM, K-means, NN\nAccuracy, precision, recall, confusion matrix\n\n\nM. Genussov and I. Cohen (2010)\nGTZAN\nSpectrogram features, MFCC, ZC, low-energy\nGenre\nKNN\nconfusion matrix\n\n\nL. Su and Y.H. Yang (2012)\nTrain: uspop2002, MIR-1K, RWC, Test: artist20\nSprectrogram, Group Delay\nArtist\nSVM\nAccuracy\n\n\n\n\n\n추가 설명"
   },
   {
     "objectID": "posts/Experiments/Literatures_MR.html",
